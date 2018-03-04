@@ -1,0 +1,47 @@
+<%= form_with(model: manufacturer, local: true) do |form| %>
+  <% if manufacturer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manufacturer.errors.count, "error") %> prohibited this manufacturer from being saved:</h2>
+
+      <ul>
+      <% manufacturer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :manufacturer_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :manufacturer_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country, id: :manufacturer_country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :manufacturer_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :manufacturer_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, id: :manufacturer_phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

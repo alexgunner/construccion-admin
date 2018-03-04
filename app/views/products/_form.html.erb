@@ -1,0 +1,67 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :product_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :product_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color, id: :product_color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code, id: :product_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :measure_id %>
+    <%= form.text_field :measure_id, id: :product_measure_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :provider_id %>
+    <%= form.text_field :provider_id, id: :product_provider_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manufacturer_id %>
+    <%= form.text_field :manufacturer_id, id: :product_manufacturer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.text_field :category_id, id: :product_category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcategory_id %>
+    <%= form.text_field :subcategory_id, id: :product_subcategory_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

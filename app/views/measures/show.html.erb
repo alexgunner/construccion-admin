@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @measure.name %>
+</p>
+
+<p>
+  <strong>Abbreviation:</strong>
+  <%= @measure.abbreviation %>
+</p>
+
+<%= link_to 'Edit', edit_measure_path(@measure) %> |
+<%= link_to 'Back', measures_path %>
