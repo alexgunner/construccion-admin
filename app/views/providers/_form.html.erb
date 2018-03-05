@@ -11,42 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :provider_name %>
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :provider_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :provider_description %>
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_field :description, id: :provider_description, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :provider_email %>
+  <div class="form-group">
+    <%= form.label "Correo electrónico" %>
+    <%= form.text_field :email, id: :provider_email, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :provider_phone %>
+  <div class="form-group">
+    <%= form.label "Teléfono" %>
+    <%= form.text_field :phone, id: :provider_phone, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :provider_address %>
+  <div class="form-group">
+    <%= form.label "Dirección" %>
+    <%= form.text_field :address, id: :provider_address, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country, id: :provider_country %>
+  <div class="form-group">
+    <%= form.label "País" %>
+    <%= form.text_field :country, id: :provider_country, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city, id: :provider_city %>
+  <div class="form-group">
+    <%= form.label "Ciudad" %>
+    <%= form.text_field :city, id: :provider_city, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-success" %>
+      <%= link_to "Cancelar", providers_url, class: "btn btn-danger" %>
+    </center>
   </div>
 <% end %>

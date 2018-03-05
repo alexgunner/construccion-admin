@@ -1,6 +1,7 @@
-<h1>Editing Provider</h1>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+        <h2>Editar provedor</h2>
+        <%= render 'form', provider: @provider %>
+    </div>
+</div>
 
-<%= render 'form', provider: @provider %>
-
-<%= link_to 'Show', @provider %> |
-<%= link_to 'Back', providers_path %>

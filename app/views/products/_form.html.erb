@@ -11,57 +11,60 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :product_name %>
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :product_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :product_description %>
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_field :description, id: :product_description, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, id: :product_price %>
+  <div class="form-group">
+    <%= form.label "Precio" %>
+    <%= form.text_field :price, id: :product_price, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :color %>
-    <%= form.text_field :color, id: :product_color %>
+  <div class="form-group">
+    <%= form.label "Color" %>
+    <%= form.text_field :color, id: :product_color, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code, id: :product_code %>
+  <div class="form-group">
+    <%= form.label "Código" %>
+    <%= form.text_field :code, id: :product_code, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :measure_id %>
-    <%= form.text_field :measure_id, id: :product_measure_id %>
+  <div class="form-group">
+    <%= form.label "Unidad de medida" %>
+    <%= form.text_field :measure_id, id: :product_measure_id, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :provider_id %>
-    <%= form.text_field :provider_id, id: :product_provider_id %>
+  <div class="form-group">
+    <%= form.label "Provedor" %>
+    <%= form.text_field :provider_id, id: :product_provider_id, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :manufacturer_id %>
-    <%= form.text_field :manufacturer_id, id: :product_manufacturer_id %>
+  <div class="form-group">
+    <%= form.label "Fabricante" %>
+    <%= form.text_field :manufacturer_id, id: :product_manufacturer_id, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id, id: :product_category_id %>
+  <div class="form-group">
+    <%= form.label "Categoría" %>
+    <%= form.text_field :category_id, id: :product_category_id, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :subcategory_id %>
-    <%= form.text_field :subcategory_id, id: :product_subcategory_id %>
+  <div class="form-group">
+    <%= form.label "Subcategoría" %>
+    <%= form.text_field :subcategory_id, id: :product_subcategory_id, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-success" %>
+      <%= link_to "Cancelar", products_url, class: "btn btn-danger" %>
+    </center>
   </div>
 <% end %>

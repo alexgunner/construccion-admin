@@ -1,6 +1,7 @@
-<h1>Editing Manufacturer</h1>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+        <h2>Editar fabricante</h2>
+        <%= render 'form', manufacturer: @manufacturer %>
+    </div>
+</div>
 
-<%= render 'form', manufacturer: @manufacturer %>
-
-<%= link_to 'Show', @manufacturer %> |
-<%= link_to 'Back', manufacturers_path %>

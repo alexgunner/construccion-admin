@@ -1,6 +1,7 @@
-<h1>Editing Subcategory</h1>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+        <h2>Editar subcategoría</h2>
+        <%= render 'form', subcategory: @subcategory %>
+    </div>
+</div>
 
-<%= render 'form', subcategory: @subcategory %>
-
-<%= link_to 'Show', @subcategory %> |
-<%= link_to 'Back', subcategories_path %>
