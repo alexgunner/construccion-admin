@@ -5,11 +5,13 @@ class ProvidersController < ApplicationController
   # GET /providers.json
   def index
     @providers = Provider.all
+    render json: @providers
   end
 
   # GET /providers/1
   # GET /providers/1.json
   def show
+    render json: @provider
   end
 
   # GET /providers/new

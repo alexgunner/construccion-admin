@@ -5,11 +5,13 @@ class MeasuresController < ApplicationController
   # GET /measures.json
   def index
     @measures = Measure.all
+    render json: @measures
   end
 
   # GET /measures/1
   # GET /measures/1.json
   def show
+    render json: @measure
   end
 
   # GET /measures/new

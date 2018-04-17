@@ -5,11 +5,13 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers.json
   def index
     @manufacturers = Manufacturer.all
+    render json: @manufacturers
   end
 
   # GET /manufacturers/1
   # GET /manufacturers/1.json
   def show
+    render json: @manufacturer
   end
 
   # GET /manufacturers/new
