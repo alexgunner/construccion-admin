@@ -26,6 +26,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 2.5'
 # Use for user authentication
+gem 'jsonapi-rails'
+
 gem 'devise'
 # Use to attach images
 gem "paperclip", "~> 5.2.1"
