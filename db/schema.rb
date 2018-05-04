@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428234506) do
+ActiveRecord::Schema.define(version: 20180504190617) do
+
+  create_table "abouts", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.string "facebook"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +48,14 @@ ActiveRecord::Schema.define(version: 20180428234506) do
   create_table "measures", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "client"
+    t.string "confirmed"
+    t.string "reservedate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,6 +100,13 @@ ActiveRecord::Schema.define(version: 20180428234506) do
     t.string "reserve_date"
     t.string "client"
     t.string "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reserves", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

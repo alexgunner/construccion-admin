@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :abouts
+  resources :contacts
+  resources :reserves
+  resources :orders
   devise_for :users
   root 'products#index'
 

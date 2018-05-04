@@ -30,7 +30,9 @@ class ReservationsController < ApplicationController
     # POST /reservations.json
     def create
         @reservation = Reservation.new(reservation_params)
-        render json: @reservation
+        if @category.save
+            render json: @reservation    
+        end
     end
 
     # PATCH/PUT /reservations/1
