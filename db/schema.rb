@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180507165408) do
 
   create_table "carts", force: :cascade do |t|
@@ -19,11 +20,28 @@ ActiveRecord::Schema.define(version: 20180507165408) do
     t.datetime "updated_at", null: false
     t.integer "product_id"
     t.index ["order_id"], name: "index_carts_on_order_id"
+=======
+ActiveRecord::Schema.define(version: 20180504190617) do
+
+  create_table "abouts", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> 3d075932b78a3d541d64c6b150d72419e6315be4
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.string "facebook"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,9 +65,15 @@ ActiveRecord::Schema.define(version: 20180507165408) do
   end
 
   create_table "orders", force: :cascade do |t|
+<<<<<<< HEAD
     t.string "orderdate"
     t.string "client"
     t.string "confirmed"
+=======
+    t.string "client"
+    t.string "confirmed"
+    t.string "reservedate"
+>>>>>>> 3d075932b78a3d541d64c6b150d72419e6315be4
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,6 +118,13 @@ ActiveRecord::Schema.define(version: 20180507165408) do
     t.string "reserve"
     t.string "client"
     t.string "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reserves", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
