@@ -5,4 +5,5 @@ class ProductSerializer < ActiveModel::Serializer
   belongs_to :provider
   belongs_to :manufacturer
   belongs_to :measure
+  has_many :carts
 end

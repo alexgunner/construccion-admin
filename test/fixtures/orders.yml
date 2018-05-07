@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reserve_date: MyString
+  reserve: MyString
   client: MyString
   confirmed: MyString
 
 two:
-  reserve_date: MyString
+  reserve: MyString
   client: MyString
   confirmed: MyString
