@@ -28,7 +28,7 @@ class CartsController < ApplicationController
     @cart = Cart.new(cart_params)
 
     if @cart.save
-      render json: @carts
+      render json: @cart
     end
   end
 
