@@ -28,6 +28,8 @@ gem 'turbolinks', '~> 5'
 # Use for user authentication
 gem 'jsonapi-rails'
 
+gem 'khipu-api-client'
+
 gem 'devise'
 # Use to attach images
 gem "paperclip", "~> 5.2.1"

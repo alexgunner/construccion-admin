@@ -47,6 +47,10 @@ class CartsController < ApplicationController
     redirect_to carts_url, notice: 'Cart was successfully destroyed.'
   end
 
+  def count
+    return Cart.all.count
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
@@ -55,6 +59,7 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      params.require(:cart).permit(:quantity, :order_id, :product_id)
+      #params.require(:data).permit(:type, {attributes: [:quantity]}, {relationships: [:product, :order]})
+       params.require(:cart).permit(:quantity, :order_id, :product_id)
     end
 end

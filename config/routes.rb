@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :abouts
   resources :contacts
   devise_for :users
-  root 'products#index'
+  root 'main#index'
 
   resources :products
   resources :manufacturers
