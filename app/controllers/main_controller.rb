@@ -1,6 +1,6 @@
 class MainController < ApplicationController
   def index
-=begin
+
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
@@ -12,7 +12,7 @@ class MainController < ApplicationController
         c.debugging = true
       end
     client = Khipu::PaymentsApi.new
-    response = client.payments_post('Titulo del cobro', 'BOB', 100, {
+    response = client.payments_post('Pago de productos TodoConstruccion', 'BOB', 300, {
         transaction_id: 'FACT2001',
         expires_date: DateTime.new(2018, 10, 10),
         body: 'Descripccion',
@@ -20,12 +20,12 @@ class MainController < ApplicationController
         cancel_url: 'http://localhost:3000/cancel_payment',
         notify_url: 'http://localhost:3000/notify_payment',
         notify_api_version: '1.3',
-        payer_name: 'Ejemplo Uno',
+        payer_name: 'Pago para Demo',
         payer_email: 'dharamadai@gmail.com',
         personal_identifier: '3548879',
         send_email: false
     })
     redirect_to response.payment_url
   end
-=end
+
 end
