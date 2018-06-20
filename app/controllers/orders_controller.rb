@@ -48,6 +48,14 @@ class OrdersController < ApplicationController
   end
 
   def pay
+    @order = Order.find(params[:id])
+    amount = 0
+    @order.carts.each do |cart|
+      quantity = cart.quantity
+      price = cart.product.price
+      mult = quantity * price
+      amount = amount + mult
+    end
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
@@ -59,16 +67,17 @@ class OrdersController < ApplicationController
         c.debugging = true
       end
     client = Khipu::PaymentsApi.new
-    response = client.payments_post('Pago de productos TodoConstruccion', 'BOB', 100, {
+    response = client.payments_post('Pago de productos TodoConstruccion', 'BOB', amount, {
         transaction_id: 'FACT2001',
         expires_date: DateTime.new(2018, 10, 10),
-        body: 'Descripccion',
+        body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
+        Gracias.',
         return_url: 'http://localhost:3000/return_from_payment',
         cancel_url: 'http://localhost:3000/cancel_payment',
         notify_url: 'http://localhost:3000/notify_payment',
         notify_api_version: '1.3',
         payer_name: 'Pago para Demo',
-        payer_email: 'dharamadai@gmail.com',
+        payer_email: @order.client.mail,
         personal_identifier: '3548879',
         send_email: false
     })
