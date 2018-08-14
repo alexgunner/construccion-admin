@@ -54,6 +54,8 @@ class OrdersController < ApplicationController
       quantity = cart.quantity
       price = cart.product.price
       mult = quantity * price
+      puts "================="
+      puts amount
       amount = amount + mult
     end
     receiver_id = 181015
