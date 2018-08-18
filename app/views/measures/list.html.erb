@@ -1,0 +1,23 @@
+<h1>Unidades de medida</h1>
+<%= link_to 'Crear unidad de medida', new_measure_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Abreviatura</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @measures.each do |measure| %>
+        <tr>
+          <td><%= measure.name %></td>
+          <td><%= measure.abbreviation %></td>
+          <td><%= link_to 'Editar', edit_measure_path(measure) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

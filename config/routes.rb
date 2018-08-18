@@ -15,5 +15,12 @@ Rails.application.routes.draw do
   resources :carts
 
 get '/pay/:id' => 'orders#pay'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+#Rutas para productos admin
+get '/productos' => 'products#list'
+
+#Rutas para unidades admin
+get '/unidades' => 'measures#list'
+
+
 end

@@ -1,0 +1,36 @@
+<h1>Productos</h1>
+<%= link_to 'Crear producto', new_product_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Unidad de medida</th>
+        <th>Categoría</th>
+        <th>Subcategoría</th>
+        <th>Proveedor</th>
+        <th>Fabricante</th>
+        <th>En oferta</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description.truncate(100) %></td>
+          <td><%= product.measure_unit.name %></td>
+          <td><%= product.category.name %></td>
+          <td><%= product.subcategory.name %></td>
+          <td><%= product.provider.name %></td>
+          <td><%= product.manufacturer.name %></td>
+          <td><%= product.in_offer %></td>
+          <td><%= link_to 'Variantes', '/products/' + product.id.to_s + '/product_variants' %></td>
+          <td><%= link_to 'Editar', edit_product_path(product) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

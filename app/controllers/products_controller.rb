@@ -63,6 +63,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  #Metedos para las vistas
+  def list
+    @products = Product.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

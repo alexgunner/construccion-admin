@@ -63,6 +63,11 @@ class MeasuresController < ApplicationController
     end
   end
 
+  #Metodos para admin
+  def list
+    @measures = Measure.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_measure
