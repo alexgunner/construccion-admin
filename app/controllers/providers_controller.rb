@@ -30,7 +30,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.save
-        format.html { redirect_to providers_url, notice: 'Provedor creado correctamente' }
+        format.html { redirect_to '/proveedores', notice: 'Provedor creado correctamente' }
         format.json { render :show, status: :created, location: @provider }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
-        format.html { redirect_to providers_url, notice: 'Provedor editado correctamente' }
+        format.html { redirect_to '/proveedores', notice: 'Provedor editado correctamente' }
         format.json { render :show, status: :ok, location: @provider }
       else
         format.html { render :edit }
@@ -61,6 +61,11 @@ class ProvidersController < ApplicationController
       format.html { redirect_to providers_url, notice: 'Provedor eliminado correctamente' }
       format.json { head :no_content }
     end
+  end
+
+  #Metodos para admin
+  def list
+    @providers = Provider.all
   end
 
   private

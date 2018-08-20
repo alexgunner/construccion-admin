@@ -30,7 +30,7 @@ class SubcategoriesController < ApplicationController
 
     respond_to do |format|
       if @subcategory.save
-        format.html { redirect_to subcategories_url, notice: 'Subcategoría creada correctamente' }
+        format.html { redirect_to '/subcategorias', notice: 'Subcategoría creada correctamente' }
         format.json { render :show, status: :created, location: @subcategory }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class SubcategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @subcategory.update(subcategory_params)
-        format.html { redirect_to subcategories_url, notice: 'Subcategoría editada correctamente' }
+        format.html { redirect_to '/subcategorias', notice: 'Subcategoría editada correctamente' }
         format.json { render :show, status: :ok, location: @subcategory }
       else
         format.html { render :edit }
@@ -61,6 +61,11 @@ class SubcategoriesController < ApplicationController
       format.html { redirect_to subcategories_url, notice: 'Subcategoría eliminada correctamente' }
       format.json { head :no_content }
     end
+  end
+
+  #Metodos para admin
+  def list
+    @subcategories = Subcategory.all
   end
 
   private

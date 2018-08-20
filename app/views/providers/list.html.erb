@@ -1,0 +1,31 @@
+<h1>Proveedores</h1>
+<%= link_to 'Crear proveedor', new_provider_path, class: "btn btn-primary" %>
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Dirección</th>
+      <th>Correo electrónico</th>
+      <th>Teléfono</th>
+      <th>País</th>
+      <th>Ciudad</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @providers.each do |provider| %>
+      <tr>
+        <td><%= provider.name %></td>
+        <td><%= provider.description %></td>
+        <td><%= provider.address %></td>
+        <td><%= provider.email %></td>
+        <td><%= provider.phone %></td>
+        <td><%= provider.country %></td>
+        <td><%= provider.city %></td>
+        <td><%= link_to 'Editar', edit_provider_path(provider) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

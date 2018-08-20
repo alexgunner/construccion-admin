@@ -1,4 +1,4 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :name, :description
+  attributes :name, :description, :picture
   has_many :subcategories
 end

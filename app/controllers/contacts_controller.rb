@@ -25,19 +25,27 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
 
-    if @contact.save
-      redirect_to @contact, notice: 'Contact was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @contact.save
+        format.html { redirect_to '/contacto', notice: 'Correctamente creado' }
+        format.json { render :show, status: :created, location: @contact }
+      else
+        format.html { render :new }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /contacts/1
   def update
-    if @contact.update(contact_params)
-      redirect_to @contact, notice: 'Contact was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @contact.update(contact_params)
+        format.html { redirect_to '/contacto', notice: 'Correctamente actualizado' }
+        format.json { render :show, status: :ok, location: @contact }
+      else
+        format.html { render :edit }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -45,6 +53,11 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     redirect_to contacts_url, notice: 'Contact was successfully destroyed.'
+  end
+
+  #Metodos para admin
+  def list
+    @contacts = Contact.all
   end
 
   private
@@ -55,6 +68,6 @@ class ContactsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:address, :phone, :email, :facebook)
+      params.require(:contact).permit(:phone, :address, :email, :lat, :long, :facebook, :about, :mission, :vision, :picture)
     end
 end

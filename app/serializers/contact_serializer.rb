@@ -1,3 +1,3 @@
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id, :address, :phone, :email, :facebook
+  attributes :phone, :address, :email, :facebook, :about, :mission, :vision, :lat, :long, :picture
 end

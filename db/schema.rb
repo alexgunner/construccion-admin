@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817204649) do
+ActiveRecord::Schema.define(version: 20180820003002) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 20180817204649) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -52,6 +56,30 @@ ActiveRecord::Schema.define(version: 20180817204649) do
     t.string "facebook"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lat"
+    t.string "long"
+    t.text "about"
+    t.text "mission"
+    t.text "vision"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  create_table "extras", force: :cascade do |t|
+    t.string "name"
+    t.text "services"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "banner_file_name"
+    t.string "banner_content_type"
+    t.integer "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "manufacturers", force: :cascade do |t|
@@ -63,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180817204649) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -127,6 +156,10 @@ ActiveRecord::Schema.define(version: 20180817204649) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
     t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
