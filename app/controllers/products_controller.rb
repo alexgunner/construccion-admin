@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to products_url, notice: 'Producto creado correctamente' }
+        format.html { redirect_to '/productos', notice: 'Producto creado correctamente' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to products_url, notice: 'Producto editado correctamente' }
+        format.html { redirect_to '/productos', notice: 'Producto editado correctamente' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -76,6 +76,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :color, :code, :measure_id, :provider_id, :manufacturer_id, :category_id, :subcategory_id, :picture)
+      params.require(:product).permit(:reference_code, :name, :description, :price, :color, :code, :measure_id, :provider_id, :manufacturer_id, :category_id, :subcategory_id, :picture)
     end
 end

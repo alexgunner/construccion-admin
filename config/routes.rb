@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  resources :product_variants
   resources :extras
   resources :clients
   resources :contacts
   devise_for :users
-  root 'main#index'
+  root 'products#list'
 
   resources :products
   resources :manufacturers
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
 get '/pay/:id' => 'orders#pay'
 
 get '/productos' => 'products#list'
+get '/productos/:product_id/variantes' => 'product_variants#list'
+get '/productos/:product_id/product_variants/new' => 'product_variants#new'
+get '/productos/:product_id/product_variants/:id/edit' => 'product_variants#edit'
 get '/unidades' => 'measures#list'
 get '/fabricantes' =>'manufacturers#list'
 get '/proveedores' =>'providers#list'

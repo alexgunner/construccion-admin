@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180820003002) do
+ActiveRecord::Schema.define(version: 20180821031800) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -108,10 +108,24 @@ ActiveRecord::Schema.define(version: 20180820003002) do
     t.integer "client_id"
   end
 
+  create_table "product_variants", force: :cascade do |t|
+    t.string "variant_size"
+    t.float "price"
+    t.integer "product_id"
+    t.string "description"
+    t.string "reference_code"
+    t.boolean "reposition"
+    t.boolean "offer"
+    t.float "offer_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "reposition_date"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "code"
+    t.string "reference_code"
     t.integer "measure_id"
     t.integer "provider_id"
     t.integer "manufacturer_id"
@@ -123,6 +137,11 @@ ActiveRecord::Schema.define(version: 20180820003002) do
     t.string "picture_content_type"
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
+    t.boolean "offer"
+    t.string "details_file_name"
+    t.string "details_content_type"
+    t.integer "details_file_size"
+    t.datetime "details_updated_at"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["measure_id"], name: "index_products_on_measure_id"
