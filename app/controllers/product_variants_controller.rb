@@ -27,10 +27,10 @@ class ProductVariantsController < ApplicationController
   def create
     @product_variant = ProductVariant.new(product_variant_params)
     product = Product.find(@product_variant.product_id)
-    if @product_variant.offer == true
-      product.offer = true
+    if @product_variant.offer_price.nil?
+      product.set_offer(@product_variant.product_id, false)
     else
-      product.offer = false
+      product.set_offer(@product_variant.product_id, true)
     end
     respond_to do |format|
       if @product_variant.save
@@ -46,10 +46,10 @@ class ProductVariantsController < ApplicationController
   # PATCH/PUT /product_variants/1
   def update
     product = Product.find(@product_variant.product_id)
-    if @product_variant.offer == true
-      product.offer = true
+    if @product_variant.offer_price.nil?
+      product.set_offer(@product_variant.product_id, false)
     else
-      product.offer = false
+      product.set_offer(@product_variant.product_id, true)
     end
     respond_to do |format|
       if @product_variant.update(product_variant_params)

@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  #Metedos para las vistas
+  #Metodos para las vistas
   def list
     @products = Product.all
   end
@@ -76,6 +76,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:reference_code, :name, :description, :price, :color, :code, :measure_id, :provider_id, :manufacturer_id, :category_id, :subcategory_id, :picture)
+      params.require(:product).permit(:reference_code, :name, :description, :price, :color, :code, :measure_id, :provider_id, :manufacturer_id, :category_id, :subcategory_id, :picture, :offer)
     end
 end

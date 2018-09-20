@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821031800) do
+ActiveRecord::Schema.define(version: 20180918203500) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 20180821031800) do
     t.string "description"
     t.string "reference_code"
     t.boolean "reposition"
-    t.boolean "offer"
     t.float "offer_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -165,6 +164,14 @@ ActiveRecord::Schema.define(version: 20180821031800) do
     t.string "reserve"
     t.string "client"
     t.string "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stores
   resources :product_variants
   resources :extras
   resources :clients
@@ -28,4 +29,5 @@ get '/categorias' => 'categories#list'
 get '/subcategorias' => 'subcategories#list'
 get '/contacto' => 'contacts#list'
 get '/extra' => 'extras#list'
+get '/almacenes' => 'stores#list'
 end

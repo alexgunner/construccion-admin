@@ -18,4 +18,10 @@ class Product < ApplicationRecord
   		return "No"
   	end
   end
+
+  def set_offer(id, state)
+    product = Product.find(id)
+    product.offer = state
+    product.save
+  end
 end

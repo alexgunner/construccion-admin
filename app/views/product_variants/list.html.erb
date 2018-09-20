@@ -20,14 +20,14 @@
           <td><%= variant.description %></td>
           <td><%= variant.reference_code %></td>
           <td>
-            <% if variant.offer.nil? %>
+            <% if variant.offer_price.nil? %>
               No
             <% else %>
               Sí
             <% end %>
           </td>
           <td>
-            <% if variant.offer.nil? %>
+            <% if variant.offer_price.nil? %>
               No hay oferta
             <% else %>
               <%= variant.offer_price %>
