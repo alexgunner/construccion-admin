@@ -50,7 +50,7 @@ class StoresController < ApplicationController
   # DELETE /stores/1
   def destroy
     @store.destroy
-    redirect_to stores_url, notice: 'Store was successfully destroyed.'
+    redirect_to '/almacenes', notice: 'Store was successfully destroyed.'
   end
 
   #Metodos para admin
