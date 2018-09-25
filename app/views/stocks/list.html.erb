@@ -1,0 +1,28 @@
+<h1>Stock</h1>
+<%= link_to 'Agregar stock', '/almacenes/' + @store.id.to_s + '/stock/new', class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Variante</th>
+        <th>Cantidad</th>
+        <th>Mínimo de cantidad</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <tr>
+          <td><%= stock.product_id %></td>
+          <td><%= stock.variant_id %></td>
+          <td><%= stock.quantity %></td>
+          <td><%= stock.limit %></td>
+          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit' %></td>
+          <td><%= link_to 'Eliminar', stock, method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

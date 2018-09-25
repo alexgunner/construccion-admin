@@ -10,29 +10,25 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :store_id, :value => @store.id %>
+  <div class="form-group">
+    <%= form.label "Producto" %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, id: :stock_product_id, include_blank: true, class: "form-control" %>
+  </div>
 
-  <div class="field">
-    <%= form.label :store_id %>
-    <%= form.number_field :store_id, id: :stock_store_id %>
+  <div class="form-group">
+    <%= form.label "Variante" %>
+    <%= form.collection_select :variant_id, ProductVariant.all, :id, :description, id: :stock_variant_id, include_blank: true, class: "form-control" %>
+
   </div>
 
   <div class="field">
-    <%= form.label :product_id %>
-    <%= form.number_field :product_id, id: :stock_product_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :variant_id %>
-    <%= form.number_field :variant_id, id: :stock_variant_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
+    <%= form.label "Cantidad" %>
     <%= form.number_field :quantity, id: :stock_quantity %>
   </div>
 
   <div class="field">
-    <%= form.label :limit %>
+    <%= form.label "Mínimo de cantidad" %>
     <%= form.number_field :limit, id: :stock_limit %>
   </div>
 

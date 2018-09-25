@@ -4,6 +4,7 @@ class StocksController < ApplicationController
   # GET /stocks
   def index
     @stocks = Stock.all
+    render json: @stocks
   end
 
   # GET /stocks/1
@@ -13,36 +14,54 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
+    @store = Store.find(params[:store_id])
   end
 
   # GET /stocks/1/edit
   def edit
+    @store = Store.find(params[:store_id])
   end
 
   # POST /stocks
   def create
     @stock = Stock.new(stock_params)
-
-    if @stock.save
-      redirect_to @stock, notice: 'Stock was successfully created.'
-    else
-      render :new
+    store = Store.find(@stock.store_id)
+    respond_to do |format|
+      if @stock.save
+        format.html { redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock creado correctamente' }
+        format.json { render :show, status: :created, location: @stock }
+      else
+        format.html { render :new }
+        format.json { render json: @stock.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /stocks/1
   def update
-    if @stock.update(stock_params)
-      redirect_to @stock, notice: 'Stock was successfully updated.'
-    else
-      render :edit
+    store = Store.find(@stock.store_id)
+    respond_to do |format|
+      if @stock.update(stock_params)
+        format.html { redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock editado correctamente' }
+        format.json { render :show, status: :ok, location: @stock }
+      else
+        format.html { render :edit }
+        format.json { render json: @stock.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /stocks/1
   def destroy
+    store = Store.find(@stock.store_id)
     @stock.destroy
-    redirect_to stocks_url, notice: 'Stock was successfully destroyed.'
+    redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock was successfully destroyed.'
+  end
+
+  #Metodos para admin
+  def list
+    @stocks = Stock.where("store_id = ?", params[:store_id])
+    @store = Store.find(params[:store_id])
   end
 
   private
