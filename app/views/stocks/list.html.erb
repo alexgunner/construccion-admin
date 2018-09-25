@@ -15,8 +15,8 @@
     <tbody>
       <% @stocks.each do |stock| %>
         <tr>
-          <td><%= stock.product_id %></td>
-          <td><%= stock.variant_id %></td>
+          <td><%= stock.product.name %></td>
+          <td><%= stock.product.product_variants.find(stock.variant_id).description %></td>
           <td><%= stock.quantity %></td>
           <td><%= stock.limit %></td>
           <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit' %></td>
