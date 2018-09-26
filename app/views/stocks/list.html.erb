@@ -1,5 +1,6 @@
 <h1>Stock</h1>
-<%= link_to 'Agregar stock', '/almacenes/' + @store.id.to_s + '/stock/new', class: "btn btn-primary" %>
+<%= link_to 'Agregar stock', '/almacenes/' + @store.id.to_s + '/stock/new', class: "btn btn-primary",
+data: { turbolinks: false } %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover">
     <thead>
@@ -16,7 +17,7 @@
       <% @stocks.each do |stock| %>
         <tr>
           <td><%= stock.product.name %></td>
-          <td><%= stock.product.product_variants.find(stock.variant_id).description %></td>
+          <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
           <td><%= stock.quantity %></td>
           <td><%= stock.limit %></td>
           <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit' %></td>

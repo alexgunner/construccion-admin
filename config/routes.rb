@@ -34,4 +34,5 @@ get '/almacenes' => 'stores#list'
 get '/almacenes/:store_id/stock' => 'stocks#list'
 get '/almacenes/:store_id/stock/new' => 'stocks#new'
 get '/almacenes/:store_id/stock/:id/edit' => 'stocks#edit'
+get '/filter/variants' => 'stocks#filterVariant'
 end
