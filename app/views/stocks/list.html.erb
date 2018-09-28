@@ -15,6 +15,17 @@ data: { turbolinks: false } %>
 
     <tbody>
       <% @stocks.each do |stock| %>
+      <% if stock.quantity <= stock.limit%>
+        <tr bgcolor="#FFA28E">
+          <td><%= stock.product.name %></td>
+          <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
+          <td><%= stock.quantity %></td>
+          <td><%= stock.limit %></td>
+          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/transferencia', data: { turbolinks: false } %></td>
+          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
+          <td><%= link_to 'Eliminar', stock, method: :delete %></td>
+        </tr>
+      <%else%>
         <tr>
           <td><%= stock.product.name %></td>
           <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
@@ -24,6 +35,7 @@ data: { turbolinks: false } %>
           <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
           <td><%= link_to 'Eliminar', stock, method: :delete %></td>
         </tr>
+      <%end%>
       <% end %>
     </tbody>
   </table>

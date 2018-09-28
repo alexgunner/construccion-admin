@@ -5,6 +5,8 @@
     <thead>
       <tr>
         <th>Precio</th>
+        <th>Precio especialista</th>
+        <th>Precio mayorista</th>
         <th>Descripción</th>
         <th>Código de referencia</th>
         <th>En oferta?</th>
@@ -17,6 +19,8 @@
       <% @product_variants.each do |variant| %>
         <tr>
           <td>Bs. <%= variant.price %></td>
+          <td>Bs. <%= variant.specialist_price %></td>
+          <td>Bs. <%= variant.whole_sale_price %></td>
           <td><%= variant.description %></td>
           <td><%= variant.reference_code %></td>
           <td>
