@@ -1,4 +1,4 @@
-<h1>Stock</h1>
+<h1>Stock de <%=@store.name%> </h1>
 <%= link_to 'Agregar stock', '/almacenes/' + @store.id.to_s + '/stock/new', class: "btn btn-primary",
 data: { turbolinks: false } %>
 <div class="table-responsive">
@@ -20,7 +20,8 @@ data: { turbolinks: false } %>
           <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
           <td><%= stock.quantity %></td>
           <td><%= stock.limit %></td>
-          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit' %></td>
+          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/transferencia', data: { turbolinks: false } %></td>
+          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
           <td><%= link_to 'Eliminar', stock, method: :delete %></td>
         </tr>
       <% end %>

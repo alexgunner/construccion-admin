@@ -1,31 +1,6 @@
-<h1>New Stock</h1>
-
-<%= form_for  @stock do |form| %>
-
-  <%= form.hidden_field :store_id, :value => @store.id %>
-  <div class="form-group">
-    <%= form.label  :product_id, "Producto" %>
-    <%= form.collection_select :product_id, Product.all, :id, :name, include_blank: true %>
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <h1>Crear stock</h1>
+    <%= render 'form', stock: @stock %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :product_variant_id, "Variante" %>
-    <%= form.grouped_collection_select :product_variant_id, Product.order(:name), :product_variants, :name, :id, :description, include_blank: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Cantidad" %>
-    <%= form.number_field :quantity, id: :stock_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Mínimo de cantidad" %>
-    <%= form.number_field :limit, id: :stock_limit %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', stocks_path %>
+</div>

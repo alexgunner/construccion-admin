@@ -34,5 +34,6 @@ get '/almacenes' => 'stores#list'
 get '/almacenes/:store_id/stock' => 'stocks#list'
 get '/almacenes/:store_id/stock/new' => 'stocks#new'
 get '/almacenes/:store_id/stock/:id/edit' => 'stocks#edit'
-get '/filter/variants' => 'stocks#filterVariant'
+get '/almacenes/:store_id/transferencia' => 'stocks#transfer'
+post '/stock/do_transfer' => 'stocks#do_transfer'
 end
