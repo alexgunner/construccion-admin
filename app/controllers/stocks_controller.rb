@@ -66,17 +66,17 @@ class StocksController < ApplicationController
 
   def transfer
     @store = Store.find(params[:store_id])
+    @stock = Stock.find(params[:id])
   end
 
   def do_transfer
     store_id = params[:new_transfer][:store_id]
+    stock_id = params[:new_transfer][:id]
     store_transfer = params[:new_transfer][:store_transfer]
-    product_transfer = params[:new_transfer][:product_id]
-    variant_transfer = params[:new_transfer][:product_variant_id]
     quantity_transfer = params[:new_transfer][:quantity_transfer]
 
-    stock_descount = Stock.where("store_id = ? and product_id = ? and product_variant_id = ?", store_id, product_transfer, variant_transfer).first
-    stock_filter = Stock.where("store_id = ? and product_id = ? and product_variant_id = ?", store_transfer, product_transfer, variant_transfer).first
+    stock_descount = Stock.find(stock_id)
+    stock_filter = Stock.where("store_id = ? and product_id = ? and product_variant_id = ?", store_transfer, stock_descount.product_id, stock_descount.product_variant_id).first
     sum = stock_filter.quantity + quantity_transfer.to_i
     stock_filter.quantity = sum
     rest = stock_descount.quantity - quantity_transfer.to_i

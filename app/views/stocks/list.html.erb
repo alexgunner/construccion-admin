@@ -21,7 +21,7 @@ data: { turbolinks: false } %>
           <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
           <td><%= stock.quantity %></td>
           <td><%= stock.limit %></td>
-          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/transferencia', data: { turbolinks: false } %></td>
+          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/transferencia'%></td>
           <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
           <td><%= link_to 'Eliminar', stock, method: :delete %></td>
         </tr>
@@ -31,7 +31,7 @@ data: { turbolinks: false } %>
           <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
           <td><%= stock.quantity %></td>
           <td><%= stock.limit %></td>
-          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/transferencia', data: { turbolinks: false } %></td>
+          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/transferencia'%></td>
           <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
           <td><%= link_to 'Eliminar', stock, method: :delete %></td>
         </tr>
