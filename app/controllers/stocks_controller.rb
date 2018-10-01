@@ -9,6 +9,7 @@ class StocksController < ApplicationController
 
   # GET /stocks/1
   def show
+    render json: @stock
   end
 
   # GET /stocks/new

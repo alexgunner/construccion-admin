@@ -19,22 +19,22 @@
       <% @product_variants.each do |variant| %>
         <tr>
           <td>Bs. <%= variant.price %></td>
-          <td>Bs. <%= variant.specialist_price %></td>
-          <td>Bs. <%= variant.whole_sale_price %></td>
+          <td>Bs. <%= variant.specialistprice %></td>
+          <td>Bs. <%= variant.wholesaleprice %></td>
           <td><%= variant.description %></td>
-          <td><%= variant.reference_code %></td>
+          <td><%= variant.code %></td>
           <td>
-            <% if variant.offer_price.nil? %>
+            <% if variant.offerprice.nil? %>
               No
             <% else %>
               Sí
             <% end %>
           </td>
           <td>
-            <% if variant.offer_price.nil? %>
+            <% if variant.offerprice.nil? %>
               No hay oferta
             <% else %>
-              <%= variant.offer_price %>
+              <%= variant.offerprice %>
             <% end %>
           </td>
            <td><%= link_to 'Editar', '/productos/' + @product.id.to_s + '/product_variants/' + variant.id.to_s + '/edit' %></td>

@@ -9,6 +9,7 @@ class ProductVariantsController < ApplicationController
 
   # GET /product_variants/1
   def show
+    render json: @product_variant
   end
 
   # GET /product_variants/new
@@ -27,7 +28,7 @@ class ProductVariantsController < ApplicationController
   def create
     @product_variant = ProductVariant.new(product_variant_params)
     product = Product.find(@product_variant.product_id)
-    if @product_variant.offer_price.nil?
+    if @product_variant.offerprice.nil?
       product.set_offer(@product_variant.product_id, false)
     else
       product.set_offer(@product_variant.product_id, true)
@@ -46,7 +47,7 @@ class ProductVariantsController < ApplicationController
   # PATCH/PUT /product_variants/1
   def update
     product = Product.find(@product_variant.product_id)
-    if @product_variant.offer_price.nil?
+    if @product_variant.offerprice.nil?
       product.set_offer(@product_variant.product_id, false)
     else
       product.set_offer(@product_variant.product_id, true)
@@ -82,6 +83,6 @@ class ProductVariantsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_variant_params
-      params.require(:product_variant).permit(:variant_size, :price, :whole_sale_price, :specialist_price, :product_id, :description, :reference_code, :reposition, :reposition_date, :offer, :offer_price)
+      params.require(:product_variant).permit(:size, :price, :wholesaleprice, :specialistprice, :product_id, :description, :code, :reposition, :reposition_date, :offerprice)
     end
 end

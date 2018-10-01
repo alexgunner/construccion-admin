@@ -4,6 +4,7 @@ class StoresController < ApplicationController
   # GET /stores
   def index
     @stores = Store.all
+    render json: @stores
   end
 
   # GET /stores/1

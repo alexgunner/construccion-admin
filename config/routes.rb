@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :stocks
   resources :stores
-  resources :product_variants
   resources :extras
   resources :clients
   resources :contacts
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
   root 'products#list'
 
   resources :products
+  resources :product_variants
   resources :manufacturers
   resources :providers
   resources :subcategories
@@ -36,4 +36,7 @@ get '/almacenes/:store_id/stock/new' => 'stocks#new'
 get '/almacenes/:store_id/stock/:id/edit' => 'stocks#edit'
 get '/almacenes/:store_id/stock/:id/transferencia' => 'stocks#transfer'
 post '/stock/do_transfer' => 'stocks#do_transfer'
+
+#Method for deserializable not found or not working
+get '/product-variants' => 'product_variants#index'
 end

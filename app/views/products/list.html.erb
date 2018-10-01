@@ -20,7 +20,7 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <td><%= product.reference_code %></td>
+          <td><%= product.code %></td>
           <td><%= product.name %></td>
           <td><%= product.description.truncate(100) %></td>
           <td><%= product.measure.name %></td>

@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :reference_code, :name, :description, :reference_code, :picture, :offer, :details
+  attributes :name, :description, :code, :picture, :offer, :details
   belongs_to :category
   belongs_to :subcategory
   belongs_to :provider
