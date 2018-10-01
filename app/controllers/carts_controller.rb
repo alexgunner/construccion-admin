@@ -59,7 +59,6 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      #params.require(:data).permit(:type, {attributes: [:quantity]}, {relationships: [:product, :order]})
-       params.require(:cart).permit(:quantity, :order_id, :product_id)
+       params.require(:cart).permit(:quantity, :order_id, :product_variant_id)
     end
 end
