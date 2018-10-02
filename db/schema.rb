@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181001222603) do
+ActiveRecord::Schema.define(version: 20181002143210) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20181001222603) do
     t.date "reposition_date"
     t.float "wholesaleprice"
     t.float "specialistprice"
+    t.float "importerprice"
   end
 
   create_table "products", force: :cascade do |t|
@@ -214,6 +215,22 @@ ActiveRecord::Schema.define(version: 20181001222603) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firstName"
+    t.string "lastName"
+    t.integer "ci"
+    t.integer "phone"
+    t.text "address"
+    t.string "nit"
+    t.string "role"
+    t.string "imagenit_file_name"
+    t.string "imagenit_content_type"
+    t.integer "imagenit_file_size"
+    t.datetime "imagenit_updated_at"
+    t.string "imageci_file_name"
+    t.string "imageci_content_type"
+    t.integer "imageci_file_size"
+    t.datetime "imageci_updated_at"
+    t.boolean "state"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
