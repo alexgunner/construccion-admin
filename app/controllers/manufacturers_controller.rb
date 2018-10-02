@@ -30,7 +30,7 @@ class ManufacturersController < ApplicationController
 
     respond_to do |format|
       if @manufacturer.save
-        format.html { redirect_to manufacturers_url, notice: 'Fabricante creado correctamente' }
+        format.html { redirect_to '/fabricantes', notice: 'Fabricante creado correctamente' }
         format.json { render :show, status: :created, location: @manufacturer }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ManufacturersController < ApplicationController
   def update
     respond_to do |format|
       if @manufacturer.update(manufacturer_params)
-        format.html { redirect_to manufacturers_url, notice: 'Fabricante editado correctamente' }
+        format.html { redirect_to '/fabricantes', notice: 'Fabricante editado correctamente' }
         format.json { render :show, status: :ok, location: @manufacturer }
       else
         format.html { render :edit }
@@ -63,6 +63,11 @@ class ManufacturersController < ApplicationController
     end
   end
 
+  #Metodos para admin
+  def list
+    @manufacturers = Manufacturer.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_manufacturer
@@ -71,6 +76,6 @@ class ManufacturersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manufacturer_params
-      params.require(:manufacturer).permit(:name, :description, :country, :city, :email, :phone)
+      params.require(:manufacturer).permit(:name, :description, :address, :country, :city, :email, :phone)
     end
 end

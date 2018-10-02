@@ -30,7 +30,7 @@ class MeasuresController < ApplicationController
 
     respond_to do |format|
       if @measure.save
-        format.html { redirect_to measures_url, notice: 'Unidad de medida creada correctamente' }
+        format.html { redirect_to "/unidades", notice: 'Unidad de medida creada correctamente' }
         format.json { render :show, status: :created, location: @measure }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class MeasuresController < ApplicationController
   def update
     respond_to do |format|
       if @measure.update(measure_params)
-        format.html { redirect_to measures_url, notice: 'Unidad de medida editada correctamente' }
+        format.html { redirect_to "/unidades", notice: 'Unidad de medida editada correctamente' }
         format.json { render :show, status: :ok, location: @measure }
       else
         format.html { render :edit }
@@ -61,6 +61,11 @@ class MeasuresController < ApplicationController
       format.html { redirect_to measures_url, notice: 'Unidad de medida eliminada correctamente' }
       format.json { head :no_content }
     end
+  end
+
+  #Metodos para admin
+  def list
+    @measures = Measure.all
   end
 
   private

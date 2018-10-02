@@ -1,4 +1,4 @@
 class ProviderSerializer < ActiveModel::Serializer
-  attributes :name, :description
+  attributes :name, :description, :email, :phone, :address, :country, :city
   has_many :products
 end

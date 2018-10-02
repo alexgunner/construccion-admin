@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Variant size:</strong>
+  <%= @product_variant.variant_size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product_variant.price %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_variant.product_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product_variant.description %>
+</p>
+
+<p>
+  <strong>Reference code:</strong>
+  <%= @product_variant.reference_code %>
+</p>
+
+<p>
+  <strong>Reposition:</strong>
+  <%= @product_variant.reposition %>
+</p>
+
+<p>
+  <strong>Offer:</strong>
+  <%= @product_variant.offer %>
+</p>
+
+<p>
+  <strong>Offer price:</strong>
+  <%= @product_variant.offer_price %>
+</p>
+
+<%= link_to 'Edit', edit_product_variant_path(@product_variant) %> |
+<%= link_to 'Back', product_variants_path %>

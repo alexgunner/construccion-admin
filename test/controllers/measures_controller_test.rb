@@ -2,11 +2,11 @@ require 'test_helper'
 
 class MeasuresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @measure = measures(:one)
+    @measure = measure_units(:one)
   end
 
   test "should get index" do
-    get measures_url
+    get measure_units_url
     assert_response :success
   end
 
@@ -17,7 +17,7 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
 
   test "should create measure" do
     assert_difference('Measure.count') do
-      post measures_url, params: { measure: { abbreviation: @measure.abbreviation, name: @measure.name } }
+      post measure_units_url, params: { measure: { abbreviation: @measure.abbreviation, name: @measure.name } }
     end
 
     assert_redirected_to measure_url(Measure.last)
@@ -43,6 +43,6 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
       delete measure_url(@measure)
     end
 
-    assert_redirected_to measures_url
+    assert_redirected_to measure_units_url
   end
 end

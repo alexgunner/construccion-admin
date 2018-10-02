@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   #skip_before_action :verify_authenticity_token
   #deserializable_resource :category, only: [:create, :update]
-  
+
   # GET /categories
   # GET /categories.json
   def index
@@ -30,18 +30,15 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      render json: @category
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to '/categorias', notice: 'Categoría creada correctamente' }
+        format.json { render :show, status: :created, location: @category }
+      else
+        format.html { render :new }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
-    #respond_to do |format|
-    #  if @category.save
-    #    format.html { redirect_to categories_url, notice: 'Categoría creada correctamente' }
-    #    format.json { render :show, status: :created, location: @category }
-    #  else
-    #    format.html { render :new }
-    #    format.json { render json: @category.errors, status: :unprocessable_entity }
-    #  end
-    #end
   end
 
   # PATCH/PUT /categories/1
@@ -49,7 +46,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to categories_url, notice: 'Categoría actualizada correctamente' }
+        format.html { redirect_to '/categorias', notice: 'Categoría actualizada correctamente' }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -68,6 +65,11 @@ class CategoriesController < ApplicationController
     end
   end
 
+  #Metodos para admin
+  def list
+    @categories = Category.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
@@ -76,6 +78,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :description)
+      params.require(:category).permit(:name, :description, :picture)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180619222240) do
+ActiveRecord::Schema.define(version: 20181002143210) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_id"
+    t.integer "product_variant_id"
     t.index ["order_id"], name: "index_carts_on_order_id"
   end
 
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -52,6 +56,30 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.string "facebook"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lat"
+    t.string "long"
+    t.text "about"
+    t.text "mission"
+    t.text "vision"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  create_table "extras", force: :cascade do |t|
+    t.string "name"
+    t.text "services"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "banner_file_name"
+    t.string "banner_content_type"
+    t.integer "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "manufacturers", force: :cascade do |t|
@@ -63,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -79,11 +108,25 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.integer "client_id"
   end
 
+  create_table "product_variants", force: :cascade do |t|
+    t.string "size"
+    t.float "price"
+    t.integer "product_id"
+    t.string "description"
+    t.string "code"
+    t.boolean "reposition"
+    t.float "offerprice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "reposition_date"
+    t.float "wholesaleprice"
+    t.float "specialistprice"
+    t.float "importerprice"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.float "price"
-    t.string "color"
     t.string "code"
     t.integer "measure_id"
     t.integer "provider_id"
@@ -96,6 +139,11 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.string "picture_content_type"
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
+    t.boolean "offer"
+    t.string "details_file_name"
+    t.string "details_content_type"
+    t.integer "details_file_size"
+    t.datetime "details_updated_at"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["measure_id"], name: "index_products_on_measure_id"
@@ -123,12 +171,34 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "product_id"
+    t.integer "product_variant_id"
+    t.integer "quantity"
+    t.integer "limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
     t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
@@ -145,6 +215,22 @@ ActiveRecord::Schema.define(version: 20180619222240) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firstName"
+    t.string "lastName"
+    t.integer "ci"
+    t.integer "phone"
+    t.text "address"
+    t.string "nit"
+    t.string "role"
+    t.string "imagenit_file_name"
+    t.string "imagenit_content_type"
+    t.integer "imagenit_file_size"
+    t.datetime "imagenit_updated_at"
+    t.string "imageci_file_name"
+    t.string "imageci_content_type"
+    t.integer "imageci_file_size"
+    t.datetime "imageci_updated_at"
+    t.boolean "state"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

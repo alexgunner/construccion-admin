@@ -29,7 +29,7 @@ gem 'turbolinks', '~> 5'
 gem 'jsonapi-rails'
 
 gem 'khipu-api-client'
-
+gem 'jquery-rails'
 gem 'devise'
 # Use to attach images
 gem "paperclip", "~> 5.2.1"

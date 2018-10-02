@@ -1,4 +1,4 @@
-<%= form_with(model: subcategory, local: true) do |form| %>
+<%= form_with(model: subcategory, local: true, html: { multipart: true }) do |form| %>
   <% if subcategory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</h2>
@@ -23,13 +23,18 @@
 
   <div class="form-group">
     <%= form.label "Categoría" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, class: "form-control" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, id: :subcategory_category_id, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :picture, id: :subcategory_picture_id, class: "form-control" %>
   </div>
 
   <div class="actions">
     <center>
       <%= form.submit "Aceptar", class: "btn btn-success" %>
-      <%= link_to "Cancelar", subcategories_url, class: "btn btn-danger" %>
+      <%= link_to "Cancelar", "/subcategorias", class: "btn btn-danger" %>
     </center>
   </div>
 <% end %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variant_size: MyString
+  price: 1.5
+  product_id: 1
+  description: MyString
+  reference_code: MyString
+  reposition: false
+  offer: false
+  offer_price: 1.5
+
+two:
+  variant_size: MyString
+  price: 1.5
+  product_id: 1
+  description: MyString
+  reference_code: MyString
+  reposition: false
+  offer: false
+  offer_price: 1.5

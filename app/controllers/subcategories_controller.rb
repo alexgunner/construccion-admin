@@ -30,7 +30,7 @@ class SubcategoriesController < ApplicationController
 
     respond_to do |format|
       if @subcategory.save
-        format.html { redirect_to subcategories_url, notice: 'Subcategoría creada correctamente' }
+        format.html { redirect_to '/subcategorias', notice: 'Subcategoría creada correctamente' }
         format.json { render :show, status: :created, location: @subcategory }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class SubcategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @subcategory.update(subcategory_params)
-        format.html { redirect_to subcategories_url, notice: 'Subcategoría editada correctamente' }
+        format.html { redirect_to '/subcategorias', notice: 'Subcategoría editada correctamente' }
         format.json { render :show, status: :ok, location: @subcategory }
       else
         format.html { render :edit }
@@ -63,6 +63,11 @@ class SubcategoriesController < ApplicationController
     end
   end
 
+  #Metodos para admin
+  def list
+    @subcategories = Subcategory.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subcategory
@@ -71,6 +76,6 @@ class SubcategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subcategory_params
-      params.require(:subcategory).permit(:name, :description, :category_id)
+      params.require(:subcategory).permit(:name, :description, :category_id, :picture)
     end
 end
