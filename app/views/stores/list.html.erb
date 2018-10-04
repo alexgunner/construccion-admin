@@ -6,7 +6,7 @@
       <tr>
         <th>Nombre</th>
         <th>Descripción</th>
-        <th>Estado</th>
+        <th>Tipo</th>
         <th colspan="4"></th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
         <tr>
           <td><%= store.name %></td>
           <td><%= store.description %></td>
-          <td><%= store.state %></td>
+          <td><%= store.role %></td>
           <td><%= link_to 'Abastecer', '/almacenes/' + store.id.to_s + '/stock' %></td>
           <td><%= link_to 'Editar', edit_store_path(store) %></td>
           <td><%= link_to 'Eliminar', store, method: :delete %></td>
