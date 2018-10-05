@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :extras
   resources :clients
   resources :contacts
-  devise_for :users
+  devise_for :users,  path: 'api/users', controllers: { sessions: "api/users/sessions", registrations: "api/users/registrations" }
+
+
   root 'products#list'
 
   resources :products
@@ -39,4 +41,6 @@ post '/stock/do_transfer' => 'stocks#do_transfer'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
+
+post '/users' => 'users#create'
 end

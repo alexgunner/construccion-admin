@@ -1,41 +1,35 @@
 class UsersController < ApplicationController
-  # GET /users
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+  deserializable_resource :user, only: [:create, :update]
+
   def index
     @users = User.all
     render json: @users
   end
 
-  # GET /users/1
   def show
     render json: @user
   end
 
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
   end
 
-  # POST /users
   def create
+    #@user = User.create(email: 'dhara@gmail.com', password: 'admin123', password_confirmation: 'admin123')
     @user = User.new(user_params)
-    @user.state = false
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to '/users', notice: 'User creado correctamente' }
-        format.json { render :show, status: :created, location: @category }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    puts "******"
+    puts @user
+    if @user.save
+      render json: @user
     end
   end
 
-  # PATCH/PUT /clients/1
+
   def update
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
@@ -44,20 +38,25 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /clients/1
   def destroy
     @user.destroy
     redirect_to clients_url, notice: 'User was successfully destroyed.'
   end
 
+  #Metodos para admin
+  def list
+    @users = User.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_client
+    def set_user
       @user = User.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstName, :lastName, :ci, :phone, :address, :mail, :nit, :encrypted_password, :imagenit, :imageci, :role, :status)
+      params.require(:user).permit(:name, :lastname, :phone, :address, :ci, :nit, :email, :password, :password_confirmation,
+      :imageci, :imagenit)
     end
 end
