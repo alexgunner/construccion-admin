@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
     client = Khipu::PaymentsApi.new
     response = client.payments_post('Pago de productos TodoConstruccion', 'BOB', amount, {
         transaction_id: 'FACT2001',
-        expires_date: DateTime.new(2018, 10, 10),
+        expires_date: DateTime.new(2018, 12, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
         #return_url: 'http://localhost:4200',
