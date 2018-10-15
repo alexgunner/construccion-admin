@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to clients_url, notice: 'User was successfully destroyed.'
+    redirect_to '/usuarios', notice: 'User was successfully destroyed.'
   end
 
   #Metodos para admin

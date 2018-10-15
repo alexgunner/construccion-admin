@@ -41,6 +41,7 @@ post '/stock/do_transfer' => 'stocks#do_transfer'
 get '/usuarios' => 'users#list'
 get '/usuarios/:id/habilitar' => 'users#enable'
 post '/users/do_enable' => 'users#do_enable'
+delete '/usuarios/:id' => 'users#destroy'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
