@@ -48,6 +48,18 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def enable
+    @user = User.find(params[:id])
+  end
+
+  def do_enable
+    user = User.find(params[:do_enable][:id])
+    user.role = params[:do_enable][:role]
+    user.state = true
+    user.save
+    redirect_to "/usuarios"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

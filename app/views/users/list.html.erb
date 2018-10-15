@@ -1,0 +1,38 @@
+<h1>Usuarios</h1>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>CI</th>
+        <th>NIT</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.ci %></td>
+          <td>
+            <% if user.nit.nil? %>
+              <%= "Ninguno" %>
+            <%else%>
+              <%= user.nit %>
+            <%end%>
+          </td>
+          <td>
+            <% if user.state.nil? %>
+              <%= link_to 'Habilitar', '/usuarios/' + user.id.to_s + '/habilitar' %>
+            <%else%>
+              <%= link_to 'Bloquear' %>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

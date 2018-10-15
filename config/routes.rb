@@ -38,9 +38,11 @@ get '/almacenes/:store_id/stock/new' => 'stocks#new'
 get '/almacenes/:store_id/stock/:id/edit' => 'stocks#edit'
 get '/almacenes/:store_id/stock/:id/transferencia' => 'stocks#transfer'
 post '/stock/do_transfer' => 'stocks#do_transfer'
+get '/usuarios' => 'users#list'
+get '/usuarios/:id/habilitar' => 'users#enable'
+post '/users/do_enable' => 'users#do_enable'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
-
 post '/users' => 'users#create'
 end
