@@ -9,9 +9,16 @@ class Api::Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+
+  def create
+    super do |user|
+      data = {
+        token: user.authenticatable_salt,
+        email: user.email
+      }
+      render json: data, status: 201 and return
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
