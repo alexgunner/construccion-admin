@@ -20,10 +20,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    #@user = User.create(email: 'dhara@gmail.com', password: 'admin123', password_confirmation: 'admin123')
     @user = User.new(user_params)
-    puts "******"
-    puts @user
     if @user.save
       render json: @user
     end
