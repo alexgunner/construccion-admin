@@ -46,4 +46,5 @@ delete '/usuarios/:id' => 'users#destroy'
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
 post '/users' => 'users#create'
+get '/upload' => 'users#sign'
 end

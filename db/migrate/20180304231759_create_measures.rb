@@ -1,4 +1,4 @@
-class Createmeasure_units < ActiveRecord::Migration[5.1]
+class CreateMeasures< ActiveRecord::Migration[5.1]
   def change
     create_table :measure_units do |t|
       t.string :name
