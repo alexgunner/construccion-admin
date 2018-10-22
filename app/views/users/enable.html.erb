@@ -13,7 +13,27 @@
         <%= @user.lastname%>
       </div>
       <div class="form-group">
-        <label>Rol</label>
+        <label>CI:</label>
+        <%= @user.ci%>
+      </div>
+      <div class="form-group">
+        <label>NIT:</label>
+        <%= @user.nit%>
+      </div>
+      <div class="form-group">
+        <label>Dirección:</label>
+        <%= @user.address%>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico:</label>
+        <%= @user.email%>
+      </div>
+      <div class="form-group">
+        <label>CI/NIT:</label>
+        <%= image_tag @user.image%>
+      </div>
+      <div class="form-group">
+        <label>Rol:</label>
         <%= form.select(:role, [['Mayorista'], ['Especialista'], ['Distribuidor']], {:class => "form-control"} ) %>
       </div>
       <div class="actions">
