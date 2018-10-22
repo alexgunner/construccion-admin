@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181005025744) do
+ActiveRecord::Schema.define(version: 20181021223853) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -222,15 +222,8 @@ ActiveRecord::Schema.define(version: 20181005025744) do
     t.text "address"
     t.string "nit"
     t.string "role"
-    t.string "imagenit_file_name"
-    t.string "imagenit_content_type"
-    t.integer "imagenit_file_size"
-    t.datetime "imagenit_updated_at"
-    t.string "imageci_file_name"
-    t.string "imageci_content_type"
-    t.integer "imageci_file_size"
-    t.datetime "imageci_updated_at"
     t.boolean "state"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

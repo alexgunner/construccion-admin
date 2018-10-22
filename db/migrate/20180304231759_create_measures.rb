@@ -1,6 +1,6 @@
 class CreateMeasures< ActiveRecord::Migration[5.1]
   def change
-    create_table :measure_units do |t|
+    create_table :measures do |t|
       t.string :name
       t.string :abbreviation
 
