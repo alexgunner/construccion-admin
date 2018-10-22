@@ -1,0 +1,22 @@
+<h1>Medios de envío</h1>
+<%= link_to 'Crear envío', new_transport_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @transports.each do |transport| %>
+        <tr>
+          <td><%= transport.name %></td>
+          <td><%= link_to 'Editar', edit_transport_path(transport) %></td>
+          <td><%= link_to 'Eliminar', transport, method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
