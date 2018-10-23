@@ -50,9 +50,18 @@ class OrdersController < ApplicationController
   def pay
     @order = Order.find(params[:id])
     amount = 0
+    price = 0
     @order.carts.each do |cart|
       quantity = cart.quantity
-      price = cart.product_variant.price
+      if cart.role == "Mayorista"
+        price = cart.product_variant.wholesaleprice
+      end
+      if cart.role == "Especialista"
+        price = cart.product_variant.specialistprice
+      end
+      if cart.role == "Distribuidor"
+        price = cart.product_variant.importerprice
+      end
       mult = quantity * price
       puts "================="
       puts amount
