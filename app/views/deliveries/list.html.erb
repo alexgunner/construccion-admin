@@ -4,6 +4,7 @@
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
+        <th>Nombre (Lugar - Tipo de transporte)</th>
         <th>Destino</th>
         <th>Medio de envío</th>
         <th>Costo</th>
@@ -14,6 +15,7 @@
     <tbody>
       <% @deliveries.each do |delivery| %>
         <tr>
+          <td><%= delivery.name %></td>
           <td><%= delivery.destination.name %></td>
           <td><%= delivery.transport.name %></td>
           <td><%= delivery.cost %></td>

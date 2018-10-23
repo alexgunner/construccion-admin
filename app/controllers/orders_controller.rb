@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     amount = 0
     price = 0
+    cost_transport = 0
     @order.carts.each do |cart|
       quantity = cart.quantity
       if cart.role == "Mayorista"
@@ -104,6 +105,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id)
+      params.require(:order).permit(:orderdate, :client_id, :delivery_id)
     end
 end
