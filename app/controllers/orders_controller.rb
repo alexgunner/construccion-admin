@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
     price = 0
     cost_transport = @order.delivery.cost
     amount = 0
-    amount = amount + cost_transport
     @order.carts.each do |cart|
       quantity = cart.quantity
       if cart.role == "Mayorista"
@@ -65,6 +64,7 @@ class OrdersController < ApplicationController
         price = cart.product_variant.importerprice
       end
       mult = quantity * price
+      mult = mult + (cost_transport * cart.product_variant.weight)
       puts "================="
       puts amount
       amount = amount + mult
