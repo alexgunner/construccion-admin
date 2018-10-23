@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :deliveries
+  resources :destinations
   resources :transports
   resources :stocks
   resources :stores
@@ -44,6 +46,8 @@ get '/usuarios/:id/habilitar' => 'users#enable'
 post '/users/do_enable' => 'users#do_enable'
 delete '/usuarios/:id' => 'users#destroy'
 get '/transportes' => 'transports#list'
+get '/destinos' => 'destinations#list'
+get '/envios' => 'deliveries#list'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'

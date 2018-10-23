@@ -1,0 +1,26 @@
+<h1>Destinos</h1>
+<%= link_to 'Crear destino', new_destination_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ciudad</th>
+        <th>País</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @destinations.each do |destination| %>
+        <tr>
+          <td><%= destination.name %></td>
+          <td><%= destination.city %></td>
+          <td><%= destination.country %></td>
+          <td><%= link_to 'Editar', edit_destination_path(destination) %></td>
+          <td><%= link_to 'Eliminar', destination, method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
