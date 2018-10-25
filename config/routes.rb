@@ -48,6 +48,7 @@ delete '/usuarios/:id' => 'users#destroy'
 get '/transportes' => 'transports#list'
 get '/destinos' => 'destinations#list'
 get '/envios' => 'deliveries#list'
+get '/ordenes' => 'orders#list'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'

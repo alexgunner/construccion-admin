@@ -1,0 +1,30 @@
+<h1>Ordenes de productos</h1>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Fecha de la orden</th>
+        <th>Cliente</th>
+        <th>Delivery</th>
+        <th>Estado</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
+          <td><%= order.client.name %> <%= order.client.lastname %></td>
+          <td><%= order.delivery.name %></td>
+          <% if order.state.nil? %>
+          <td>Nuevo</td>
+          <%else%>
+          <td><%= order.state %></td>
+          <%end%>
+          <td><%= link_to 'Ver', edit_order_path(order) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -11,33 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-<<<<<<< HEAD
-    <%= form.label :reserve %>
-    <%= form.text_field :reserve, id: :order_reserve %>
+  <div class="form-group">
+    <%= form.label "Fecha de la orden:" %>
+    <p><%= @order.orderdate.strftime("%d-%m-%Y") %></p>
   </div>
 
-  <div class="field">
-=======
->>>>>>> 3d075932b78a3d541d64c6b150d72419e6315be4
-    <%= form.label :client %>
-    <%= form.text_field :client, id: :order_client %>
+  <div class="form-group">
+    <%= form.label "Datos del Cliente:" %>
+      <p>Nombres y Apellidos: <%= @order.client.name %> <%= @order.client.lastname %></p>
+      <p>Dirección: <%= @order.client.address %></p>
+      <p>Teléfono: <%= @order.client.phone %></p>
+      <p>Email: <%= @order.client.mail %></p>
+      <p>Nit: <%= @order.client.nit %></p>
   </div>
 
-  <div class="field">
-    <%= form.label :confirmed %>
-    <%= form.text_field :confirmed, id: :order_confirmed %>
+  <div class="form-group">
+    <%= form.label "Productos de la orden:" %>
+      <% @order.carts.each do |cart| %>
+        <p>-> <%= cart.product_variant.description %></p>
+        <%if cart.role.nil? %>
+          <p>Precio: <%= cart.product_variant.price %></p>
+        <%else%>
+          <%if cart.role == "Mayorista" %>
+            <p>Precio: <%= cart.product_variant.wholesaleprice %></p>
+          <%end%>
+          <%if cart.role == "Especialista" %>
+            <p>Precio: <%= cart.product_variant.specialistprice %></p>
+          <%end%>
+          <%if cart.role == "Distribuidor" %>
+            <p>Precio: <%= cart.product_variant.importerprice %></p>
+          <%end%>
+        <%end%>
+      <%end%>
   </div>
 
-<<<<<<< HEAD
-=======
-  <div class="field">
-    <%= form.label :reservedate %>
-    <%= form.text_field :reservedate, id: :order_reservedate %>
+  <div class="form-group">
+    <%= form.label "Estado de la orden:" %>
+    <%= form.select :state, [['Preparado'], ['Entregado']], id: :order_state, class: "form-control"  %>
   </div>
 
->>>>>>> 3d075932b78a3d541d64c6b150d72419e6315be4
   <div class="actions">
-    <%= form.submit %>
+    <center>
+       <%= form.submit "Aceptar", class: "btn btn-success" %>
+       <%= link_to "Cancelar", '/ordenes', class: "btn btn-danger" %>
+     </center>
   </div>
 <% end %>

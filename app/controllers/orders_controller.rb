@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  deserializable_resource :order, only: [:create, :update]
+  deserializable_resource :order, only: [:create]
 
   # GET /orders
   def index
@@ -35,7 +35,16 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
+      if @order.state == "Entregado"
+        @order.carts.each do |cart|
+          store = Store.where("role = ?", cart.role).first
+          stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
+          quantity_actual = stock.quantity
+          stock.quantity = quantity_actual - cart.quantity
+          stock.save
+        end
+      end
+      redirect_to '/ordenes', notice: 'Order was successfully updated.'
     else
       render :edit
     end
@@ -54,6 +63,7 @@ class OrdersController < ApplicationController
     amount = 0
     @order.carts.each do |cart|
       quantity = cart.quantity
+      price = cart.product_variant.price
       if cart.role == "Mayorista"
         price = cart.product_variant.wholesaleprice
       end
@@ -98,6 +108,11 @@ class OrdersController < ApplicationController
     redirect_to response.payment_url
   end
 
+  #Metodos para admin
+  def list
+    @orders = Order.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -106,6 +121,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :delivery_id)
+      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state)
     end
 end
