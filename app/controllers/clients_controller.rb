@@ -25,11 +25,21 @@ class ClientsController < ApplicationController
 
   # POST /clients
   def create
+    clients = Client.all
     @client = Client.new(client_params)
 
-    if @client.save
-      render json: @client
+    clients.each do |c|
+      if c.nit == @client.nit
+        c.increment(:count, 1)
+        c.save
+        @client = c
+      else
+        if @client.save
+
+        end
+      end
     end
+    render json: @client
   end
 
   # PATCH/PUT /clients/1
