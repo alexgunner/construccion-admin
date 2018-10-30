@@ -25,20 +25,13 @@ class ClientsController < ApplicationController
 
   # POST /clients
   def create
-    clients = Client.all
     @client = Client.new(client_params)
-
-    clients.each do |c|
-      if c.nit == @client.nit
-        c.increment(:count, 1)
-        c.save
-        @client = c
-      else
-        if @client.save
-
-        end
-      end
+    c = client_exist(@client.nit)
+    if c != nil
+      @client = Client.find(c.id)
+      @client.increment(:count,1)
     end
+    @client.save
     render json: @client
   end
 
@@ -55,6 +48,16 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     redirect_to clients_url, notice: 'Client was successfully destroyed.'
+  end
+
+  def client_exist(nit)
+    clients = Client.all
+    clients.each do |c|
+      if c.nit == nit
+        return c
+      end
+    end
+    return nil
   end
 
   private
