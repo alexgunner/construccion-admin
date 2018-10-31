@@ -9,6 +9,7 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/1
   def show
+    render json: @delivery
   end
 
   # GET /deliveries/new
