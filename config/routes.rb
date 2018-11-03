@@ -49,7 +49,7 @@ get '/transportes' => 'transports#list'
 get '/destinos' => 'destinations#list'
 get '/envios' => 'deliveries#list'
 get '/ordenes' => 'orders#list'
-
+get '/reportes/clientes' => 'clients#reports'
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
 post '/users' => 'users#create'

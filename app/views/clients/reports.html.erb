@@ -1,0 +1,17 @@
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'clients_chart' },
+    title: { text: 'Clientes con mayor actividad' },
+    xAxis: { type: 'datetime' },
+    yAxis: {
+      title: { text: 'Dollars'}
+    },
+    series: [{
+      data: [1, 2, 5, 7, 3]
+    }]
+    });
+  });
+</script>
+
+<div id="clients_chart" style="width: 700px; height: 500px;"></div>
