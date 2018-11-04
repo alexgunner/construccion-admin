@@ -95,8 +95,8 @@ class OrdersController < ApplicationController
         expires_date: DateTime.new(2018, 12, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
-        return_url: 'http://localhost:4200',
-        #return_url: 'http://todo-construccion.herokuapp.com',
+        #return_url: 'http://localhost:4200',
+        return_url: 'http://todo-construccion.herokuapp.com',
         cancel_url: 'http://localhost:3000/cancel_payment',
         notify_url: 'http://localhost:3000/notify_payment',
         notify_api_version: '1.3',

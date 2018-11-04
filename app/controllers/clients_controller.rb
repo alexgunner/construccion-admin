@@ -63,8 +63,8 @@ class ClientsController < ApplicationController
   def reports
     @clients = Client.order('count DESC').take(10).collect{|x| x.name + " " + x.lastname}
     @counts = Client.order('count DESC').take(10).collect{|x| x.count}
-
   end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
