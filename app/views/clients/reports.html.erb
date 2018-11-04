@@ -1,17 +1,43 @@
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    new Highcharts.Chart({
-      chart: { renderTo: 'clients_chart' },
-    title: { text: 'Clientes con mayor actividad' },
-    xAxis: { type: 'datetime' },
-    yAxis: {
-      title: { text: 'Dollars'}
-    },
-    series: [{
-      data: [1, 2, 5, 7, 3]
-    }]
-    });
-  });
-</script>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <h1>Reportes de Clientes</h1>
 
-<div id="clients_chart" style="width: 700px; height: 500px;"></div>
+      <script type="text/javascript" charset="utf-8">
+        $(function () {
+
+      Highcharts.chart('container', {
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: 'Clientes con Mayor Actividad'
+          },
+          xAxis: {
+              categories: <%= raw @clients%>
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Cantidad de compras realizadas'
+              }
+          },
+          legend: {
+              reversed: true
+          },
+          plotOptions: {
+              series: {
+                  stacking: 'normal'
+              }
+          },
+          series: [{
+              name: 'Número de compras',
+              data: <%= raw @counts%>
+          }]
+      });
+        });
+      </script>
+
+      <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+    </div>
+</div>

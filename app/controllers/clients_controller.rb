@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  deserializable_resource :client, only: [:create, :update]
+  deserializable_resource :client, only: [:create]
 
   # GET /clients
   def index
@@ -60,8 +60,10 @@ class ClientsController < ApplicationController
     return nil
   end
 
-  def report
-    @clients = Client.all
+  def reports
+    @clients = Client.order('count DESC').take(10).collect{|x| x.name + " " + x.lastname}
+    @counts = Client.order('count DESC').take(10).collect{|x| x.count}
+
   end
   private
     # Use callbacks to share common setup or constraints between actions.
