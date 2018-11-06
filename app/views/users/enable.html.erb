@@ -30,11 +30,15 @@
       </div>
       <div class="form-group">
         <label>CI/NIT:</label>
-        <%= image_tag @user.image%>
+        <%if @user.image == "no" %>
+          <p>No registrado</p>
+        <%else%>
+          <%= image_tag @user.image%>
+        <%end%>
       </div>
       <div class="form-group">
         <label>Rol:</label>
-        <%= form.select(:role, [['Mayorista'], ['Especialista'], ['Distribuidor']], {:class => "form-control"} ) %>
+        <%= form.select(:role, [['Mayorista'], ['Especialista'], ['Distribuidor'], ['Minorista']], {:class => "form-control"} ) %>
       </div>
       <div class="actions">
         <center>
