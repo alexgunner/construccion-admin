@@ -64,14 +64,18 @@ class OrdersController < ApplicationController
     @order.carts.each do |cart|
       quantity = cart.quantity
       price = cart.product_variant.price
-      if cart.role == "Mayorista"
-        price = cart.product_variant.wholesaleprice
-      end
-      if cart.role == "Especialista"
-        price = cart.product_variant.specialistprice
-      end
-      if cart.role == "Distribuidor"
-        price = cart.product_variant.importerprice
+      if cart.product_variant.offerprice.nil?
+        if cart.role == "Mayorista"
+          price = cart.product_variant.wholesaleprice
+        end
+        if cart.role == "Especialista"
+          price = cart.product_variant.specialistprice
+        end
+        if cart.role == "Distribuidor"
+          price = cart.product_variant.importerprice
+        end
+      else
+        price = cart.product_variant.offerprice
       end
       mult = quantity * price
       mult = mult + (cost_transport * cart.product_variant.weight)
