@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  deserializable_resource :order, only: [:create]
+  deserializable_resource :order, only: [:create, :update]
 
   # GET /orders
   def index
@@ -36,13 +36,13 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       if @order.state == "Entregado"
-        @order.carts.each do |cart|
-          store = Store.where("role = ?", cart.role).first
-          stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
-          quantity_actual = stock.quantity
-          stock.quantity = quantity_actual - cart.quantity
-          stock.save
-        end
+        # @order.carts.each do |cart|
+        #   store = Store.where("role = ?", cart.role).first
+        #   stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
+        #   quantity_actual = stock.quantity
+        #   stock.quantity = quantity_actual - cart.quantity
+        #   stock.save
+        # end
       end
       redirect_to '/ordenes', notice: 'Order was successfully updated.'
     else
@@ -78,7 +78,9 @@ class OrdersController < ApplicationController
         price = cart.product_variant.offerprice
       end
       mult = quantity * price
-      mult = mult + (cost_transport * cart.product_variant.weight)
+      if @order.typepay == "Domicilio"
+        mult = mult + (cost_transport * cart.product_variant.weight)
+      end
       puts "================="
       puts amount
       amount = amount + mult
@@ -99,7 +101,6 @@ class OrdersController < ApplicationController
         expires_date: DateTime.new(2018, 12, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
-        #return_url: 'http://localhost:4200',
         return_url: 'http://todo-construccion.herokuapp.com',
         cancel_url: 'http://localhost:3000/cancel_payment',
         notify_url: 'http://localhost:3000/notify_payment',
@@ -125,6 +126,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state)
+      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image)
     end
 end
