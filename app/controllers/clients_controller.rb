@@ -30,6 +30,8 @@ class ClientsController < ApplicationController
     if c != nil
       @client = Client.find(c.id)
       @client.increment(:count,1)
+    else
+      @client.count = 1
     end
     @client.save
     render json: @client
@@ -64,7 +66,7 @@ class ClientsController < ApplicationController
     @clients = Client.order('count DESC').take(10).collect{|x| x.name + " " + x.lastname}
     @counts = Client.order('count DESC').take(10).collect{|x| x.count}
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

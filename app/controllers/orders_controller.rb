@@ -77,8 +77,12 @@ class OrdersController < ApplicationController
   def pay
     @order = Order.find(params[:id])
     price = 0
-    cost_transport = @order.delivery.cost
+    cost_transport = 0
+    if @order.typedelivery == "Domicilio"
+      cost_transport = @order.delivery.cost
+    end
     amount = 0
+    mult = 0
     @order.carts.each do |cart|
       quantity = cart.quantity
       price = cart.product_variant.price
@@ -96,11 +100,9 @@ class OrdersController < ApplicationController
         price = cart.product_variant.offerprice
       end
       mult = quantity * price
-      if @order.typepay == "Domicilio"
-        mult = mult + (cost_transport * cart.product_variant.weight)
-      end
+      mult = mult + (cost_transport * cart.product_variant.weight.to_i)
       puts "================="
-      puts amount
+      puts cost_transport
       amount = amount + mult
     end
     receiver_id = 181015

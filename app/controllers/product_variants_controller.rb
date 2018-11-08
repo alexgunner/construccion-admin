@@ -75,6 +75,13 @@ class ProductVariantsController < ApplicationController
     @product = Product.find(params[:product_id])
   end
 
+  def reports
+    @variant = ProductVariant.find(10)
+
+    @clients = Client.order('count DESC').take(10).collect{|x| x.name + " " + x.lastname}
+    @counts = Client.order('count DESC').take(10).collect{|x| x.count}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_variant
