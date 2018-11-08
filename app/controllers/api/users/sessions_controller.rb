@@ -2,7 +2,7 @@
 
 class Api::Users::SessionsController < Devise::SessionsController
   #before_action :configure_sign_in_params, only: [:create]
-  
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -17,6 +17,9 @@ class Api::Users::SessionsController < Devise::SessionsController
         email: user.email,
         name: user.name,
         lastname: user.lastname,
+        address: user.address,
+        nit: user.nit,
+        phone: user.phone,
         role: user.role,
         state: user.state
       }

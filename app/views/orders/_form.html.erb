@@ -24,12 +24,22 @@
       <p>Email: <%= @order.client.mail %></p>
       <p>Nit: <%= @order.client.nit %></p>
   </div>
-
+  <div class="form-group">
+    <%= form.label "Pago y Envio:" %>
+      <p>Tipo de pago: <%= @order.typepay%></p>
+      <p>Tipo de envio: <%= @order.typedelivery%></p>
+      <% if @order.typedelivery == "Domicilio" %>
+        <p>Transporte: <%= @order.delivery.name %></p>
+        <p>Costo: <%= @order.delivery.cost %></p>
+      <%end%>
+  </div>
   <div class="form-group">
     <%= form.label "Productos de la orden:" %>
       <% @order.carts.each do |cart| %>
         <p>-> <%= cart.product_variant.description %></p>
-        <%if cart.role.nil? %>
+        <p><%=cart.product_variant.code %></p>
+        <%= image_tag cart.product_variant.product.picture.url %>
+        <%if cart.role.nil? or cart.role == "Minorista" %>
           <p>Precio: <%= cart.product_variant.price %></p>
         <%else%>
           <%if cart.role == "Mayorista" %>
@@ -42,6 +52,7 @@
             <p>Precio: <%= cart.product_variant.importerprice %></p>
           <%end%>
         <%end%>
+        <p>Cantidad: <%=cart.quantity%>
       <%end%>
   </div>
 
@@ -52,7 +63,7 @@
 
   <div class="actions">
     <center>
-       <%= form.submit "Aceptar", class: "btn btn-success" %>
+       <%= link_to "Aceptar", '/ordenes', class: "btn btn-success" %>
        <%= link_to "Cancelar", '/ordenes', class: "btn btn-danger" %>
      </center>
   </div>

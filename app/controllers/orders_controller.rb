@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @order = Order.find(params[:id])
   end
 
   # POST /orders
@@ -34,6 +35,23 @@ class OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1
   def update
+    if @order.update(order_params)
+      if @order.state == "Entregado"
+        # @order.carts.each do |cart|
+        #   store = Store.where("role = ?", cart.role).first
+        #   stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
+        #   quantity_actual = stock.quantity
+        #   stock.quantity = quantity_actual - cart.quantity
+        #   stock.save
+        # end
+      end
+      redirect_to '/ordenes', notice: 'Order was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def updatee
     if @order.update(order_params)
       if @order.state == "Entregado"
         # @order.carts.each do |cart|

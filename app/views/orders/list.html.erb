@@ -22,7 +22,7 @@
           <%else%>
           <td><%= order.state %></td>
           <%end%>
-          <td><%= link_to 'Ver', edit_order_path(order) %></td>
+          <td><%= link_to 'Ver', '/ordenes/' + order.id.to_s + '/edit'%></td>
         </tr>
       <% end %>
     </tbody>
