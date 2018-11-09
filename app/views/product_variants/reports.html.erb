@@ -29,7 +29,7 @@
          <option value="11">Noviembre</option>
          <option value="12">Diciembre</option>
       </select>
-      
+
       <script type="text/javascript" charset="utf-8">
         $(function () {
 
@@ -44,6 +44,7 @@
               categories: <%= raw @cods%>
           },
           yAxis: {
+              allowDecimals: false,
               min: 0,
               title: {
                   text: 'Cantidad de compras realizadas'
