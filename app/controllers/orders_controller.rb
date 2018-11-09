@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
     price = 0
     cost_transport = 0
     if @order.typedelivery == "Domicilio"
-      cost_transport = @order.delivery.cost
+      cost_transport = @order.delivery.cost.to_i
     end
     amount = 0
     mult = 0
@@ -137,7 +137,9 @@ class OrdersController < ApplicationController
   def list
     @orders = Order.all
   end
-
+  
+  def reports
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

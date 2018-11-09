@@ -76,10 +76,15 @@ class ProductVariantsController < ApplicationController
   end
 
   def reports
-    @variant = ProductVariant.find(10)
+    product_variants = ProductVariant.all
+    @cods = []
+    @cants = []
 
-    @clients = Client.order('count DESC').take(10).collect{|x| x.name + " " + x.lastname}
-    @counts = Client.order('count DESC').take(10).collect{|x| x.count}
+    product_variants.each do |variant|
+      @cods.push variant.code
+      @cants.push variant.carts.length
+    end
+    @cants.sort! {|x,y| y <=> x }
   end
 
   private
