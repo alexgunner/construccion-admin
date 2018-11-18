@@ -50,7 +50,6 @@ get '/destinos' => 'destinations#list'
 get '/envios' => 'deliveries#list'
 get '/ordenes' => 'orders#list'
 get '/reportes/clientes' => 'clients#reports'
-#get '/stadistics' => 'clients#reports'
 get '/reportes/productos' => 'product_variants#reports'
 get '/reportes/ordenes' => 'orders#reports'
 #Method for deserializable not found or not working

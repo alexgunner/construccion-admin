@@ -77,14 +77,24 @@ class ProductVariantsController < ApplicationController
 
   def reports
     product_variants = ProductVariant.all
-    @cods = []
-    @cants = []
+    tuplas = Hash.new
+    @fechaInicio = params[:fechaInicio]
+    @fechaFin = params[:fechaFin]
 
-    product_variants.each do |variant|
-      @cods.push variant.code
-      @cants.push variant.carts.length
+    if @fechaInicio
+      product_variants.each do |variant|
+        count = 0
+        variant.carts.each do |cart|
+          if cart.updated_at >= @fechaInicio and cart.updated_at <= @fechaFin
+            count = count + 1
+          end
+        end
+        tuplas[variant.code] = count
+      end
     end
-    @cants.sort! {|x,y| y <=> x }
+    tuplas.sort_by {[:value]}
+    @new_hash = Hash[tuplas.to_a.reverse].to_hash
+    puts @new_hash
   end
 
   private
