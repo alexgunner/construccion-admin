@@ -2,33 +2,22 @@
     <div class="col-lg-10 offset-lg-1">
       <h1>Reportes de Ordenes</h1>
 
-      <p>Elegir año: </p>
-      <select id="year" name="year" class="select_year cart_select italic light" />
-        <option selected hidden>Año</option>
-         <option value="2018">2018</option>
-         <option value="2019">2019</option>
-         <option value="2020">2020</option>
-         <option value="2021">2021</option>
-         <option value="2022">2022</option>
-         <option value="2023">2023</option>
-         <option value="2024">2024</option>
-      </select>
-      <p>Elegir mes: </p>
-      <select id="month" name="month" class="select_year cart_select italic light" />
-        <option selected hidden>Mes</option>
-         <option value="1">Enero</option>
-         <option value="2">Febrero</option>
-         <option value="3">Marzo</option>
-         <option value="4">Abril</option>
-         <option value="5">Mayo</option>
-         <option value="6">Junio</option>
-         <option value="7">Julio</option>
-         <option value="8">Agosto</option>
-         <option value="9">Septiembre</option>
-         <option value="10">Octubre</option>
-         <option value="11">Noviembre</option>
-         <option value="12">Diciembre</option>
-      </select>
+      <form class="form-inline" method="get" action="">
+        <div class="form-group">
+          <label>Desde: <br/></label>
+          <input type="date" name="fechaInicio" class="form-control" value="<%= @fechaInicio %>"/>
+        </div>
+        <div class="form-group">
+          <label>Hasta: <br/></label>
+          <input type="date" name="fechaFin" class="form-control" value="<%= @fechaFin %>"/>
+        </div>
+        <div class="form-group">
+          <label><br/><br/></label>
+          <button type="submit" class="btn btn-default">Visualizar</button>
+        </div>
+      </form>
+      <br/>
+      <br/>
       <script type="text/javascript" charset="utf-8">
         $(function () {
 
@@ -50,7 +39,7 @@
                 allowDecimals: false,
                 min: 0,
                 title: {
-                    text: 'Numero de ordenes'
+                    text: 'Número de ordenes'
                 }
             },
 
@@ -70,11 +59,11 @@
 
             series: [{
                 name: 'Domicilio',
-                data: [15, 13, 24],
+                data: [<%=@domicilio_tarjeta%>, <%=@domicilio_contraentrega%>, <%=@domicilio_deposito%>],
                 stack: 'male'
             }, {
                 name: 'Tienda',
-                data: [21, 50, 16],
+                data: [<%=@tienda_tarjeta%>, <%=@tienda_contraentrega%>, <%=@tienda_deposito%>],
                 stack: 'female'
             }]
         });
@@ -83,17 +72,16 @@
 
       <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
-      <p>Elegir año: </p>
-      <select id="year" name="year" class="select_year cart_select italic light" />
-        <option selected hidden>Año</option>
-         <option value="2018">2018</option>
-         <option value="2019">2019</option>
-         <option value="2020">2020</option>
-         <option value="2021">2021</option>
-         <option value="2022">2022</option>
-         <option value="2023">2023</option>
-         <option value="2024">2024</option>
-      </select>
+      <h1>Resumen anual de Ordenes</h1>
+
+      <form class="form-inline" method="get" action="">
+        <%=select_year(2018, start_year: 2018, end_year: 2050)%>
+        <div class="form-group">
+          <label><br/><br/></label>
+          <button type="submit" class="btn btn-default">Visualizar</button>
+        </div>
+      </form>
+
 
       <script type="text/javascript" charset="utf-8">
         $(function () {
@@ -132,27 +120,21 @@
                 marker: {
                     symbol: 'square'
                 },
-                data: [7, 6, 19, 14, 18, 21, 25, {
-                    y: 26
-                }, 23, 18, 13, 9]
+                data: <%= raw @array_tarjeta%>
 
             }, {
                 name: 'Contraentrega',
                 marker: {
                     symbol: 'diamond'
                 },
-                data: [{
-                    y: 3
-                }, 4, 5, 8, 11, 15, 17, 16, 14, 10, 6, 4]
+                data: <%= raw @array_contraentrega %>
             },
             {
-                name: 'Contraentrega',
+                name: 'Depósito',
                 marker: {
                     symbol: 'circle'
                 },
-                data: [{
-                    y: 2
-                }, 6, 15, 18, 11, 12, 12, 15, 18, 30, 12, 12]
+                data: <%= raw @array_deposito %>
           }]
         });
         });

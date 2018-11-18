@@ -137,9 +137,46 @@ class OrdersController < ApplicationController
   def list
     @orders = Order.all
   end
-  
+
   def reports
+    @fechaInicio = params[:fechaInicio]
+    if @fechaInicio
+      @fechaFin = params[:fechaFin]
+    else
+      @fechaFin = Date.current.to_s
+      @fechaInicio= ((Date.current)-30).to_s  # resta 1 semana
+    end
+    @domicilio_tarjeta = Order.where('typepay = ? and typedelivery = ? and updated_at >= ? and updated_at <= ?', "Tarjeta", "Domicilio", @fechaInicio, @fechaFin).count
+    @tienda_tarjeta = Order.where('typepay = ? and typedelivery = ? and updated_at >= ? and updated_at <= ?', "Tarjeta", "Tienda", @fechaInicio, @fechaFin).count
+
+    @domicilio_contraentrega = Order.where('typepay = ? and typedelivery = ? and updated_at >= ? and updated_at <= ?', "Contraentrega", "Domicilio", @fechaInicio, @fechaFin).count
+    @tienda_contraentrega = Order.where('typepay = ? and typedelivery = ?', "Contraentrega", "Tienda").count
+
+    @domicilio_deposito = Order.where('typepay = ? and typedelivery = ? and updated_at >= ? and updated_at <= ?', "Deposito", "Domicilio", @fechaInicio, @fechaFin).count
+    @tienda_deposito = Order.where('typepay = ? and typedelivery = ? and updated_at >= ? and updated_at <= ?', "Deposito", "Tienda", @fechaInicio, @fechaFin).count
+
+    @array_tarjeta = []
+    @array_contraentrega = []
+    @array_deposito = []
+    if !params[:date].nil?
+      for i in 1..12
+        if i < 10
+          count_tarjeta = Order.where('typepay = ? and orderdate <= ?', "Tarjeta", params[:date][:year].to_s + "-" + "0" + i.to_s + "-31 00:00:00.000000").count
+          count_contraentrega = Order.where('typepay = ? and orderdate <= ?', "Contraentrega", params[:date][:year].to_s + "-" + "0" + i.to_s + "-31 00:00:00.000000").count
+          count_deposito = Order.where('typepay = ? and orderdate <= ?', "Deposito", params[:date][:year].to_s + "-" + "0" + i.to_s + "-31 00:00:00.000000").count
+        else
+            count_tarjeta = Order.where('typepay = ? and orderdate <= ?', "Tarjeta", params[:date][:year].to_s + "-" + i.to_s + "-31 00:00:00.000000").count
+            count_contraentrega = Order.where('typepay = ? and orderdate <= ?', "Contraentrega", params[:date][:year].to_s + "-" + i.to_s + "-31 00:00:00.000000").count
+            count_deposito = Order.where('typepay = ? and orderdate <= ?', "Deposito", params[:date][:year].to_s + "-" + i.to_s + "-31 00:00:00.000000").count
+        end
+        @array_tarjeta << count_tarjeta
+        @array_contraentrega << count_contraentrega
+        @array_deposito << count_deposito
+      end
+    end
+
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
