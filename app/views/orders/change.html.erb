@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <h1>Detalle de la orden</h1>
+
+    <%= form_for :do_change, url: "/orders/do_change" do |form| %>
+    <%= form.hidden_field :id, :value => @order.id %>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Fecha de la Orden<strong></h4>
+        <h5><%= @order.orderdate.strftime("%d-%m-%Y") %></h5>
+      </div>
+
+      <div class="form-group">
+          <h4 style="color:#172769;"><strong>Datos del Cliente<strong></h4>
+          <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.name %> <%= @order.client.lastname %></h5>
+          <h5><strong>Dirección:</strong> <%= @order.client.address %></h5>
+          <h5><strong>Teléfono:</strong> <%= @order.client.phone %></h5>
+          <h5><strong>Email:</strong> <%= @order.client.mail %></h5>
+          <h5><strong>Nit: </strong> <%= @order.client.nit %></h5>
+      </div>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Pago y Envío<strong></h4>
+          <h5><strong>Tipo de pago:</strong> <%= @order.typepay%></h5>
+          <h5><strong>Tipo de envío:</strong> <%= @order.typedelivery%></h5>
+            <% if @order.typepay== "Deposito" %>
+              <center>
+                <%if @order.image.nil? %>
+                  <h5><strong>No subido</strong></h5>
+                <%else%>
+                  <%= image_tag @order.image, class: "img-thumbnail" %>
+                <%end%>
+              </center>
+            <%end%>
+          <% if @order.typedelivery == "Domicilio" %>
+            <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
+            <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
+          <%end%>
+      </div>
+      <h4 style="color:#172769;"><strong>Productos<strong></h4>
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Imagen</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <% @order.carts.each do |cart| %>
+              <tr>
+                <td><%= cart.product_variant.code %></td>
+                <td><%= cart.product_variant.description %></td>
+                <td><%= cart.quantity %></td>
+                <%if cart.role.nil? or cart.role == "Minorista" %>
+                  <td>Precio: <%if cart.product_variant.offerprice.nil? %>
+                                <%= cart.product_variant.price %></td>
+                              <%else%>
+                                <%= cart.product_variant.offerprice %></td>
+                              <%end%>
+                <%else%>
+                  <%if cart.role == "Mayorista" %>
+                    <td>Precio: <%= cart.product_variant.wholesaleprice %></td>
+                  <%end%>
+                  <%if cart.role == "Especialista" %>
+                    <td>Precio: <%= cart.product_variant.specialistprice %></td>
+                  <%end%>
+                  <%if cart.role == "Distribuidor" %>
+                    <td>Precio: <%= cart.product_variant.importerprice %></td>
+                  <%end%>
+                <%end%>
+                <td><%= image_tag cart.product_variant.product.picture.url, width: "120", height: "120"%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%if @order.state == "Entregado" %>
+        <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
+        <h5><strong><%= @order.state %></strong></h5>
+        <center>
+          <%= link_to "Volver", '/ordenes', class: "btn btn-danger" %>
+        </center>
+      <%else%>
+        <div class="form-group">
+          <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
+          <%= form.select :state, [["Preparado"], ["Entregado"]],  {}, {class: "form-control"} %>
+        </div>
+        <div class="actions">
+          <center>
+             <%= form.submit "Aceptar", class: "btn btn-success" %>
+             <%= link_to "Cancelar", '/ordenes', class: "btn btn-danger" %>
+           </center>
+        </div>
+      <%end%>
+    <% end %>
+    <br/>
+    <br/>

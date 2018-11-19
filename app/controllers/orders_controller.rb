@@ -36,36 +36,34 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
-      if @order.state == "Entregado"
-        # @order.carts.each do |cart|
-        #   store = Store.where("role = ?", cart.role).first
-        #   stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
-        #   quantity_actual = stock.quantity
-        #   stock.quantity = quantity_actual - cart.quantity
-        #   stock.save
-        # end
-      end
       redirect_to '/ordenes', notice: 'Order was successfully updated.'
     else
       render :edit
     end
   end
 
-  def updatee
-    if @order.update(order_params)
-      if @order.state == "Entregado"
-        # @order.carts.each do |cart|
-        #   store = Store.where("role = ?", cart.role).first
-        #   stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
-        #   quantity_actual = stock.quantity
-        #   stock.quantity = quantity_actual - cart.quantity
-        #   stock.save
-        # end
+  def change
+    @order = Order.find(params[:id])
+  end
+
+  def do_change
+    order = Order.find(params[:do_change][:id])
+    order.state = params[:do_change][:state]
+    if order.state == "Entregado"
+      order.carts.each do |cart|
+        if cart.role.nil?
+          store = Store.where("role = ?", "Minorista").first
+        else
+          store = Store.where("role = ?", cart.role).first
+        end
+        stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
+        quantity_actual = stock.quantity
+        stock.quantity = quantity_actual - cart.quantity
+        stock.save
       end
-      redirect_to '/ordenes', notice: 'Order was successfully updated.'
-    else
-      render :edit
     end
+    order.save
+    redirect_to "/ordenes"
   end
 
   # DELETE /orders/1
