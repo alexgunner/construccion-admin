@@ -1,16 +1,4 @@
 <%= form_with(model: order, local: true) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="form-group">
     <%= form.label "Fecha de la orden:" %>
     <p><%= @order.orderdate.strftime("%d-%m-%Y") %></p>
@@ -33,29 +21,43 @@
         <p>Costo: <%= @order.delivery.cost %></p>
       <%end%>
   </div>
-  <div class="form-group">
-    <%= form.label "Productos de la orden:" %>
-      <% @order.carts.each do |cart| %>
-        <p>-> <%= cart.product_variant.description %></p>
-        <p><%=cart.product_variant.code %></p>
-        <%= image_tag cart.product_variant.product.picture.url %>
-        <%if cart.role.nil? or cart.role == "Minorista" %>
-          <p>Precio: <%= cart.product_variant.price %></p>
-        <%else%>
-          <%if cart.role == "Mayorista" %>
-            <p>Precio: <%= cart.product_variant.wholesaleprice %></p>
-          <%end%>
-          <%if cart.role == "Especialista" %>
-            <p>Precio: <%= cart.product_variant.specialistprice %></p>
-          <%end%>
-          <%if cart.role == "Distribuidor" %>
-            <p>Precio: <%= cart.product_variant.importerprice %></p>
-          <%end%>
-        <%end%>
-        <p>Cantidad: <%=cart.quantity%>
-      <%end%>
-  </div>
+  <div class="table-responsive">
+    <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
 
+      <tbody>
+          <% @order.carts.each do |cart| %>
+          <tr>
+            <td><%= cart.product_variant.code %></td>
+            <td><%= cart.product_variant.description %></td>
+            <td><%= cart.quantity %></td>
+            <%if cart.role.nil? or cart.role == "Minorista" %>
+              <td>Precio: <%= cart.product_variant.price %></td>
+            <%else%>
+              <%if cart.role == "Mayorista" %>
+                <td>Precio: <%= cart.product_variant.wholesaleprice %></td>
+              <%end%>
+              <%if cart.role == "Especialista" %>
+                <td>Precio: <%= cart.product_variant.specialistprice %></td>
+              <%end%>
+              <%if cart.role == "Distribuidor" %>
+                <td>Precio: <%= cart.product_variant.importerprice %></td>
+              <%end%>
+            <%end%>
+            <td><%= image_tag cart.product_variant.product.picture.url, width: "120", height: "120" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   <div class="form-group">
     <%= form.label "Estado de la orden:" %>
     <%= form.select :state, [['Preparado'], ['Entregado']], id: :order_state, class: "form-control"  %>

@@ -3,6 +3,7 @@
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
+        <th>Número de orden</th>
         <th>Fecha de la orden</th>
         <th>Cliente</th>
         <th>Delivery</th>
@@ -14,6 +15,7 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
+          <td><%= order.id %></td>
           <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
           <td><%= order.client.name %> <%= order.client.lastname %></td>
           <td><%= order.delivery.name %></td>
