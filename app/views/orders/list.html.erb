@@ -17,7 +17,7 @@
         <tr>
           <td><%= order.id %></td>
           <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
-          <td><%= order.client.name %> <%= order.client.lastname %></td>
+          <td></td>
           <td><%= order.delivery.name %></td>
           <% if order.state.nil? %>
           <td>Nuevo</td>
