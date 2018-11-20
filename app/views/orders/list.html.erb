@@ -17,7 +17,7 @@
         <tr>
           <td><%= order.id %></td>
           <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
-          <td><%= order.client.name %> <%= order.client.lastname %></td>
+          <td></td>
           <td><%= order.delivery.name %></td>
           <% if order.state.nil? %>
           <td>Nuevo</td>
@@ -25,6 +25,7 @@
           <td><%= order.state %></td>
           <%end%>
           <td><%= link_to 'Ver', '/ordenes/' + order.id.to_s + '/editar'%></td>
+          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
