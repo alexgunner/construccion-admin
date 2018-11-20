@@ -57,6 +57,22 @@ class UsersController < ApplicationController
     redirect_to "/usuarios"
   end
 
+  def bloq
+    user = User.find(params[:id])
+    user.role = "Bloqueado"
+    user.state = false
+    user.save
+    redirect_to "/usuarios"
+  end
+
+  def desbloq
+    user = User.find(params[:id])
+    user.role = nil
+    user.state = nil
+    user.save
+    redirect_to "/usuarios"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

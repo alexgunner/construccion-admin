@@ -5,47 +5,43 @@
     <%= form_for :do_enable, url: "/users/do_enable" do |form| %>
     <%= form.hidden_field :id, :value => @user.id %>
       <div class="form-group">
-        <label>Nombres:</label>
-        <%= @user.name%>
+        <h5><strong>Nombres:</strong> <%= @user.name%></h5>
       </div>
       <div class="form-group">
-        <label>Apellidos:</label>
-        <%= @user.lastname%>
+        <h5><strong>Apellidos:</strong> <%= @user.lastname%></h5>
       </div>
       <div class="form-group">
-        <label>CI:</label>
-        <%= @user.ci%>
+        <h5><strong>CI:</strong> <%= @user.ci%></h5>
       </div>
       <div class="form-group">
-        <label>NIT:</label>
-        <%= @user.nit%>
+        <h5><strong>NIT:</strong> <%= @user.nit%></h5>
       </div>
       <div class="form-group">
-        <label>Dirección:</label>
-        <%= @user.address%>
+        <h5><strong>Dirección:</strong> <%= @user.address%></h5>
       </div>
       <div class="form-group">
-        <label>Correo electrónico:</label>
-        <%= @user.email%>
+        <h5><strong>Correo electrónico:</strong> <%= @user.email%></h5>
       </div>
       <div class="form-group">
-        <label>CI/NIT:</label>
-        <%if @user.image == "no" %>
-          <p>No registrado</p>
-        <%else%>
-          <%= image_tag @user.image%>
-        <%end%>
+        <h5><strong>CI/NIT:</strong></h5>
+        <center>
+          <%if @user.image == "no" %>
+            <h5><strong>No registrado</strong></h5>
+          <%else%>
+            <%= image_tag @user.image, class: "img-thumbnail"%>
+          <%end%>
+        </center>
       </div>
       <div class="form-group">
-        <label>Rol:</label>
-        <%= form.select(:role, [['Mayorista'], ['Especialista'], ['Distribuidor'], ['Minorista']], {:class => "form-control"} ) %>
+        <h5><strong>Rol:</stong></h5>
+        <%= form.select(:role, [['Mayorista'], ['Especialista'], ['Distribuidor'], ['Minorista']], {}, {:class => "form-control"} ) %>
       </div>
       <div class="actions">
         <center>
           <%= form.submit "Aceptar", class: "btn btn-success" %>
           <%= link_to "Cancelar", '/usuarios', class: "btn btn-danger" %>
+            <%= link_to 'Eliminar usuario', '/usuarios/' + @user.id.to_s, method: :delete, class: "btn btn-warning" %>
         </center>
-        <%= link_to 'Eliminar usuario', '/usuarios/' + @user.id.to_s, method: :delete, class: "btn btn-warning" %>
       </div>
     <% end  %>
   </div>

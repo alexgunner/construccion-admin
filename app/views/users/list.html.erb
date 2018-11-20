@@ -7,12 +7,45 @@
         <th>Apellidos</th>
         <th>CI</th>
         <th>NIT</th>
+        <th>Rol</th>
         <th colspan="2"></th>
       </tr>
     </thead>
 
     <tbody>
       <% @users.each do |user| %>
+        <%if user.role == "Bloqueado"%>
+        <tr bgcolor="#FFD587">
+          <td><%= user.name %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.ci %></td>
+          <td>
+            <% if user.nit.nil? %>
+              <%= "Ninguno" %>
+            <%else%>
+              <%= user.nit %>
+            <%end%>
+          </td>
+          <td>
+            <% if user.role.nil? %>
+              <%= "No asignado" %>
+            <%else%>
+              <%= user.role %>
+            <%end%>
+          </td>
+          <td>
+            <% if user.state.nil? %>
+              <%= link_to 'Habilitar', '/usuarios/' + user.id.to_s + '/habilitar' %>
+            <%else%>
+              <%if user.role == "Bloqueado" %>
+               <%= link_to 'Desbloquear', '/usuarios/' + user.id.to_s + '/desbloquear' %>
+              <%else%>
+                <%= link_to 'Bloquear', '/usuarios/' + user.id.to_s + '/bloquear' %>
+              <%end%>
+            <%end%>
+          </td>
+        </tr>
+        <%else%>
         <tr>
           <td><%= user.name %></td>
           <td><%= user.lastname %></td>
@@ -25,13 +58,25 @@
             <%end%>
           </td>
           <td>
+            <% if user.role.nil? %>
+              <%= "No asignado" %>
+            <%else%>
+              <%= user.role %>
+            <%end%>
+          </td>
+          <td>
             <% if user.state.nil? %>
               <%= link_to 'Habilitar', '/usuarios/' + user.id.to_s + '/habilitar' %>
             <%else%>
-              <%= link_to 'Bloquear' %>
+              <%if user.role == "Bloqueado" %>
+               <%= link_to 'Desbloquear', '/usuarios/' + user.id.to_s + '/desbloquear' %>
+              <%else%>
+                <%= link_to 'Bloquear', '/usuarios/' + user.id.to_s + '/bloquear' %>
+              <%end%>
             <%end%>
           </td>
         </tr>
+        <%end%>
       <% end %>
     </tbody>
   </table>
