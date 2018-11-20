@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :lastName %>
-    <%= form.text_field :lastName, id: :client_lastName %>
+    <%= form.text_field :lastName, id: :client_lastname %>
   </div>
 
   <div class="field">
@@ -39,6 +39,11 @@
   <div class="field">
     <%= form.label :nit %>
     <%= form.number_field :nit, id: :client_nit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :count %>
+    <%= form.number_field :count, id: :client_count %>
   </div>
 
   <div class="actions">
