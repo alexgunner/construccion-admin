@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
   # GET /clients
   def index
     @clients = Client.all
-      render json: @clients
+      #render json: @clients
   end
 
   # GET /clients/1
