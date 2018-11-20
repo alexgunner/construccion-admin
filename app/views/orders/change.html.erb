@@ -62,13 +62,16 @@
                               <%end%>
                 <%else%>
                   <%if cart.role == "Mayorista" %>
-                    <td>Precio: <%= cart.product_variant.wholesaleprice %></td>
+                    <td><%= cart.product_variant.wholesaleprice %></td>
                   <%end%>
                   <%if cart.role == "Especialista" %>
-                    <td>Precio: <%= cart.product_variant.specialistprice %></td>
+                    <td><%= cart.product_variant.specialistprice %></td>
                   <%end%>
                   <%if cart.role == "Distribuidor" %>
-                    <td>Precio: <%= cart.product_variant.importerprice %></td>
+                    <td><%= cart.product_variant.importerprice %></td>
+                  <%end%>
+                  <%if cart.role == "Bloqueado" %>
+                    <td><%= "Sin precio, cuenta bloqueada" %></td>
                   <%end%>
                 <%end%>
                 <td><%= image_tag cart.product_variant.product.picture.url, width: "120", height: "120"%></td>
@@ -86,7 +89,7 @@
       <%else%>
         <div class="form-group">
           <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
-          <%= form.select :state, [["Preparado"], ["Entregado"]],  {}, {class: "form-control"} %>
+          <%= form.select :state, [["Preparado"], ["Entregado"], ["Rechazado"]],  {}, {class: "form-control"} %>
         </div>
         <div class="actions">
           <center>
