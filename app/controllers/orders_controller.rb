@@ -56,14 +56,24 @@ class OrdersController < ApplicationController
         else
           store = Store.where("role = ?", cart.role).first
         end
+        if store.nil?
+          flash[:notice] = "Por favor primero crea el almacen para el tipo de usuario"
+          redirect_back fallback_location: root_path
+        else
         stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
-        quantity_actual = stock.quantity
-        stock.quantity = quantity_actual - cart.quantity
-        stock.save
+        if stock.nil?
+          flash[:notice_second] = "Por favor crea el stock correspondiente del producto en almacen "
+          redirect_back fallback_location: root_path
+        else
+          quantity_actual = stock.quantity
+          stock.quantity = quantity_actual - cart.quantity
+          stock.save
+          order.save
+          redirect_to "/ordenes"
+        end
+      end
       end
     end
-    order.save
-    redirect_to "/ordenes"
   end
 
   # DELETE /orders/1
