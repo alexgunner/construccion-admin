@@ -1,6 +1,5 @@
 <%= form_for  @stock do |form| %>
 
-  <%= form.hidden_field :store_id, :value => @store.id %>
   <div class="form-group">
     <%= form.label  :product_id, "Producto" %>
     <%= form.collection_select(:product_id, Product.all, :id, :name, { :prompt => "Selecciona un producto"}, {class: "form-control", required: true})%>
@@ -24,7 +23,7 @@
   <div class="actions">
     <center>
       <%= form.submit "Aceptar", class: "btn btn-success" %>
-      <%= link_to "Cancelar", '/almacenes/' + @store.id.to_s + '/stock', class: "btn btn-danger" %>
+      <%= link_to "Cancelar", '/almacen', class: "btn btn-danger" %>
     </center>
   </div>
 <% end %>

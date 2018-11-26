@@ -15,21 +15,18 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
-    @store = Store.find(params[:store_id])
   end
 
   # GET /stocks/1/edit
   def edit
-    @store = Store.find(params[:store_id])
   end
 
   # POST /stocks
   def create
     @stock = Stock.new(stock_params)
-    store = Store.find(@stock.store_id)
     respond_to do |format|
       if @stock.save
-        format.html { redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock creado correctamente' }
+        format.html { redirect_to '/almacen', notice: 'Stock creado correctamente' }
         format.json { render :show, status: :created, location: @stock }
       else
         format.html { render :new }
@@ -40,10 +37,9 @@ class StocksController < ApplicationController
 
   # PATCH/PUT /stocks/1
   def update
-    store = Store.find(@stock.store_id)
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock editado correctamente' }
+        format.html { redirect_to '/almacen', notice: 'Stock editado correctamente' }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit }
@@ -54,20 +50,13 @@ class StocksController < ApplicationController
 
   # DELETE /stocks/1
   def destroy
-    store = Store.find(@stock.store_id)
     @stock.destroy
-    redirect_to '/almacenes/' + store.id.to_s + '/stock', notice: 'Stock was successfully destroyed.'
+    redirect_to '/almacen', notice: 'Stock was successfully destroyed.'
   end
 
   #Metodos para admin
   def list
-    @stocks = Stock.where("store_id = ?", params[:store_id])
-    @store = Store.find(params[:store_id])
-  end
-
-  def transfer
-    @store = Store.find(params[:store_id])
-    @stock = Stock.find(params[:id])
+    @stocks = Stock.all
   end
 
   def do_transfer
@@ -95,6 +84,6 @@ class StocksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def stock_params
-      params.require(:stock).permit(:store_id, :product_id, :product_variant_id, :quantity, :limit)
+      params.require(:stock).permit(:product_id, :product_variant_id, :quantity, :limit)
     end
 end

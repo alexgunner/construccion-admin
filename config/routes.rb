@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :destinations
   resources :transports
   resources :stocks
-  resources :stores
   resources :extras
   resources :clients
   resources :contacts
@@ -35,12 +34,7 @@ get '/categorias' => 'categories#list'
 get '/subcategorias' => 'subcategories#list'
 get '/contacto' => 'contacts#list'
 get '/extra' => 'extras#list'
-get '/almacenes' => 'stores#list'
-get '/almacenes/:store_id/stock' => 'stocks#list'
-get '/almacenes/:store_id/stock/new' => 'stocks#new'
-get '/almacenes/:store_id/stock/:id/edit' => 'stocks#edit'
-get '/almacenes/:store_id/stock/:id/transferencia' => 'stocks#transfer'
-post '/stock/do_transfer' => 'stocks#do_transfer'
+get '/almacen' => 'stocks#list'
 get '/usuarios' => 'users#list'
 get '/usuarios/:id/habilitar' => 'users#enable'
 post '/users/do_enable' => 'users#do_enable'

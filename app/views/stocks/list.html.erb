@@ -1,5 +1,5 @@
-<h1>Stock de <%=@store.name%> </h1>
-<%= link_to 'Agregar stock', '/almacenes/' + @store.id.to_s + '/stock/new', class: "btn btn-primary",
+<h1>Stock</h1>
+<%= link_to 'Agregar stock', new_stock_path, class: "btn btn-primary",
 data: { turbolinks: false } %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover">
@@ -9,33 +9,28 @@ data: { turbolinks: false } %>
         <th>Variante</th>
         <th>Cantidad</th>
         <th>Mínimo de cantidad</th>
-        <th colspan="3"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
     <tbody>
       <% @stocks.each do |stock| %>
-      <% if stock.quantity <= stock.limit%>
-        <tr bgcolor="#FFA28E">
-          <td><%= stock.product.name %></td>
-          <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
-          <td><%= stock.quantity %></td>
-          <td><%= stock.limit %></td>
-          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/transferencia'%></td>
-          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
-          <td><%= link_to 'Eliminar', stock, method: :delete %></td>
-        </tr>
+      <% if stock.quantity <= stock.limit && stock.quantity != 0%>
+        <tr bgcolor="#FFFF87">
       <%else%>
-        <tr>
-          <td><%= stock.product.name %></td>
-          <td><%= stock.product.product_variants.find(stock.product_variant_id).description %></td>
-          <td><%= stock.quantity %></td>
-          <td><%= stock.limit %></td>
-          <td><%= link_to 'Transferir', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/transferencia'%></td>
-          <td><%= link_to 'Editar', '/almacenes/' + @store.id.to_s + '/stock/' + stock.id.to_s + '/edit', data: { turbolinks: false } %></td>
-          <td><%= link_to 'Eliminar', stock, method: :delete %></td>
-        </tr>
+        <% if stock.quantity == 0 %>
+          <tr bgcolor="#FFA28E">
+        <%else%>
+          <tr>
+        <%end%>
       <%end%>
+        <td><%= stock.product.name %></td>
+        <td><%= stock.product_variant.description %></td>
+        <td><%= stock.quantity %></td>
+        <td><%= stock.limit %></td>
+        <td><%= link_to 'Editar', edit_stock_path(stock), data: { turbolinks: false } %></td>
+        <td><%= link_to 'Eliminar', stock, method: :delete %></td>
+      </tr>
       <% end %>
     </tbody>
   </table>
