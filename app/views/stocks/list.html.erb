@@ -5,8 +5,10 @@ data: { turbolinks: false } %>
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
-        <th>Producto</th>
-        <th>Variante</th>
+        <th>Código de Producto</th>
+        <th>Nombre de Producto</th>
+        <th>Código de Variante</th>
+        <th>Descripción de Variante</th>
         <th>Cantidad</th>
         <th>Mínimo de cantidad</th>
         <th colspan="2"></th>
@@ -24,7 +26,9 @@ data: { turbolinks: false } %>
           <tr>
         <%end%>
       <%end%>
+        <td><%= stock.product.code %></td>
         <td><%= stock.product.name %></td>
+        <td><%= stock.product_variant.code %></td>
         <td><%= stock.product_variant.description %></td>
         <td><%= stock.quantity %></td>
         <td><%= stock.limit %></td>

@@ -24,6 +24,9 @@ class StocksController < ApplicationController
   # POST /stocks
   def create
     @stock = Stock.new(stock_params)
+    product_variant = ProductVariant.find(@stock.product_variant_id)
+    product_variant.available = true
+    product_variant.save
     respond_to do |format|
       if @stock.save
         format.html { redirect_to '/almacen', notice: 'Stock creado correctamente' }

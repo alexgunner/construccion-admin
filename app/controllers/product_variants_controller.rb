@@ -105,6 +105,6 @@ class ProductVariantsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_variant_params
-      params.require(:product_variant).permit(:size, :price, :wholesaleprice, :specialistprice, :importerprice, :product_id, :description, :code, :reposition, :repositiondate, :offerprice, :weight)
+      params.require(:product_variant).permit(:picture, :price, :wholesaleprice, :specialistprice, :importerprice, :product_id, :description, :code, :available, :offerprice, :weight)
     end
 end

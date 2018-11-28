@@ -39,6 +39,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers', '~> 0.10.0'
 # Use Redis adapter to run Action Cable in production
 gem 'figaro'
+gem 'default_value_for'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

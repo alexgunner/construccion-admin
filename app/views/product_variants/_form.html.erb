@@ -1,4 +1,4 @@
-<%= form_with(model: product_variant, local: true) do |form| %>
+<%= form_with(model: product_variant, local: true, html: { multipart: true }) do |form| %>
   <%= form.hidden_field :product_id, :value => @product.id %>
 
   <div class="form-group">
@@ -49,6 +49,11 @@
   <div class="form-group">
     <%= label_tag(:offer_price, "Precio de oferta (Opcional)") %>
     <%= form.number_field :offerprice, id: :product_variant_offerprice, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :picture, id: :product_variant_picture_id, class: "form-control" %>
   </div>
 
   <div class="actions">
