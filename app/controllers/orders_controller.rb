@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
+       UserMailer.confirmation_email(@order).deliver_now
       render json: @order
     end
   end
