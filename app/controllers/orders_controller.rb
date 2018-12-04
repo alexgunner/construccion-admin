@@ -27,9 +27,9 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-
+    @ordernew = Order.find(6)
     if @order.save
-       UserMailer.confirmation_email(@order).deliver_now
+       UserMailer.confirmation_email(@ordernew).deliver_now
       render json: @order
     end
   end

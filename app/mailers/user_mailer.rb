@@ -4,6 +4,6 @@ class UserMailer < ApplicationMailer
 
  def confirmation_email(order)
    @order = order
-   mail(to: @order.client.mail, subject: 'Gracias, por tu compra')
+   mail(to: @order.client.mail, subject: '¡Gracias por tu compra!. Comprobante de productos adquiridos.')
  end
 end
