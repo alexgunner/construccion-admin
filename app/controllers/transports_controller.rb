@@ -58,6 +58,6 @@ class TransportsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def transport_params
-      params.require(:transport).permit(:name)
+      params.require(:transport).permit(:name, :typetransport)
     end
 end

@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>Nombre</th>
+        <th>Tipo</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -13,6 +14,7 @@
       <% @transports.each do |transport| %>
         <tr>
           <td><%= transport.name %></td>
+          <td><%= transport.typetransport %></td>
           <td><%= link_to 'Editar', edit_transport_path(transport) %></td>
           <td><%= link_to 'Eliminar', transport, method: :delete %></td>
         </tr>

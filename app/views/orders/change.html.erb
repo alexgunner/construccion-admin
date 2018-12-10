@@ -1,22 +1,6 @@
 <div class="row">
   <div class="col-lg-10 offset-lg-1">
     <h1>Detalle de la orden</h1>
-    <% if flash[:notice] %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Alerta!</strong> <%= flash[:notice] %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <% end %>
-    <% if flash[:notice_second] %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Alerta!</strong> <%= flash[:notice_second] %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <% end %>
     <%= form_for :do_change, url: "/orders/do_change" do |form| %>
     <%= form.hidden_field :id, :value => @order.id %>
       <div class="form-group">
@@ -30,7 +14,12 @@
           <h5><strong>Dirección:</strong> <%= @order.client.address %></h5>
           <h5><strong>Teléfono:</strong> <%= @order.client.phone %></h5>
           <h5><strong>Email:</strong> <%= @order.client.mail %></h5>
-          <h5><strong>Nit: </strong> <%= @order.client.nit %></h5>
+          <h5><strong>CI: </strong> <%= @order.client.ci %></h5>
+      </div>
+      <div class="form-group">
+          <h4 style="color:#172769;"><strong>Datos de la Factura<strong></h4>
+          <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.nameinvoice %></h5>
+          <h5><strong>NIT:</strong> <%= @order.client.nit %></h5>
       </div>
       <div class="form-group">
         <h4 style="color:#172769;"><strong>Pago y Envío<strong></h4>

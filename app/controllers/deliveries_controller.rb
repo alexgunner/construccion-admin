@@ -59,6 +59,6 @@ class DeliveriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def delivery_params
-      params.require(:delivery).permit(:destination_id, :transport_id, :cost, :name)
+      params.require(:delivery).permit(:destination_id, :transport_id, :cost, :name, :typedelivery)
     end
 end

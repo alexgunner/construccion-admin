@@ -52,29 +52,14 @@ class OrdersController < ApplicationController
     order.state = params[:do_change][:state]
     if order.state == "Entregado"
       order.carts.each do |cart|
-        if cart.role.nil?
-          store = Store.where("role = ?", "Minorista").first
-        else
-          store = Store.where("role = ?", cart.role).first
-        end
-        if store.nil?
-          flash[:notice] = "Por favor primero crea el almacen para el tipo de usuario"
-          redirect_back fallback_location: root_path
-        else
-        stock = Stock.where("store_id = ? and product_variant_id = ?", store.id, cart.product_variant).first
-        if stock.nil?
-          flash[:notice_second] = "Por favor crea el stock correspondiente del producto en almacen "
-          redirect_back fallback_location: root_path
-        else
-          quantity_actual = stock.quantity
-          stock.quantity = quantity_actual - cart.quantity
-          stock.save
-          order.save
-          redirect_to "/ordenes"
-        end
-      end
+        stock = Stock.where("product_variant_id = ?", cart.product_variant).first
+        quantity_actual = stock.quantity
+        stock.quantity = quantity_actual - cart.quantity
+        stock.save
       end
     end
+    order.save
+    redirect_to "/ordenes"
   end
 
   # DELETE /orders/1

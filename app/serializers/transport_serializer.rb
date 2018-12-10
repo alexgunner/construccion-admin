@@ -1,4 +1,4 @@
 class TransportSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :name, :typetransport
   has_many :deliveries
 end

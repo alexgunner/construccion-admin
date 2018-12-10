@@ -18,6 +18,7 @@ class Api::Users::SessionsController < Devise::SessionsController
         name: user.name,
         lastname: user.lastname,
         address: user.address,
+        ci: user.ci,
         nit: user.nit,
         phone: user.phone,
         role: user.role,

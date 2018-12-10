@@ -52,6 +52,7 @@ get '/reportes/productos' => 'product_variants#reports'
 get '/reportes/ordenes' => 'orders#reports'
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
+get '/product-variants/:id' => 'product_variants#show'
 post '/users' => 'users#create'
 get '/ordenes/:id/edit' => 'orders#edit'
 patch '/ordenes/:id' => 'orders#update'

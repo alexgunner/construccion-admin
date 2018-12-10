@@ -6,13 +6,17 @@
 
   <div class="form-group">
     <%= form.label "Destino" %>
-
-        <%= form.collection_select(:destination_id, Destination.all, :id, :name, {}, {class: "form-control"}) %>
+    <%= form.collection_select(:destination_id, Destination.all, :id, :name, {}, {class: "form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= form.label "Medio de envío" %>
     <%= form.collection_select(:transport_id, Transport.all, :id, :name, {}, {class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Tipo de envío" %>
+    <%= form.select :typedelivery, [["Local"], ["Nacional"], ["Internacional"]],  {}, {class: "form-control"} %>
   </div>
 
   <div class="form-group">

@@ -26,7 +26,7 @@ class ClientsController < ApplicationController
   # POST /clients
   def create
     @client = Client.new(client_params)
-    c = client_exist(@client.nit)
+    c = client_exist(@client.ci)
     if c != nil
       @client = Client.find(c.id)
       @client.increment(:count,1)
@@ -52,10 +52,10 @@ class ClientsController < ApplicationController
     redirect_to clients_url, notice: 'Client was successfully destroyed.'
   end
 
-  def client_exist(nit)
+  def client_exist(ci)
     clients = Client.all
     clients.each do |c|
-      if c.nit == nit
+      if c.ci == ci
         return c
       end
     end
@@ -82,6 +82,6 @@ class ClientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def client_params
-      params.require(:client).permit(:name, :lastname, :address, :phone, :mail, :nit, :count)
+      params.require(:client).permit(:name, :lastname, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice)
     end
 end
