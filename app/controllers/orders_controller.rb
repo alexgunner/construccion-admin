@@ -27,9 +27,7 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    @ordernew = Order.find(6)
     if @order.save
-       UserMailer.confirmation_email(@ordernew).deliver_now
       render json: @order
     end
   end
@@ -49,6 +47,9 @@ class OrdersController < ApplicationController
 
   def do_change
     order = Order.find(params[:do_change][:id])
+    if order.state.nil?
+      UserMailer.confirmation_email(order).deliver_now
+    end
     order.state = params[:do_change][:state]
     if order.state == "Entregado"
       order.carts.each do |cart|
@@ -112,7 +113,7 @@ class OrdersController < ApplicationController
     client = Khipu::PaymentsApi.new
     response = client.payments_post('Pago de productos DOMUS S.R.L.', 'BOB', amount, {
         transaction_id: 'FACT2001',
-        expires_date: DateTime.new(2018, 12, 10),
+        expires_date: DateTime.new(2019, 2, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
         return_url: 'http://todo-construccion.herokuapp.com',
