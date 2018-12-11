@@ -129,6 +129,21 @@ class OrdersController < ApplicationController
 
   #Metodos para admin
   def list
+    orders_list = Order.all
+    orders_list.each do |order|
+      if order.state == "Cancelado"
+        if order.client.count > 1
+          order.client.decrement(:count,1)
+          order.client.save
+        else
+          order.client.destroy
+        end
+        order.carts.each do |cart|
+          cart.destroy
+        end
+      end
+      order.destroy
+    end
     @orders = Order.all
   end
 
