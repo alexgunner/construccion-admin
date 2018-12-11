@@ -141,8 +141,8 @@ class OrdersController < ApplicationController
         order.carts.each do |cart|
           cart.destroy
         end
+        order.destroy
       end
-      order.destroy
     end
     @orders = Order.all
   end
