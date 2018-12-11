@@ -30,6 +30,18 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
 
+  config.assets.quiet = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            'compras.domusbolivia@gmail.com',
+    password:             'domusbolivia16',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+  Rails.application.routes.default_url_options[:host] = "api.domusbolivia.com"
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
