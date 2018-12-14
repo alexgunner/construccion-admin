@@ -53,7 +53,8 @@ Rails.application.configure do
     password:             'domusbolivia16',
     authentication:       'plain',
     enable_starttls_auto: true  }
-  Rails.application.routes.default_url_options[:host] = "localhost:3000"
+  config.action_mailer.asset_host = 'http://localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

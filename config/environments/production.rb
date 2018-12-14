@@ -41,7 +41,8 @@ Rails.application.configure do
     password:             'domusbolivia16',
     authentication:       'plain',
     enable_starttls_auto: true  }
-  Rails.application.routes.default_url_options[:host] = "api.domusbolivia.com"
+    config.action_mailer.asset_host = 'http://api.domusbolivia.com'
+    config.action_mailer.default_url_options = { :host => 'api.domusbolivia.com' }
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
