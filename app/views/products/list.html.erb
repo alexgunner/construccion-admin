@@ -13,7 +13,7 @@
         <th>Proveedor</th>
         <th>Fabricante</th>
         <th>En oferta</th>
-        <th colspan="2"></th>
+        <th colspan="3"></th>
       </tr>
     </thead>
 
@@ -31,6 +31,7 @@
           <td><%= product.in_offer %></td>
           <td><%= link_to 'Variantes', '/productos/' + product.id.to_s + '/variantes' %></td>
           <td><%= link_to 'Editar', edit_product_path(product) %></td>
+          <td><%= link_to 'Eliminar', product, method: :delete %></td>
         </tr>
       <% end %>
     </tbody>

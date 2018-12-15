@@ -66,7 +66,7 @@ class ProductVariantsController < ApplicationController
   # DELETE /product_variants/1
   def destroy
     @product_variant.destroy
-    redirect_to product_variants_url, notice: 'Product variant was successfully destroyed.'
+    redirect_to '/productos/' + @product_variant.product.id.to_s + '/variantes', notice: 'Product variant was successfully destroyed.'
   end
 
   #Metodos para admin

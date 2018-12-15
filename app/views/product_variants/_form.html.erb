@@ -3,57 +3,42 @@
 
   <div class="form-group">
     <%= form.label "Precio" %>
-    <%= form.text_field :price, id: :product_variant_price, class: "form-control" %>
+    <%= form.text_field :price, id: :product_variant_price, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Precio para especialista" %>
-    <%= form.text_field :specialistprice, id: :product_variant_specialistprice, class: "form-control" %>
+    <%= form.text_field :specialistprice, id: :product_variant_specialistprice, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Precio para mayorista" %>
-    <%= form.text_field :wholesaleprice, id: :product_variant_wholesaleprice, class: "form-control" %>
+    <%= form.text_field :wholesaleprice, id: :product_variant_wholesaleprice, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Precio para distribuidor" %>
-    <%= form.text_field :importerprice, id: :product_variant_importerprice, class: "form-control" %>
+    <%= form.text_field :importerprice, id: :product_variant_importerprice, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Descripción" %>
-    <%= form.text_field :description, id: :product_variant_description, class: "form-control" %>
+    <%= form.text_field :description, id: :product_variant_description, class: "form-control", :required => true, :maxlength => 256 %>
   </div>
 
   <div class="form-group">
     <%= form.label "Código de referencia" %>
-    <%= form.text_field :code, id: :product_variant_code, class: "form-control" %>
+    <%= form.text_field :code, id: :product_variant_code, class: "form-control", :required => true, :maxlength => 50 %>
   </div>
 
   <div class="form-group">
     <%= form.label "Peso en Kg" %>
-    <%= form.text_field :weight, id: :product_variant_weight, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label "Reposición" %>
-    <%= form.check_box :reposition, id: :product_variant_reposition %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label "Día de Reposición" %>
-    <%= form.date_field :repositiondate, id: :product_variant_repositiondate %>
+    <%= form.text_field :weight, id: :product_variant_weight, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= label_tag(:offer_price, "Precio de oferta (Opcional)") %>
     <%= form.number_field :offerprice, id: :product_variant_offerprice, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label "Imagen" %>
-    <%= form.file_field :picture, id: :product_variant_picture_id, class: "form-control" %>
   </div>
 
   <div class="actions">
