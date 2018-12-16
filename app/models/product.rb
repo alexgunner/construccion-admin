@@ -26,10 +26,10 @@ class Product < ApplicationRecord
   end
 
   def self.search(search)
-  if search
-    Product.where('code LIKE ?', "%#{search}%")
-  else
-    Product.all
+    if search
+      Product.where('code LIKE ?', "%#{search}%")
+    else
+      Product.all
+    end
   end
-end
 end

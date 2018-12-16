@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   #Metodos para admin
   def list
-    @users = User.all
+    @users = User.search(params[:search])
   end
 
   def enable

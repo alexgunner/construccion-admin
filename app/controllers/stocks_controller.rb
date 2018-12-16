@@ -59,7 +59,7 @@ class StocksController < ApplicationController
 
   #Metodos para admin
   def list
-    @stocks = Stock.all
+    @stocks = Stock.search(params[:search])
   end
 
   def do_transfer

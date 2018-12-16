@@ -1,4 +1,13 @@
 class Stock < ApplicationRecord
   belongs_to :product
   belongs_to :product_variant
+
+  def self.search(search)
+    if search
+      product_variant = ProductVariant.where('code LIKE ?', "%#{search}%").collect{|x| x.id}
+      Stock.where(product_variant_id: product_variant)
+    else
+      Stock.all
+    end
+  end
 end
