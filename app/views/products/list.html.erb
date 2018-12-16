@@ -1,4 +1,22 @@
 <h1>Productos</h1>
+<form method="get" action="">
+  <div class="row">
+      <div class="col-lg-5 offset-lg-7">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Buscar por código" name="search">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+  </div>
+</form>
+
+<% form_tag '/productos', :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :code => nil %>
+  </p>
+<% end %>
+
 <%= link_to 'Crear producto', new_product_path, class: "btn btn-primary" %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover">

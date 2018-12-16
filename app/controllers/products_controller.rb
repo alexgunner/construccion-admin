@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
 
   #Metodos para las vistas
   def list
-    @products = Product.all
+    @products = Product.search(params[:search])
   end
 
   private

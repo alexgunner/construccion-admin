@@ -24,4 +24,12 @@ class Product < ApplicationRecord
     product.offer = state
     product.save
   end
+
+  def self.search(search)
+  if search
+    Product.where('code LIKE ?', "%#{search}%")
+  else
+    Product.all
+  end
+end
 end
