@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
 
   #Metodos para admin
   def list
-    @categories = Category.all
+    @categories = Category.search(params[:search])
   end
 
   private

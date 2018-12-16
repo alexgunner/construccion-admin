@@ -62,23 +62,6 @@ class StocksController < ApplicationController
     @stocks = Stock.search(params[:search])
   end
 
-  def do_transfer
-    store_id = params[:new_transfer][:store_id]
-    stock_id = params[:new_transfer][:id]
-    store_transfer = params[:new_transfer][:store_transfer]
-    quantity_transfer = params[:new_transfer][:quantity_transfer]
-
-    stock_descount = Stock.find(stock_id)
-    stock_filter = Stock.where("store_id = ? and product_id = ? and product_variant_id = ?", store_transfer, stock_descount.product_id, stock_descount.product_variant_id).first
-    sum = stock_filter.quantity + quantity_transfer.to_i
-    stock_filter.quantity = sum
-    rest = stock_descount.quantity - quantity_transfer.to_i
-    stock_descount.quantity = rest
-    stock_filter.save
-    stock_descount.save
-    redirect_to "/almacenes/" + store_id.to_s + " /stock"
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock

@@ -1,4 +1,16 @@
 <h1>Categorías</h1>
+
+<form method="get" action="">
+  <div class="row">
+      <div class="col-lg-5 offset-lg-7">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Buscar por nombre de categoría" name="search">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+  </div>
+</form>
+
 <%= link_to 'Crear categoría', new_category_path, class: "btn btn-primary" %>
 <div class="table-responsive">
   <table class="table table-hover table-stripped">

@@ -65,7 +65,7 @@ class SubcategoriesController < ApplicationController
 
   #Metodos para admin
   def list
-    @subcategories = Subcategory.all
+    @subcategories = Subcategory.search(params[:search])
   end
 
   private

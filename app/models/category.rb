@@ -3,4 +3,12 @@ class Category < ApplicationRecord
     validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
     has_many :subcategories
     has_many :products
+
+    def self.search(search)
+      if search
+        Category.where('name LIKE ?', "%#{search}%")
+      else
+        Category.all
+      end
+    end
 end
