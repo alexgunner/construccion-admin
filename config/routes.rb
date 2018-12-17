@@ -58,4 +58,5 @@ get '/product-variants/:id' => 'product_variants#show'
 post '/users' => 'users#create'
 get '/ordenes/:id/edit' => 'orders#edit'
 patch '/ordenes/:id' => 'orders#update'
+get '/users' => 'users#index'
 end
