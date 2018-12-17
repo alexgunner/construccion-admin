@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+  <p align="justify">Lamentamos informarte que ha ocurrido un error al recepcionar tu orden. Por favor comunicate con nosotros
+  para tratar de resolver juntos este inconveniente. Recuerda que tienes toda nuestra información de contacto en el
+apartado de Contactos de nuestro portal o tambien puedes hacerlo por este medio.</p>
+<%if !@order.comment.nil?%>
+  <h4 style="color:#172769;"><strong>Comentario<strong></h4>
+  <h5><strong><%= @order.comment%></strong></h5>
+<%end%>
+<center><h2 style="color:#172769;"><strong>Atentamente DOMUS S.R.L.<strong></h2></center>
+<body>
+</html>

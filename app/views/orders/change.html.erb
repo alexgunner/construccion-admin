@@ -84,17 +84,21 @@
           </tbody>
         </table>
       </div>
-      <%if @order.state == "Entregado" %>
+      <%if @order.state == "Enviado" %>
         <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
         <h5><strong><%= @order.state %></strong></h5>
         <center>
           <%= link_to "Volver", '/ordenes', class: "btn btn-danger" %>
         </center>
       <%else%>
-        <div class="form-group">
-          <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
-          <%= form.select :state, [["Preparado"], ["Entregado"], ["Rechazado"]],  {}, {class: "form-control"} %>
-        </div>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Comentario<strong></h4>
+        <%= form.text_area :comment, class: "form-control", :maxlength => 300 %>
+      </div>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
+        <%= form.select :state, [["Preparado"], ["Enviado"], ["Rechazado"]],  {}, {class: "form-control"} %>
+      </div>
         <div class="actions">
           <center>
              <%= form.submit "Aceptar", class: "btn btn-success" %>

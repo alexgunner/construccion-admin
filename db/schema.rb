@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181216200002) do
+ActiveRecord::Schema.define(version: 20181217071759) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20181216200002) do
     t.string "typepay"
     t.string "typedelivery"
     t.string "image"
+    t.text "comment"
   end
 
   create_table "product_variants", force: :cascade do |t|
@@ -178,6 +179,18 @@ ActiveRecord::Schema.define(version: 20181216200002) do
     t.string "details_content_type"
     t.integer "details_file_size"
     t.datetime "details_updated_at"
+    t.string "picture2_file_name"
+    t.string "picture2_content_type"
+    t.integer "picture2_file_size"
+    t.datetime "picture2_updated_at"
+    t.string "picture3_file_name"
+    t.string "picture3_content_type"
+    t.integer "picture3_file_size"
+    t.datetime "picture3_updated_at"
+    t.string "picture4_file_name"
+    t.string "picture4_content_type"
+    t.integer "picture4_file_size"
+    t.datetime "picture4_updated_at"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["measure_id"], name: "index_products_on_measure_id"

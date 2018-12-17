@@ -47,17 +47,23 @@ class OrdersController < ApplicationController
 
   def do_change
     order = Order.find(params[:do_change][:id])
-    if order.state.nil?
+    state = params[:do_change][:state]
+    order.comment = params[:do_change][:comment]
+    if state == "Nuevo"
       UserMailer.confirmation_email(order).deliver_now
     end
+    if state == "Rechazado"
+      UserMailer.rejected_email(order).deliver_now
+    end
     order.state = params[:do_change][:state]
-    if order.state == "Entregado"
+    if state == "Enviado"
       order.carts.each do |cart|
         stock = Stock.where("product_variant_id = ?", cart.product_variant).first
         quantity_actual = stock.quantity
         stock.quantity = quantity_actual - cart.quantity
         stock.save
       end
+      UserMailer.sent_email(order).deliver_now
     end
     order.save
     redirect_to "/ordenes"
@@ -145,7 +151,7 @@ class OrdersController < ApplicationController
         order.destroy
       end
     end
-    @orders = Order.all
+    @orders = Order.search(params[:search])
   end
 
   def reports

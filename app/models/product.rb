@@ -1,6 +1,12 @@
 class Product < ApplicationRecord
   has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+  has_attached_file :picture2, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :picture2, content_type: /\Aimage\/.*\z/
+  has_attached_file :picture3, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :picture3, content_type: /\Aimage\/.*\z/
+  has_attached_file :picture4, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :picture4, content_type: /\Aimage\/.*\z/
   has_attached_file :details
   validates_attachment_content_type :details, content_type: "application/pdf"
   belongs_to :measure
