@@ -16,8 +16,7 @@
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
-        <th>Nombres</th>
-        <th>Apellidos</th>
+        <th>Nombres Completo</th>
         <th>CI</th>
         <th>NIT</th>
         <th>Rol</th>
@@ -30,11 +29,10 @@
         <%if user.role == "Bloqueado"%>
         <tr bgcolor="#FFD587">
           <td><%= user.name %></td>
-          <td><%= user.lastname %></td>
           <td><%= user.ci %></td>
           <td>
-            <% if user.nit.nil? %>
-              <%= "Ninguno" %>
+            <% if user.nit.nil? || user.nit.blank? %>
+              <%= "No registrado" %>
             <%else%>
               <%= user.nit %>
             <%end%>
@@ -62,11 +60,10 @@
         <%else%>
         <tr>
           <td><%= user.name %></td>
-          <td><%= user.lastname %></td>
           <td><%= user.ci %></td>
           <td>
-            <% if user.nit.nil? %>
-              <%= "Ninguno" %>
+            <% if user.nit.nil? || user.nit.blank? %>
+              <%= "No registrado" %>
             <%else%>
               <%= user.nit %>
             <%end%>

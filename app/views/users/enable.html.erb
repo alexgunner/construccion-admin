@@ -5,16 +5,34 @@
     <%= form_for :do_enable, url: "/users/do_enable" do |form| %>
     <%= form.hidden_field :id, :value => @user.id %>
       <div class="form-group">
-        <h5><strong>Nombres:</strong> <%= @user.name%></h5>
+        <h5><strong>Nombre Completo Cliente/Representante Legal:</strong> <%= @user.name%></h5>
       </div>
       <div class="form-group">
-        <h5><strong>Apellidos:</strong> <%= @user.lastname%></h5>
+        <h5><strong>Nombre Empresa:</strong>
+        <% if @user.namecompany.nil? %>
+          <strong>No Registrado</strong></h5>
+        <%else%>
+          <%= @user.namecompany%></h5>
+        <%end%>
       </div>
       <div class="form-group">
         <h5><strong>CI:</strong> <%= @user.ci%></h5>
       </div>
       <div class="form-group">
-        <h5><strong>NIT:</strong> <%= @user.nit%></h5>
+        <h5><strong>Nombre para la Factura:</strong>
+        <% if @user.nameinvoice.nil? %>
+          <strong>No Registrado</strong></h5>
+        <%else%>
+          <%= @user.nameinvoice %></h5>
+        <%end%>
+      </div>
+      <div class="form-group">
+        <h5><strong>NIT:</strong>
+        <% if @user.nit.nil? || @user.nit.blank? %>
+          <strong>No Registrado</strong></h5>
+        <%else%>
+          <%= @user.nit%></h5>
+        <%end%>
       </div>
       <div class="form-group">
         <h5><strong>Dirección:</strong> <%= @user.address%></h5>
