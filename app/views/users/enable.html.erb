@@ -41,12 +41,22 @@
         <h5><strong>Correo electrónico:</strong> <%= @user.email%></h5>
       </div>
       <div class="form-group">
-        <h5><strong>CI/NIT:</strong></h5>
+        <h5><strong>CI:</strong></h5>
+        <center>
+          <%if @user.imageci == "no" %>
+            <h5><strong>No registrado</strong></h5>
+          <%else%>
+            <%= image_tag @user.imageci, width: "500", height: "500", class: "img-thumbnail"%>
+          <%end%>
+        </center>
+      </div>
+      <div class="form-group">
+        <h5><strong>NIT:</strong></h5>
         <center>
           <%if @user.image == "no" %>
             <h5><strong>No registrado</strong></h5>
           <%else%>
-            <%= image_tag @user.image, class: "img-thumbnail"%>
+            <%= image_tag @user.image, width: "500", height: "500", class: "img-thumbnail"%>
           <%end%>
         </center>
       </div>
