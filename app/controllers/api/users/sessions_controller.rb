@@ -16,7 +16,6 @@ class Api::Users::SessionsController < Devise::SessionsController
         token: user.authenticatable_salt,
         email: user.email,
         name: user.name,
-        lastname: user.lastname,
         address: user.address,
         ci: user.ci,
         nit: user.nit,
