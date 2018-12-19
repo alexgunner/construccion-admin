@@ -55,7 +55,7 @@
               <%end%>
             <%end%>
           </td>
-          <td><%= link_to 'Eliminar', user, method: :delete, class: "btn btn-warning" %></td>
+          <td><%= link_to 'Eliminar', '/usuarios/' + user.id.to_s, method: :delete%></td>
         </tr>
         <%else%>
         <tr>
