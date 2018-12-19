@@ -51,6 +51,7 @@ class UsersController < ApplicationController
 
   def do_enable
     user = User.find(params[:do_enable][:id])
+    while params[:do_enable][:role].gsub!(/\([^()]*\)/,""); end
     user.role = params[:do_enable][:role]
     user.state = true
     user.save
