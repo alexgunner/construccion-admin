@@ -1,0 +1,21 @@
+<div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <section class="login-form">
+        <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+          <center><%= image_tag 'logo.jpg',  width: "380", height: "300"%></center>
+          <div class="field">
+            <label><b>Contraseña:</b></label>
+            <%= f.password_field :password, class: "form-control input-lg", type: "password", placeholder:"Contraseña" %>
+          </div>
+          <br/>
+          <div class="field">
+            <label><b>Confirmar Contraseña:</b></label>
+            <%= f.password_field :password, class: "form-control input-lg", type: "password", placeholder:"Confirmar Contraseña" %>
+          </div>
+          <br/>
+          <%= f.submit "Enviar", class:"btn btn-lg btn-primary btn-block" %>
+        <%end%>
+      </section>
+    </div>
+</div>

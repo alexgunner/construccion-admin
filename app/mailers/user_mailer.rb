@@ -21,4 +21,10 @@ class UserMailer < ApplicationMailer
    @user = user
    mail(to: @user.email, subject: '¡Bienvenido!. Ahora eres parte de nuestro portal de ventas en línea.')
  end
+
+ def password_reset(user)
+    @user = user
+    mail(to: @user.email, subject: '¿Olvidaste tu contraseña? Sigue los pasos para ayudarte.')
+  end
+
 end

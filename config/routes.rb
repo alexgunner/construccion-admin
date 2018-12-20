@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :measures
   resources :orders
   resources :carts
+  resources :password_resets
 
+get 'password_resets/new'
 get '/pay/:id' => 'orders#pay'
 
 get '/productos' => 'products#list'
