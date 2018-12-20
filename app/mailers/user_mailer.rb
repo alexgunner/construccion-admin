@@ -16,4 +16,9 @@ class UserMailer < ApplicationMailer
    @order = order
    mail(to: @order.client.mail, subject: '¡Orden enviada!. Tu orden se encuentra en camino.')
  end
+
+ def register_email(user)
+   @user = user
+   mail(to: @user.email, subject: '¡Bienvenido!. Ahora eres parte de nuestro portal de ventas en línea.')
+ end
 end
