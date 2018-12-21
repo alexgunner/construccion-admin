@@ -9,7 +9,7 @@
   en la plataforma de DOMUS S.R.L.</p>
 
   <h4 style="color:#172769;"><strong>Datos del Cliente<strong></h4>
-  <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.name %> <%= @order.client.lastname %></h5>
+  <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.name %></h5>
   <h5><strong>Dirección:</strong> <%= @order.client.address %></h5>
   <h5><strong>Teléfono:</strong> <%= @order.client.phone %></h5>
   <h5><strong>Email:</strong> <%= @order.client.mail %></h5>
@@ -82,7 +82,7 @@
         <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
       <%end%>
   </div>
-  
+
   <%if !@order.comment.nil?%>
   <h4 style="color:#172769;"><strong>Comentario<strong></h4>
   <h5><strong><%= @order.comment%></strong></h5>

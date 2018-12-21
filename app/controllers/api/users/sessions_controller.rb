@@ -16,10 +16,14 @@ class Api::Users::SessionsController < Devise::SessionsController
         token: user.authenticatable_salt,
         email: user.email,
         name: user.name,
+        namecompany: user.namecompany,
         address: user.address,
         ci: user.ci,
+        nameinvoice: user.nameinvoice,
         nit: user.nit,
         phone: user.phone,
+        cellphone: user.cellphone,
+        cellwsp: user.cellwsp,
         role: user.role,
         state: user.state
       }

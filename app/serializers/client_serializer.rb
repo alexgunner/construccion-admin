@@ -1,4 +1,4 @@
 class ClientSerializer < ActiveModel::Serializer
-  attributes :id, :name, :lastname, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice
+  attributes :id, :name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp
   has_many :orders
 end

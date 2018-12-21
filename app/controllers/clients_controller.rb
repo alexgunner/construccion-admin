@@ -26,9 +26,17 @@ class ClientsController < ApplicationController
   # POST /clients
   def create
     @client = Client.new(client_params)
+    client_data = @client
     c = client_exist(@client.ci)
     if c != nil
       @client = Client.find(c.id)
+      @client.name = client_data.name
+      @client.address = client_data.address
+      @client.phone = client_data.phone
+      @client.cellphone = client_data.cellphone
+      @client.cellwsp = client_data.cellwsp
+      @client.nameinvoice = client_data.nameinvoice
+      @client.nit = client_data.nit
       @client.increment(:count,1)
     else
       @client.count = 1
@@ -82,6 +90,6 @@ class ClientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def client_params
-      params.require(:client).permit(:name, :lastname, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice)
+      params.require(:client).permit(:name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp)
     end
 end
