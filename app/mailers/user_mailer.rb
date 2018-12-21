@@ -27,4 +27,9 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: '¿Olvidaste tu contraseña? Sigue los pasos para ayudarte.')
   end
 
+  def receive_email(order)
+    @order = order
+    mail(to: @order.client.mail, subject: '¡Orden recepcionada!. Tu orden ha sido creada.')
+  end
+
 end

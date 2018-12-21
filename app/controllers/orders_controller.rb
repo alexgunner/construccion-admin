@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      UserMailer.receive_email(@order).deliver_now
       render json: @order
     end
   end
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
     order = Order.find(params[:do_change][:id])
     state = params[:do_change][:state]
     order.comment = params[:do_change][:comment]
-    if state == "Nuevo"
+    if state == "Preparado"
       UserMailer.confirmation_email(order).deliver_now
     end
     if state == "Rechazado"
