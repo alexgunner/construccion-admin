@@ -13,6 +13,11 @@
     <%= form.label "Imagen" %>
     <%= form.file_field :picture, id: :category_picture, class: "form-control" %>
   </div>
+  <%if category.picture.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag category.picture, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
 
   <div class="actions">
     <center>

@@ -7,6 +7,8 @@
       <tr>
         <th>Nombre</th>
         <th>Número de cuenta</th>
+        <th>Nombre titular</th>
+        <th>Tipo de moneda</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -16,6 +18,8 @@
         <tr>
           <td><%= bank.name %></td>
           <td><%= bank.acount %></td>
+          <td><%= bank.nameaccount %></td>
+          <td><%= bank.typemoney %></td>
           <td><%= link_to 'Editar', edit_bank_path(bank) %></td>
           <td><%= link_to 'Eliminar', bank, method: :delete %></td>
         </tr>

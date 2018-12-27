@@ -24,17 +24,22 @@ class StocksController < ApplicationController
   # POST /stocks
   def create
     @stock = Stock.new(stock_params)
-    product_variant = ProductVariant.find(@stock.product_variant_id)
-    product_variant.available = true
-    product_variant.save
-    respond_to do |format|
-      if @stock.save
-        format.html { redirect_to '/almacen', notice: 'Stock creado correctamente' }
-        format.json { render :show, status: :created, location: @stock }
-      else
-        format.html { render :new }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+    if !stock_exist(@stock)
+      product_variant = ProductVariant.find(@stock.product_variant_id)
+      product_variant.available = true
+      product_variant.save
+      respond_to do |format|
+        if @stock.save
+          format.html { redirect_to '/almacen', notice: 'Stock creado correctamente' }
+          format.json { render :show, status: :created, location: @stock }
+        else
+          format.html { render :new }
+          format.json { render json: @stock.errors, status: :unprocessable_entity }
+        end
       end
+    else
+       flash[:notice] = "El producto que intentas crear ya existe en stock."
+       redirect_back fallback_location: root_path
     end
   end
 
@@ -60,6 +65,16 @@ class StocksController < ApplicationController
   #Metodos para admin
   def list
     @stocks = Stock.search(params[:search])
+  end
+
+  def stock_exist(stock)
+    stocks = Stock.all
+    stocks.each do |s|
+      if s.product_variant_id == stock.product_variant_id
+        return true
+      end
+    end
+    return false
   end
 
   private

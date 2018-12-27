@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
     def self.search(search)
       if search
-        Order.where('state LIKE ?', "%#{search}%")
+        Order.where('state LIKE ? or id LIKE ?', "%#{search}%", "%#{search}%")
       else
         Order.all
       end

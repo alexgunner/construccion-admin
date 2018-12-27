@@ -44,20 +44,44 @@
     <%= form.file_field :picture, id: :product_picture_id, class: "form-control" %>
   </div>
 
+  <%if product.picture.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag product.picture, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
+
   <div class="form-group">
     <%= form.label "Imagen 2" %>
     <%= form.file_field :picture2, id: :product_picture2_id, class: "form-control" %>
   </div>
+
+  <%if product.picture2.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag product.picture2, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
 
   <div class="form-group">
     <%= form.label "Imagen 3" %>
     <%= form.file_field :picture3, id: :product_picture3_id, class: "form-control" %>
   </div>
 
+  <%if product.picture3.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag product.picture3, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
+
   <div class="form-group">
     <%= form.label "Imagen 4" %>
     <%= form.file_field :picture4, id: :product_picture4_id, class: "form-control" %>
   </div>
+
+  <%if product.picture4.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag product.picture4, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
 
   <div class="form-group">
     <%= form.label "Ficha técnica" %>

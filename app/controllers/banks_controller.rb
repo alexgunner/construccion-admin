@@ -59,6 +59,6 @@ class BanksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bank_params
-      params.require(:bank).permit(:name, :acount)
+      params.require(:bank).permit(:name, :acount, :nameaccount, :typemoney)
     end
 end
