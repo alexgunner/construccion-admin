@@ -58,20 +58,20 @@
                 <td><%= cart.product_variant.code %></td>
                 <td><%= cart.product_variant.description %></td>
                 <td><%= cart.quantity %></td>
-                <%if cart.role.nil? or cart.role == "Minorista" %>
-                  <td>Precio: <%if cart.product_variant.offerprice.nil? %>
+                <%if cart.role.nil? or cart.role == "Cliente Minorista " %>
+                  <td>Bs. <%if cart.product_variant.offerprice.nil? %>
                                 <%= cart.product_variant.price %></td>
                               <%else%>
                                 <%= cart.product_variant.offerprice %></td>
                               <%end%>
                 <%else%>
-                  <%if cart.role == "Mayorista" %>
+                  <%if cart.role == "Mayorista " %>
                     <td><%= cart.product_variant.wholesaleprice %></td>
                   <%end%>
-                  <%if cart.role == "Especialista" %>
+                  <%if cart.role == "Especialista " %>
                     <td><%= cart.product_variant.specialistprice %></td>
                   <%end%>
-                  <%if cart.role == "Distribuidor" %>
+                  <%if cart.role == "Cliente DOMUS " %>
                     <td><%= cart.product_variant.importerprice %></td>
                   <%end%>
                   <%if cart.role == "Bloqueado" %>

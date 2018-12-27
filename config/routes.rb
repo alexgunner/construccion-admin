@@ -54,6 +54,7 @@ get '/reportes/clientes' => 'clients#reports'
 get '/reportes/productos' => 'product_variants#reports'
 get '/reportes/ordenes' => 'orders#reports'
 get '/bancos' => 'banks#list'
+get '/usuario/:id' => 'users#showuser'
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
 get '/product-variants/:id' => 'product_variants#show'

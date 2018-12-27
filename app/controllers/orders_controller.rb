@@ -89,13 +89,13 @@ class OrdersController < ApplicationController
       quantity = cart.quantity
       price = cart.product_variant.price
       if cart.product_variant.offerprice.nil?
-        if cart.role == "Mayorista"
+        if cart.role == "Mayorista "
           price = cart.product_variant.wholesaleprice
         end
-        if cart.role == "Especialista"
+        if cart.role == "Especialista "
           price = cart.product_variant.specialistprice
         end
-        if cart.role == "Distribuidor"
+        if cart.role == "Cliente DOMUS "
           price = cart.product_variant.importerprice
         end
       else
@@ -153,6 +153,40 @@ class OrdersController < ApplicationController
       end
     end
     @orders = Order.search(params[:search])
+  end
+
+  def calculateTotal
+    order = Order.find(params[:id])
+    price = 0
+    cost_transport = 0
+    if order.typedelivery == "Domicilio"
+      cost_transport = order.delivery.cost.to_i
+    end
+    amount = 0
+    mult = 0
+    order.carts.each do |cart|
+      quantity = cart.quantity
+      price = cart.product_variant.price
+      if cart.product_variant.offerprice.nil?
+        if cart.role == "Mayorista "
+          price = cart.product_variant.wholesaleprice
+        end
+        if cart.role == "Especialista "
+          price = cart.product_variant.specialistprice
+        end
+        if cart.role == "Cliente DOMUS "
+          price = cart.product_variant.importerprice
+        end
+      else
+        price = cart.product_variant.offerprice
+      end
+      mult = quantity * price
+      mult = mult + (cost_transport * cart.product_variant.weight.to_i)
+      puts "================="
+      puts cost_transport
+      amount = amount + mult
+    end
+    return amount
   end
 
   def reports

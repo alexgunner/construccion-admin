@@ -37,13 +37,7 @@
               <%= user.nit %>
             <%end%>
           </td>
-          <td>
-            <% if user.role.nil? %>
-              <%= "No asignado" %>
-            <%else%>
-              <%= user.role %>
-            <%end%>
-          </td>
+          <td><%= user.role %></td>
           <td>
             <% if user.state.nil? %>
               <%= link_to 'Habilitar', '/usuarios/' + user.id.to_s + '/habilitar' %>
@@ -55,6 +49,7 @@
               <%end%>
             <%end%>
           </td>
+          <td><%= link_to 'Ver', '/usuario/' + user.id.to_s %></td>
           <td><%= link_to 'Eliminar', '/usuarios/' + user.id.to_s, method: :delete%></td>
         </tr>
         <%else%>
@@ -68,13 +63,7 @@
               <%= user.nit %>
             <%end%>
           </td>
-          <td>
-            <% if user.role.nil? %>
-              <%= "No asignado" %>
-            <%else%>
-              <%= user.role %>
-            <%end%>
-          </td>
+          <td><%= user.role %></td>
           <td>
             <% if user.state.nil? %>
               <%= link_to 'Habilitar', '/usuarios/' + user.id.to_s + '/habilitar' %>
@@ -86,6 +75,7 @@
               <%end%>
             <%end%>
           </td>
+          <td><%= link_to 'Ver', '/usuario/' + user.id.to_s %></td>
           <td><%= link_to 'Eliminar', '/usuarios/' + user.id.to_s, method: :delete%></td>
         </tr>
         <%end%>

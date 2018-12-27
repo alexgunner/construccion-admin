@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-
+  default_value_for :role, "Cliente Minorista "
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    def self.search(search)
