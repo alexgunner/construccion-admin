@@ -182,11 +182,11 @@ class OrdersController < ApplicationController
       end
       mult = quantity * price
       mult = mult + (cost_transport * cart.product_variant.weight.to_i)
-      puts "================="
-      puts cost_transport
       amount = amount + mult
     end
-    return amount
+    order.total = amount
+    order.save
+    puts order.total
   end
 
   def reports

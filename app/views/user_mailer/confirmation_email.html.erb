@@ -38,20 +38,20 @@
             <td><%= cart.product_variant.code %></td>
             <td><%= cart.product_variant.description %></td>
             <td><%= cart.quantity %></td>
-            <%if cart.role.nil? or cart.role == "Minorista" %>
+            <%if cart.role.nil? or cart.role == "Cliente Minorista " %>
               <td>Precio: <%if cart.product_variant.offerprice.nil? %>
                             <%= cart.product_variant.price %></td>
                           <%else%>
                             <%= cart.product_variant.offerprice %></td>
                           <%end%>
             <%else%>
-              <%if cart.role == "Mayorista" %>
+              <%if cart.role == "Mayorista " %>
                 <td><%= cart.product_variant.wholesaleprice %></td>
               <%end%>
-              <%if cart.role == "Especialista" %>
+              <%if cart.role == "Especialista " %>
                 <td><%= cart.product_variant.specialistprice %></td>
               <%end%>
-              <%if cart.role == "Distribuidor" %>
+              <%if cart.role == "Cliente DOMUS " %>
                 <td><%= cart.product_variant.importerprice %></td>
               <%end%>
               <%if cart.role == "Bloqueado" %>
@@ -82,7 +82,9 @@
         <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
       <%end%>
   </div>
-
+  <div class="form-group">
+    <h5><strong>Total:</strong> <%= @order.total %> Bs. </h5>
+  </div>
   <%if !@order.comment.nil?%>
   <h4 style="color:#172769;"><strong>Comentario<strong></h4>
   <h5><strong><%= @order.comment%></strong></h5>

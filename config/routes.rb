@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :password_resets
 
 get 'password_resets/new'
+post '/total' => 'orders#calculateTotal'
 get '/pay/:id' => 'orders#pay'
 
 get '/productos' => 'products#list'
