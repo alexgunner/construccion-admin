@@ -63,4 +63,6 @@ post '/users' => 'users#create'
 get '/ordenes/:id/edit' => 'orders#edit'
 patch '/ordenes/:id' => 'orders#update'
 get '/users' => 'users#index'
+get '/users/:id' => 'users#show'
+patch '/users/:id' => 'users#update'
 end

@@ -14,6 +14,7 @@ class Api::Users::SessionsController < Devise::SessionsController
     super do |user|
       data = {
         token: user.authenticatable_salt,
+        id: user.id,
         email: user.email,
         name: user.name,
         namecompany: user.namecompany,
@@ -25,7 +26,9 @@ class Api::Users::SessionsController < Devise::SessionsController
         cellphone: user.cellphone,
         cellwsp: user.cellwsp,
         role: user.role,
-        state: user.state
+        state: user.state,
+        image: user.image,
+        imageci: user.imageci
       }
       render json: data, status: 201 and return
     end
