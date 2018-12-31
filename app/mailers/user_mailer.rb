@@ -32,4 +32,10 @@ class UserMailer < ApplicationMailer
     mail(to: @order.client.mail, subject: '¡Orden recepcionada!. Tu orden ha sido creada.')
   end
 
+  def notice_email(user, message)
+    @user = user
+    @message = message
+    mail(to: @user.email, subject: '¡Importante!. Por favor lee atentamente este mensaje.')
+  end
+
 end

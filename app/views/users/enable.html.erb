@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-lg-10 offset-lg-1">
     <h1>Habilitar usuario</h1>
-
+    <p align= "right"><%= link_to "Contactar", '/usuarios/'+ @user.id.to_s + '/contacto', class: "btn btn-warning" %></p>
     <%= form_for :do_enable, url: "/users/do_enable" do |form| %>
     <%= form.hidden_field :id, :value => @user.id %>
-    
+
       <div class="form-group">
         <h5><strong>Nombre Completo Cliente/Representante Legal:</strong> <%= @user.name%></h5>
       </div>
@@ -72,6 +72,8 @@
             <%= link_to 'Eliminar usuario', '/usuarios/' + @user.id.to_s, method: :delete, class: "btn btn-warning" %>
         </center>
       </div>
+      <br/>
+      <br/>
     <% end  %>
   </div>
 </div>

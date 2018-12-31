@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181227143328) do
+ActiveRecord::Schema.define(version: 20181231035021) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "description"
@@ -83,12 +83,13 @@ ActiveRecord::Schema.define(version: 20181227143328) do
 
   create_table "deliveries", force: :cascade do |t|
     t.integer "destination_id"
-    t.integer "transport_id"
     t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "typedelivery"
+    t.string "address"
+    t.integer "phone"
   end
 
   create_table "destinations", force: :cascade do |t|
@@ -242,13 +243,6 @@ ActiveRecord::Schema.define(version: 20181227143328) do
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
     t.index ["category_id"], name: "index_subcategories_on_category_id"
-  end
-
-  create_table "transports", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "typetransport"
   end
 
   create_table "users", force: :cascade do |t|

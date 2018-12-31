@@ -4,9 +4,10 @@
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
-        <th>Nombre (Lugar - Tipo de transporte)</th>
+        <th>Nombre de transporte</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
         <th>Destino</th>
-        <th>Medio de envío</th>
         <th>Costo</th>
         <th>Tipo de envío</th>
         <th colspan="2"></th>
@@ -17,8 +18,9 @@
       <% @deliveries.each do |delivery| %>
         <tr>
           <td><%= delivery.name %></td>
-          <td><%= delivery.destination.name %></td>
-          <td><%= delivery.transport.name %></td>
+          <td><%= delivery.address %></td>
+          <td><%= delivery.phone %></td>
+          <td><%= delivery.destination.name %> - <%=delivery.destination.city %></td>
           <td><%= delivery.cost %></td>
           <td><%= delivery.typedelivery %></td>
           <td><%= link_to 'Editar', edit_delivery_path(delivery) %></td>

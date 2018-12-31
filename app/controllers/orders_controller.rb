@@ -78,35 +78,6 @@ class OrdersController < ApplicationController
 
   def pay
     @order = Order.find(params[:id])
-    price = 0
-    cost_transport = 0
-    if @order.typedelivery == "Domicilio"
-      cost_transport = @order.delivery.cost.to_i
-    end
-    amount = 0
-    mult = 0
-    @order.carts.each do |cart|
-      quantity = cart.quantity
-      price = cart.product_variant.price
-      if cart.product_variant.offerprice.nil?
-        if cart.role == "Mayorista "
-          price = cart.product_variant.wholesaleprice
-        end
-        if cart.role == "Especialista "
-          price = cart.product_variant.specialistprice
-        end
-        if cart.role == "Cliente DOMUS "
-          price = cart.product_variant.importerprice
-        end
-      else
-        price = cart.product_variant.offerprice
-      end
-      mult = quantity * price
-      mult = mult + (cost_transport * cart.product_variant.weight.to_i)
-      puts "================="
-      puts cost_transport
-      amount = amount + mult
-    end
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
@@ -118,7 +89,7 @@ class OrdersController < ApplicationController
         c.debugging = true
       end
     client = Khipu::PaymentsApi.new
-    response = client.payments_post('Pago de productos DOMUS S.R.L.', 'BOB', amount, {
+    response = client.payments_post('Pago de productos DOMUS S.R.L.', 'BOB', @order.total, {
         transaction_id: 'FACT2001',
         expires_date: DateTime.new(2019, 2, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
@@ -181,10 +152,12 @@ class OrdersController < ApplicationController
         price = cart.product_variant.offerprice
       end
       mult = quantity * price
-      mult = mult + (cost_transport * cart.product_variant.weight.to_i)
+      if order.delivery.typedelivery != "Local"
+        mult = mult + (cost_transport * cart.product_variant.weight.to_i)
+      end
       amount = amount + mult
     end
-    order.total = amount
+    order.total = amount + cost_transport
     order.save
     puts order.total
   end

@@ -79,6 +79,17 @@ class UsersController < ApplicationController
   def showuser
     @user = User.find(params[:id])
   end
+
+  def contact
+    @user = User.find(params[:id])
+  end
+
+  def do_contact
+    user = User.find(params[:do_contact][:id])
+    message = params[:do_contact][:comment]
+    UserMailer.notice_email(user, message).deliver_now
+    redirect_to "/usuarios"
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

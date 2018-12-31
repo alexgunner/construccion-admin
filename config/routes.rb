@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :banks
   resources :deliveries
   resources :destinations
-  resources :transports
   resources :stocks
   resources :extras
   resources :clients
@@ -65,4 +64,6 @@ patch '/ordenes/:id' => 'orders#update'
 get '/users' => 'users#index'
 get '/users/:id' => 'users#show'
 patch '/users/:id' => 'users#update'
+get '/usuarios/:id/contacto' => 'users#contact'
+post '/users/do_contact' => 'users#do_contact'
 end
