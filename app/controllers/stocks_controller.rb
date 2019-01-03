@@ -30,7 +30,7 @@ class StocksController < ApplicationController
       product_variant.save
       respond_to do |format|
         if @stock.save
-          format.html { redirect_to '/almacen', notice: 'Stock creado correctamente' }
+          format.html { redirect_to '/almacen' }
           format.json { render :show, status: :created, location: @stock }
         else
           format.html { render :new }
@@ -47,7 +47,7 @@ class StocksController < ApplicationController
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to '/almacen', notice: 'Stock editado correctamente' }
+        format.html { redirect_to '/almacen' }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class StocksController < ApplicationController
   # DELETE /stocks/1
   def destroy
     @stock.destroy
-    redirect_to '/almacen', notice: 'Stock was successfully destroyed.'
+    redirect_to '/almacen'
   end
 
   #Metodos para admin
