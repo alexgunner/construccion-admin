@@ -9,6 +9,7 @@ class DestinationsController < ApplicationController
 
   # GET /destinations/1
   def show
+    render json: @destination
   end
 
   # GET /destinations/new
