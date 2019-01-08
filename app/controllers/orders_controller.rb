@@ -130,6 +130,7 @@ class OrdersController < ApplicationController
     order = Order.find(params[:id])
     price = 0
     cost_transport = 0
+    amount = 0
     if order.typedelivery == "Domicilio"
       cost_transport = order.delivery.cost.to_i
     end

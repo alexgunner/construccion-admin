@@ -26,9 +26,10 @@ class CartsController < ApplicationController
   # POST /carts
   def create
     @cart = Cart.new(cart_params)
-
     if @cart.save
-      render json: @cart
+      render json: @cart, status: :created
+    else
+      render json: @cart.errors, status: :unprocessable_entity
     end
   end
 
