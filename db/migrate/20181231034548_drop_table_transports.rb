@@ -1,6 +1,6 @@
 class DropTableTransports < ActiveRecord::Migration[5.1]
   def up
-    drop_table :transports
+    #drop_table :transports
   end
 
   def down

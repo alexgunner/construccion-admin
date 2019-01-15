@@ -12,11 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20181231035021) do
 
-  create_table "abouts", force: :cascade do |t|
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -29,7 +27,7 @@ ActiveRecord::Schema.define(version: 20181231035021) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "order_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_variant_id"
@@ -168,11 +166,11 @@ ActiveRecord::Schema.define(version: 20181231035021) do
     t.string "name"
     t.string "description"
     t.string "code"
-    t.integer "measure_id"
-    t.integer "provider_id"
-    t.integer "manufacturer_id"
-    t.integer "category_id"
-    t.integer "subcategory_id"
+    t.bigint "measure_id"
+    t.bigint "provider_id"
+    t.bigint "manufacturer_id"
+    t.bigint "category_id"
+    t.bigint "subcategory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture_file_name"
@@ -215,14 +213,6 @@ ActiveRecord::Schema.define(version: 20181231035021) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.string "reserve"
-    t.string "client"
-    t.string "confirmed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "stocks", force: :cascade do |t|
     t.integer "product_id"
     t.integer "product_variant_id"
@@ -235,7 +225,7 @@ ActiveRecord::Schema.define(version: 20181231035021) do
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture_file_name"
@@ -275,4 +265,11 @@ ActiveRecord::Schema.define(version: 20181231035021) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "orders"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "manufacturers"
+  add_foreign_key "products", "measures"
+  add_foreign_key "products", "providers"
+  add_foreign_key "products", "subcategories"
+  add_foreign_key "subcategories", "categories"
 end

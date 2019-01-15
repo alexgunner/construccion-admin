@@ -1,8 +1,9 @@
 class ChangeDateOrderDateToOrders < ActiveRecord::Migration[5.1]
   def up
     change_table :orders do |t|
-      t.change :orderdate, :datetime
+      t.change :orderdate, 'timestamp USING CAST(orderdate AS timestamp)'
     end
+
   end
 
   def down
