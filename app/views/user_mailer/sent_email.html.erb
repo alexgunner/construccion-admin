@@ -85,10 +85,12 @@ en la plataforma de DOMUS S.R.L.</p>
     <div class="form-group">
       <h5><strong>Total:</strong> <%= @order.total %> Bs. </h5>
     </div>
-  <%if !@order.comment.nil?%>
-  <h4 style="color:#172769;"><strong>Comentario<strong></h4>
-  <h5><strong><%= @order.comment%></strong></h5>
-  <%end%>
+    <%if !@order.comment.nil?%>
+      <h4 style="color:#172769;"><strong>Comentario<strong></h4>
+      <h5><strong><%= @order.comment%></strong></h5>
+      <h4 style="color:#172769;"><strong>Imagen adjunta<strong></h4>
+      <img src="http://localhost:3000/<%= @order.picture.url%>" width="120", height="120">
+    <%end%>
 </div>
 </body>
 </html>

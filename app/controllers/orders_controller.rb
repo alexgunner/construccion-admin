@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
     order = Order.find(params[:do_change][:id])
     state = params[:do_change][:state]
     order.comment = params[:do_change][:comment]
+    order.picture = params[:do_change][:picture]
     if state == "Preparado"
       UserMailer.confirmation_email(order).deliver_now
     end
@@ -208,6 +209,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image)
+      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image, :picture)
     end
 end
