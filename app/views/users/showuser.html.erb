@@ -6,7 +6,7 @@
         <h5><strong>Nombre Completo Cliente/Representante Legal:</strong> <%= @user.name%></h5>
       </div>
       <div class="form-group">
-        <h5><strong>Nombre Empresa:</strong>
+        <h5><strong>Nombre de Usuario/Nombre de la Empresa:</strong>
         <% if @user.namecompany.nil? %>
           <strong>No Registrado</strong></h5>
         <%else%>
@@ -14,7 +14,7 @@
         <%end%>
       </div>
       <div class="form-group">
-        <h5><strong>CI:</strong> <%= @user.ci%></h5>
+        <h5><strong>CI Cliente/CI Representante Legal:</strong> <%= @user.ci%></h5>
       </div>
       <div class="form-group">
         <h5><strong>Nombre para la Factura:</strong>
@@ -34,6 +34,15 @@
       </div>
       <div class="form-group">
         <h5><strong>Dirección:</strong> <%= @user.address%></h5>
+      </div>
+      <div class="form-group">
+        <h5><strong>Teléfono:</strong> <%= @user.phone%></h5>
+      </div>
+      <div class="form-group">
+        <h5><strong>Celular:</strong> <%= @user.cellphone%></h5>
+      </div>
+      <div class="form-group">
+        <h5><strong>Celular WhatsApp:</strong> <%= @user.cellwsp%></h5>
       </div>
       <div class="form-group">
         <h5><strong>Correo electrónico:</strong> <%= @user.email%></h5>

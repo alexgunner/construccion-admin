@@ -128,14 +128,12 @@ class OrdersController < ApplicationController
 
   def calculateTotal
     order = Order.find(params[:id])
-    price = 0
     cost_transport = 0
     amount = 0
+    mult = 0
     if order.typedelivery == "Domicilio"
       cost_transport = order.delivery.cost.to_i
     end
-    amount = 0
-    mult = 0
     order.carts.each do |cart|
       quantity = cart.quantity
       price = cart.product_variant.price
