@@ -1,12 +1,19 @@
 <div class="row">
     <div class="col-lg-10 offset-lg-1">
-      <script type="text/javascript">
-      function exportDataToExcel(table-id, filename = '')
+      <script>
+      function exportDataToExcel(id, filename = '')
       {
           var downloadurl;
           var fileType = 'application/vnd.ms-excel';
-          var tableSelect = document.getElementById(table-id);
-          var dataHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+          var tableSelect = document.getElementById(id);
+          var dataHTML = tableSelect.outerHTML;
+          while (dataHTML.indexOf('á') != -1) dataHTML = dataHTML.replace('á', '&aacute;');
+          while (dataHTML.indexOf('é') != -1) dataHTML = dataHTML.replace('é', '&eacute;');
+          while (dataHTML.indexOf('í') != -1) dataHTML = dataHTML.replace('í', '&iacute;');
+          while (dataHTML.indexOf('ó') != -1) dataHTML = dataHTML.replace('ó', '&oacute;');
+          while (dataHTML.indexOf('ú') != -1) dataHTML = dataHTML.replace('ú', '&uacute;');
+          while (dataHTML.indexOf('º') != -1) dataHTML = dataHTML.replace('º', '&ordm;');
+
           filename = filename?filename+'.xls':'reportes_clientes.xls';
           downloadurl = document.createElement("a");
           document.body.appendChild(downloadurl);
@@ -20,15 +27,24 @@
            }
         else
           {
-           downloadurl.href = 'data:' + fileType + ', ' + dataHTML;
+           downloadurl.href = 'data:' + fileType + ', ' + encodeURIComponent(dataHTML);
            downloadurl.download = filename;
-          downloadurl.click();
-       }
-      }
+           downloadurl.click();
+         }
+        }
       </script>
       <h1>Clientes</h1>
-      <button class="btn btn-primary" onclick="exportDataToExcel('table-id')">Descargar</button>
-
+      <form method="get" action="">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-7">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por rol" name="search">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+        </div>
+      </form>
+      <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
       <div class="table-responsive">
         <table class="table table-stripped table-hover" id="table-id">
           <caption>Reportes Clientes</caption>
