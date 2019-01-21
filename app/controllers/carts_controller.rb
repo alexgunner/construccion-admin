@@ -52,6 +52,29 @@ class CartsController < ApplicationController
     return Cart.all.count
   end
 
+  #Metodos para admin
+  def reports
+    carts = Cart.all
+    sold_products = SoldProduct.all
+    carts.each do |cart|
+      sold_products.each do |sold|
+        if SoldProduct.none
+          puts "------>nada"
+        else
+        if(cart.product_variant.id == sold.product_variant.id)
+          sold_product = SoldProduct.where(product_variant_id: sold.product_variant.id)
+          sold_product.quantity = sold_product.quantity + cart.quantity
+        else
+          puts "nilloooo"
+          #sold_product = SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity)
+        end
+        sold_product.save
+        end
+      end
+    end
+    @solds = SoldProduct.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart

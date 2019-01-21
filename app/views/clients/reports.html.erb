@@ -1,59 +1,67 @@
 <div class="row">
     <div class="col-lg-10 offset-lg-1">
-      <h1>Reportes de Clientes</h1>
-
-      <form class="form-inline" method="get" action="">
-        <div class="form-group">
-          <label>Desde: <br/></label>
-          <input type="date" name="fechaInicio" class="form-control" value="<%= @fechaInicio %>"/>
-        </div>
-        <div class="form-group">
-          <label>Hasta: <br/></label>
-          <input type="date" name="fechaFin" class="form-control" value="<%= @fechaFin %>"/>
-        </div>
-        <div class="form-group">
-          <label><br/><br/></label>
-          <button type="submit" class="btn btn-default">Visualizar</button>
-        </div>
-      </form>
-      <br/>
-      <br/>
-      <script type="text/javascript" charset="utf-8">
-        $(function () {
-
-      Highcharts.chart('container', {
-          chart: {
-              type: 'bar'
-          },
-          title: {
-              text: 'Clientes con Mayor Actividad'
-          },
-          xAxis: {
-              categories: <%= raw @clients%>
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'Cantidad de compras realizadas'
-              }
-          },
-          legend: {
-              reversed: true
-          },
-          plotOptions: {
-              series: {
-                  stacking: 'normal'
-              }
-          },
-          series: [{
-              name: 'Número de compras',
-              data: <%= raw @counts%>
-          }]
-      });
-        });
+      <script type="text/javascript">
+      function exportDataToExcel(table-id, filename = '')
+      {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(table-id);
+          var dataHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+          filename = filename?filename+'.xls':'reportes_clientes.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + dataHTML;
+           downloadurl.download = filename;
+          downloadurl.click();
+       }
+      }
       </script>
+      <h1>Clientes</h1>
+      <button class="btn btn-primary" onclick="exportDataToExcel('table-id')">Descargar</button>
 
-      <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover" id="table-id">
+          <caption>Reportes Clientes</caption>
+          <thead>
+            <tr>
+              <th>Nombre Usuario/Empresa</th>
+              <th>Representate Legal</th>
+              <th>Nombre Factura</th>
+              <th>NIT</th>
+              <th>Correo electrónico</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+              <th>Rol</th>
+              <th>Total Compras</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            <% @clients.each do |client| %>
+              <tr>
+                <td><%= User.where(ci: client.ci).first.namecompany %></td>
+                <td><%= User.where(ci: client.ci).first.name %></td>
+                <td><%= client.nameinvoice %></td>
+                <td><%= client.nit %></td>
+                <td><%= client.mail %></td>
+                <td><%= client.address %></td>
+                <td><%= client.phone %></td>
+                <td><%= User.where(ci: client.ci).first.role %></td>
+                <td><%= client.count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
 </div>

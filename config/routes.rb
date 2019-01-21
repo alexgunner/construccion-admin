@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sold_products
   resources :banks
   resources :deliveries
   resources :destinations
@@ -50,6 +51,7 @@ get '/envios' => 'deliveries#list'
 get '/ordenes' => 'orders#list'
 get '/ordenes/:id/editar' => 'orders#change'
 post '/orders/do_change' => 'orders#do_change'
+get '/reportes/productos_vendidos' => 'carts#reports'
 get '/reportes/clientes' => 'clients#reports'
 get '/reportes/productos' => 'product_variants#reports'
 get '/reportes/ordenes' => 'orders#reports'

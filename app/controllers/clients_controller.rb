@@ -71,15 +71,7 @@ class ClientsController < ApplicationController
   end
 
   def reports
-    @fechaInicio = params[:fechaInicio]
-    if @fechaInicio
-      @fechaFin = params[:fechaFin]
-    else
-      @fechaFin = Date.current.to_s
-      @fechaInicio= ((Date.current)-30).to_s  # resta 1 semana
-    end
-    @clients = Client.order('count DESC').where('updated_at >= ? and updated_at <= ?', @fechaInicio, @fechaFin).take(10).collect{|x| x.name + " " + x.lastname}
-    @counts = Client.order('count DESC').where('updated_at >= ? and updated_at <= ?', @fechaInicio, @fechaFin).take(10).collect{|x| x.count}
+    @clients = Client.all
   end
 
   private

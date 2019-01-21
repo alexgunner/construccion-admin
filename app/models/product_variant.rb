@@ -3,6 +3,7 @@ class ProductVariant < ApplicationRecord
   belongs_to :product
   has_many :stocks
   has_many :carts
+  has_one :sold_product
   def in_offer
   	if self.offer
   		return "Sí"
