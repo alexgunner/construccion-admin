@@ -36,9 +36,15 @@
       <h1>Clientes</h1>
       <form method="get" action="">
         <div class="row">
-            <div class="col-lg-5 offset-lg-7">
+            <div class="col-lg-5 offset-lg-4">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar por rol" name="search">
+                <select class="form-control" name="search">
+                  <option>Todos</option>
+                  <option>Cliente Minorista </option>
+                  <option>Cliente DOMUS </option>
+                  <option>Especialista </option>
+                  <option>Mayorista </option>
+                </select>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
               </div>
             </div>
@@ -50,8 +56,7 @@
           <caption>Reportes Clientes</caption>
           <thead>
             <tr>
-              <th>Nombre Usuario/Empresa</th>
-              <th>Representate Legal</th>
+              <th>Nombre de Cliente</th>
               <th>Nombre Factura</th>
               <th>NIT</th>
               <th>Correo electrónico</th>
@@ -65,14 +70,19 @@
           <tbody>
             <% @clients.each do |client| %>
               <tr>
-                <td><%= User.where(ci: client.ci).first.namecompany %></td>
-                <td><%= User.where(ci: client.ci).first.name %></td>
+                <td><%= client.name %></td>
                 <td><%= client.nameinvoice %></td>
                 <td><%= client.nit %></td>
                 <td><%= client.mail %></td>
                 <td><%= client.address %></td>
                 <td><%= client.phone %></td>
-                <td><%= User.where(ci: client.ci).first.role %></td>
+                <td>
+                  <% if client.role.nil? or client.role.blank? %>
+                    No registrado
+                  <%else%>
+                    <%= client.role %>
+                  <%end%>
+                </td>
                 <td><%= client.count %></td>
               </tr>
             <% end %>

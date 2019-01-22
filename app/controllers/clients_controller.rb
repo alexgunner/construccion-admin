@@ -37,6 +37,7 @@ class ClientsController < ApplicationController
       @client.cellwsp = client_data.cellwsp
       @client.nameinvoice = client_data.nameinvoice
       @client.nit = client_data.nit
+      @client.role = client_data.role 
       @client.increment(:count,1)
     else
       @client.count = 1
@@ -71,7 +72,7 @@ class ClientsController < ApplicationController
   end
 
   def reports
-    @clients = Client.all
+    @clients = Client.search(params[:search])
   end
 
   private
@@ -82,6 +83,6 @@ class ClientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def client_params
-      params.require(:client).permit(:name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp)
+      params.require(:client).permit(:name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp, :role)
     end
 end
