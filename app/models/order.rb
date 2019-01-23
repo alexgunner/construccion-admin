@@ -13,8 +13,8 @@ class Order < ApplicationRecord
     end
 
     def self.search_by_role(search)
-      if search
-        Order.client.where('role LIKE ?', "%#{search}%")
+      if search!="Todos"
+        Order.joins(:client).where('role LIKE ?', "%#{search}%")
       else
         Order.all
       end

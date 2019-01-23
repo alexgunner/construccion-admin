@@ -51,7 +51,9 @@
             </div>
         </div>
       </form>
+      <br/>
       <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
+      <%= link_to "Gráfico comparativo", '/reportes/ordenes_comparativa', class: "btn btn-info" %>
       <div class="table-responsive">
         <table class="table table-stripped table-hover" id="table-id">
           <caption>Reportes Ordenes</caption>
