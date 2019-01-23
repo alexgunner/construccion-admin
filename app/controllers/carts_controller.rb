@@ -57,17 +57,16 @@ class CartsController < ApplicationController
     SoldProduct.find_each(&:destroy)
     carts = Cart.all
     carts.each do |cart|
+      total_price = (price_product(cart.id)*cart.quantity)
       if SoldProduct.count == 0
-        total_price = price_product(cart.product_variant_id)
         SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
       else
           if product_exist(cart.product_variant_id)
             sold_product = SoldProduct.where(product_variant_id: cart.product_variant_id).first
             sold_product.quantity = sold_product.quantity + cart.quantity
-            sold_product.total = sold_product.total + price_product(cart.product_variant_id)
+            sold_product.total = sold_product.total + total_price
             sold_product.save
           else
-            total_price = price_product(cart.product_variant_id)
             SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
           end
       end
@@ -88,20 +87,22 @@ class CartsController < ApplicationController
 
   def price_product(id)
     cart = Cart.find(id)
+    puts cart.role
     total = cart.product_variant.price
-    # if cart.product_variant.offerprice.nil? or cart.product_variant.offerprice.blank
-    #   if cart.role == "Mayorista "
-    #     total = cart.product_variant.wholesaleprice
-    #   end
-    #   if cart.role == "Especialista "
-    #     total = cart.product_variant.specialistprice
-    #   end
-    #   if cart.role == "Cliente DOMUS "
-    #     total = cart.product_variant.importerprice
-    #   end
-    # else
-    #   total = cart.product_variant.offerprice
-    # end
+    if cart.product_variant.offerprice.nil?
+      puts "entro al if---------->"
+      if cart.role == "Mayorista "
+        total = cart.product_variant.wholesaleprice
+      end
+      if cart.role == "Especialista "
+        total = cart.product_variant.specialistprice
+      end
+      if cart.role == "Cliente DOMUS "
+        total = cart.product_variant.importerprice
+      end
+    else
+      total = cart.product_variant.offerprice
+    end
     return total
   end
   private
