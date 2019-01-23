@@ -83,6 +83,9 @@ development:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: domus_production
+  pool: 5
   username: postgres
   password: root
