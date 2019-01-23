@@ -10,23 +10,22 @@
               <th>Categoría</th>
               <th>Cantidad</th>
               <th>Precio Promedio</th>
-              <th>Total</th>
+              <th>Total en Bs.</th>
               <th>En oferta</th>
               <th colspan="3"></th>
             </tr>
           </thead>
 
           <tbody>
-            <% @solds.each do |cart| %>
+            <% @solds.each do |sold| %>
               <tr>
-                <td><%= cart.product_variant.code %></td>
-                <td><%= cart.product_variant.description.truncate(100) %></td>
-                <td><%= cart.product_variant.product.category.name %></td>
-                <td><%= cart.quantity %></td>
-                <td><%= cart.product_variant.price %></td>
-                <td>total</td>
-
-                <td><%= cart.product_variant.product.in_offer%></td>
+                <td><%= sold.product_variant.code %></td>
+                <td><%= sold.product_variant.description.truncate(100) %></td>
+                <td><%= sold.product_variant.product.category.name %></td>
+                <td><%= sold.quantity %></td>
+                <td><%= (sold.product_variant.price + sold.product_variant.wholesaleprice + sold.product_variant.specialistprice + sold.product_variant.importerprice)/4 %></td>
+                <td>Bs. <%= sold.total %></td>
+                <td><%= sold.product_variant.product.in_offer%></td>
               </tr>
             <% end %>
           </tbody>

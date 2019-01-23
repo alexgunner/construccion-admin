@@ -53,6 +53,6 @@ class SoldProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sold_product_params
-      params.require(:sold_product).permit(:product_variant_id, :quantity)
+      params.require(:sold_product).permit(:product_variant_id, :quantity, :total)
     end
 end

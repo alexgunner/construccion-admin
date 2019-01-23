@@ -1,3 +1,3 @@
 class SoldProduct < ApplicationRecord
-  belongs_to :sold_product
+  belongs_to :product_variant
 end

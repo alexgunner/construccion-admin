@@ -54,27 +54,56 @@ class CartsController < ApplicationController
 
   #Metodos para admin
   def reports
+    SoldProduct.find_each(&:destroy)
     carts = Cart.all
-    sold_products = SoldProduct.all
     carts.each do |cart|
-      sold_products.each do |sold|
-        if SoldProduct.none
-          puts "------>nada"
-        else
-        if(cart.product_variant.id == sold.product_variant.id)
-          sold_product = SoldProduct.where(product_variant_id: sold.product_variant.id)
-          sold_product.quantity = sold_product.quantity + cart.quantity
-        else
-          puts "nilloooo"
-          #sold_product = SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity)
-        end
-        sold_product.save
-        end
+      if SoldProduct.count == 0
+        total_price = price_product(cart.product_variant_id)
+        SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
+      else
+          if product_exist(cart.product_variant_id)
+            sold_product = SoldProduct.where(product_variant_id: cart.product_variant_id).first
+            sold_product.quantity = sold_product.quantity + cart.quantity
+            sold_product.total = sold_product.total + price_product(cart.product_variant_id)
+            sold_product.save
+          else
+            total_price = price_product(cart.product_variant_id)
+            SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
+          end
       end
     end
     @solds = SoldProduct.all
   end
 
+  def product_exist(id)
+    sold_products = SoldProduct.all
+    answer = false
+    sold_products.each do |sold|
+      if(id == sold.product_variant_id)
+        answer = true
+      end
+    end
+    return answer
+  end
+
+  def price_product(id)
+    cart = Cart.find(id)
+    total = cart.product_variant.price
+    # if cart.product_variant.offerprice.nil? or cart.product_variant.offerprice.blank
+    #   if cart.role == "Mayorista "
+    #     total = cart.product_variant.wholesaleprice
+    #   end
+    #   if cart.role == "Especialista "
+    #     total = cart.product_variant.specialistprice
+    #   end
+    #   if cart.role == "Cliente DOMUS "
+    #     total = cart.product_variant.importerprice
+    #   end
+    # else
+    #   total = cart.product_variant.offerprice
+    # end
+    return total
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
