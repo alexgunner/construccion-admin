@@ -56,22 +56,35 @@ class CartsController < ApplicationController
   def reports
     SoldProduct.find_each(&:destroy)
     carts = Cart.all
+    order_id = Cart.find(1).order.id
     carts.each do |cart|
       total_price = (price_product(cart.id)*cart.quantity)
       if SoldProduct.count == 0
-        SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
+        SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price, total_sold: 1)
       else
           if product_exist(cart.product_variant_id)
             sold_product = SoldProduct.where(product_variant_id: cart.product_variant_id).first
             sold_product.quantity = sold_product.quantity + cart.quantity
             sold_product.total = sold_product.total + total_price
+            if order_id != cart.order.id
+              sold_product.total_sold = sold_product.total_sold + 1
+            end
+            order_id = cart.order.id
             sold_product.save
           else
-            SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price)
+            SoldProduct.create(product_variant_id: cart.product_variant.id, quantity: cart.quantity, total: total_price, total_sold: 1)
           end
       end
     end
-    @solds = SoldProduct.all
+    if params[:search].nil?
+      if params[:ordenar].nil? or params[:ordenar] == "Todos"
+        @solds = SoldProduct.all
+      else
+        @solds = SoldProduct.ordenar(params[:ordenar])
+      end
+    else
+      @solds = SoldProduct.search(params[:search])
+    end
   end
 
   def product_exist(id)
@@ -87,10 +100,8 @@ class CartsController < ApplicationController
 
   def price_product(id)
     cart = Cart.find(id)
-    puts cart.role
     total = cart.product_variant.price
     if cart.product_variant.offerprice.nil?
-      puts "entro al if---------->"
       if cart.role == "Mayorista "
         total = cart.product_variant.wholesaleprice
       end

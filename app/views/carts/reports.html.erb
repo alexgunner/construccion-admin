@@ -1,6 +1,36 @@
 <div class="row">
     <div class="col-lg-10 offset-lg-1">
       <h1>Productos vendidos</h1>
+      <form method="get" action="">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-4">
+              <div class="input-group">
+                <h5>Order por: <br/></h5>
+                <select class="form-control" name="ordenar">
+                  <option>Todos</option>
+                  <option>Código de Variante</option>
+                  <option>Cantidad (mayor a menor)</option>
+                  <option>Cantidad (menor a mayor)</option>
+                  <option>Total Ventas</option>
+                </select>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+        </div>
+      </form>
+      <br/>
+      <form method="get" action="">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+              <div class="input-group">
+                <h5>Buscar/Filtrar: <br/></h5>
+                <input type="text" class="form-control" placeholder="Buscar por Categoría, Subcategoría y Código de Variante" name="search">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+        </div>
+      </form>
+      <br/>
       <div class="table-responsive">
         <table class="table table-stripped table-hover">
           <thead>
@@ -11,8 +41,8 @@
               <th>Cantidad</th>
               <th>Precio Promedio</th>
               <th>Total en Bs.</th>
+              <th>Total Ventas</th>
               <th>En oferta</th>
-              <th colspan="3"></th>
             </tr>
           </thead>
 
@@ -25,6 +55,7 @@
                 <td><%= sold.quantity %></td>
                 <td><%= (sold.product_variant.price + sold.product_variant.wholesaleprice + sold.product_variant.specialistprice + sold.product_variant.importerprice)/4 %></td>
                 <td>Bs. <%= sold.total %></td>
+                <td><%= sold.total_sold %></td>
                 <td><%= sold.product_variant.product.in_offer%></td>
               </tr>
             <% end %>
