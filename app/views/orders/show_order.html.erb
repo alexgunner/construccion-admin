@@ -107,10 +107,9 @@
                     onrendered: function (canvas) {
                         imgData = canvas.toDataURL(
                            'image/png');
-                        pageOrientation: 'landscape'
-                        var doc = new jsPDF('p', 'pt', 'a4');
+                        var doc = new jsPDF('l', 'pt', 'a4');
                         doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('sample-file.pdf');
+                        doc.save('order-file-<%=@order.id%>.pdf');
                         //setTimeout(function () { window.open(imgData) }, 1000);
                     }
                 });
