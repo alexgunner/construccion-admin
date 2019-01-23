@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <script>
+      function exportDataToExcel(id, filename = '')
+      {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(id);
+          var dataHTML = tableSelect.outerHTML;
+          while (dataHTML.indexOf('á') != -1) dataHTML = dataHTML.replace('á', '&aacute;');
+          while (dataHTML.indexOf('é') != -1) dataHTML = dataHTML.replace('é', '&eacute;');
+          while (dataHTML.indexOf('í') != -1) dataHTML = dataHTML.replace('í', '&iacute;');
+          while (dataHTML.indexOf('ó') != -1) dataHTML = dataHTML.replace('ó', '&oacute;');
+          while (dataHTML.indexOf('ú') != -1) dataHTML = dataHTML.replace('ú', '&uacute;');
+          while (dataHTML.indexOf('º') != -1) dataHTML = dataHTML.replace('º', '&ordm;');
+
+          filename = filename?filename+'.xls':'reportes_ordenes.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + encodeURIComponent(dataHTML);
+           downloadurl.download = filename;
+           downloadurl.click();
+         }
+        }
+      </script>
+
+      <h1>Ordenes</h1>
+      <form method="get" action="">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-3">
+              <div class="input-group">
+                <select class="form-control" name="search">
+                  <option>Todos</option>
+                  <option>Cliente Minorista </option>
+                  <option>Cliente DOMUS </option>
+                  <option>Especialista </option>
+                  <option>Mayorista </option>
+                </select>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+        </div>
+      </form>
+      <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover" id="table-id">
+          <caption>Reportes Ordenes</caption>
+          <thead>
+            <tr>
+              <th>Número de orden</th>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Tipo de Pago</th>
+              <th>Tipo de Envío</th>
+              <th>Estado</th>
+              <th>Total venta</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%=  order.id %></td>
+                <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
+                <td><%= order.client.name %></td>
+                <td><%= order.typepay %></td>
+                <td><%= order.typedelivery %></td>
+                <td><%= order.state %></td>
+                <td><%= order.total %></td>
+                <td><%= link_to 'Ver', '/reportes/ordenes/'+ order.id.to_s %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

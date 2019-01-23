@@ -11,4 +11,12 @@ class Order < ApplicationRecord
         Order.all
       end
     end
+
+    def self.search_by_role(search)
+      if search
+        Order.client.where('role LIKE ?', "%#{search}%")
+      else
+        Order.all
+      end
+    end
 end

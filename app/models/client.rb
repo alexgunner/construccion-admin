@@ -5,7 +5,7 @@ class Client < ApplicationRecord
     if search!= "Todos"
       Client.where('role LIKE ?',"%#{search}%")
     else
-      Client.all
+      Client.all.order('count DESC')
     end
   end
 end

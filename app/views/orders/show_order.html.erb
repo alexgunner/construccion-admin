@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <div id="content">
+    <h1>Detalle de la orden</h1>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Fecha de la Orden<strong></h4>
+        <h5><%= @order.orderdate.strftime("%d-%m-%Y") %></h5>
+      </div>
+
+      <div class="form-group">
+          <h4 style="color:#172769;"><strong>Datos del Cliente<strong></h4>
+          <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.name %></h5>
+          <h5><strong>Dirección:</strong> <%= @order.client.address %></h5>
+          <h5><strong>Teléfono:</strong> <%= @order.client.phone %></h5>
+          <h5><strong>Email:</strong> <%= @order.client.mail %></h5>
+          <h5><strong>CI: </strong> <%= @order.client.ci %></h5>
+      </div>
+      <div class="form-group">
+          <h4 style="color:#172769;"><strong>Datos de la Factura<strong></h4>
+          <h5><strong>Nombres y Apellidos:</strong> <%= @order.client.nameinvoice %></h5>
+          <h5><strong>NIT:</strong> <%= @order.client.nit %></h5>
+      </div>
+      <div class="form-group">
+        <h4 style="color:#172769;"><strong>Pago y Envío<strong></h4>
+          <h5><strong>Tipo de pago:</strong> <%= @order.typepay%></h5>
+          <h5><strong>Tipo de envío:</strong> <%= @order.typedelivery%></h5>
+            <% if @order.typepay== "Deposito" %>
+              <center>
+                <%if @order.image.nil? %>
+                  <h5><strong>No subido</strong></h5>
+                <%else%>
+                  <%= image_tag @order.image, class: "img-thumbnail" %>
+                <%end%>
+              </center>
+            <%end%>
+          <% if @order.typedelivery == "Domicilio" %>
+            <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
+            <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
+          <%end%>
+      </div>
+      <h4 style="color:#172769;"><strong>Productos<strong></h4>
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Imagen</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <% @order.carts.each do |cart| %>
+              <tr>
+                <td><%= cart.product_variant.code %></td>
+                <td><%= cart.product_variant.description %></td>
+                <td><%= cart.quantity %></td>
+                <%if cart.role.nil? or cart.role == "Cliente Minorista " %>
+                  <td>Bs. <%if cart.product_variant.offerprice.nil? %>
+                                <%= cart.product_variant.price %></td>
+                              <%else%>
+                                <%= cart.product_variant.offerprice %></td>
+                              <%end%>
+                <%else%>
+                  <%if cart.role == "Mayorista " %>
+                    <td><%= cart.product_variant.wholesaleprice %></td>
+                  <%end%>
+                  <%if cart.role == "Especialista " %>
+                    <td><%= cart.product_variant.specialistprice %></td>
+                  <%end%>
+                  <%if cart.role == "Cliente DOMUS " %>
+                    <td><%= cart.product_variant.importerprice %></td>
+                  <%end%>
+                  <%if cart.role == "Bloqueado" %>
+                    <td><%= "Sin precio, cuenta bloqueada" %></td>
+                  <%end%>
+                <%end%>
+                <td><%= image_tag cart.product_variant.product.picture.url, width: "120", height: "120"%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-group">
+        <h5><strong>Total:</strong> <%= @order.total %> Bs. </h5>
+      </div>
+      <h4 style="color:#172769;"><strong>Estado de la Orden<strong></h4>
+      <h5><strong><%= @order.state %></strong></h5>
+    </div>
+    <div id="editor"></div>
+      <center>
+        <%= link_to "Volver", '/reportes/ordenes', class: "btn btn-danger" %>
+         <button class="btn btn-warning" onclick="savePDF()">Exportar PDF</button>
+      </center>
+    <br/>
+    <br/>
+    <script>
+    var testDivElement = document.getElementById('content');
+
+     function savePDF() {
+                var imgData;
+                html2canvas($("#content"), {
+                    useCORS: true,
+                    onrendered: function (canvas) {
+                        imgData = canvas.toDataURL(
+                           'image/png');
+                        pageOrientation: 'landscape'
+                        var doc = new jsPDF('p', 'pt', 'a4');
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('sample-file.pdf');
+                        //setTimeout(function () { window.open(imgData) }, 1000);
+                    }
+                });
+            }
+
+    </script>
