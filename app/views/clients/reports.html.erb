@@ -64,6 +64,7 @@
               <th>Teléfono</th>
               <th>Rol</th>
               <th>Total Compras</th>
+              <th>Total Compras en Bs.</th>
             </tr>
           </thead>
 
@@ -84,6 +85,7 @@
                   <%end%>
                 </td>
                 <td><%= client.count %></td>
+                <td>Bs. <%= client.orders.sum("total")%></td>
               </tr>
             <% end %>
           </tbody>
