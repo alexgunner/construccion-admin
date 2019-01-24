@@ -43,6 +43,7 @@
               <th>Total en Bs.</th>
               <th>Total Ventas</th>
               <th>En oferta</th>
+              <th colspan="1"></th>
             </tr>
           </thead>
 
@@ -57,6 +58,7 @@
                 <td>Bs. <%= sold.total %></td>
                 <td><%= sold.total_sold %></td>
                 <td><%= sold.product_variant.product.in_offer%></td>
+                <td><%= link_to 'Ver', '/reportes/productos_vendidos/' + sold.product_variant_id.to_s %></td>
               </tr>
             <% end %>
           </tbody>

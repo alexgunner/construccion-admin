@@ -116,6 +116,14 @@ class CartsController < ApplicationController
     end
     return total
   end
+
+  def show_details_report
+    @product_variant = ProductVariant.find(params[:id])
+    @total_minoristas = @product_variant.carts.where("role = ?", "Cliente Minorista ").sum("quantity")
+    @total_domus = @product_variant.carts.where("role = ?", "Cliente DOMUS ").sum("quantity")
+    @total_especialitas = @product_variant.carts.where("role = ?", "Especialista ").sum("quantity")
+    @total_mayoristas = @product_variant.carts.where("role = ?", "Mayorista ").sum("quantity")
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart

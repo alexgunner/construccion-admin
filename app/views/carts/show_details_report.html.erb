@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <script>
+      function exportDataToExcel(id, filename = '')
+      {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(id);
+          var dataHTML = tableSelect.outerHTML;
+          while (dataHTML.indexOf('á') != -1) dataHTML = dataHTML.replace('á', '&aacute;');
+          while (dataHTML.indexOf('é') != -1) dataHTML = dataHTML.replace('é', '&eacute;');
+          while (dataHTML.indexOf('í') != -1) dataHTML = dataHTML.replace('í', '&iacute;');
+          while (dataHTML.indexOf('ó') != -1) dataHTML = dataHTML.replace('ó', '&oacute;');
+          while (dataHTML.indexOf('ú') != -1) dataHTML = dataHTML.replace('ú', '&uacute;');
+          while (dataHTML.indexOf('º') != -1) dataHTML = dataHTML.replace('º', '&ordm;');
+
+          filename = filename?filename+'.xls':'reporte_product_vendido_<%=@product_variant.code%>.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + encodeURIComponent(dataHTML);
+           downloadurl.download = filename;
+           downloadurl.click();
+         }
+        }
+      </script>
+      <h1>Detalle producto vendido</h1>
+      <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover" id="table-id">
+          <thead>
+            <tr>
+              <th>Código de Variante</th>
+              <th>Tipo Cliente</th>
+              <th>Cantidad</th>
+              <th>Precio en Bs. </th>
+              <th>Total en Bs. </th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <td rowspan="4"><%= @product_variant.code %></td>
+                <td>Cliente Minorista</td>
+                <td><%= @total_minoristas %></td>
+                <td>Bs. <%= @product_variant.price %></td>
+                <td>Bs. <%= @product_variant.price*@total_minoristas %></td>
+              </tr>
+              <tr>
+                <td>Cliente DOMUS</td>
+                <td><%= @total_domus %></td>
+                <td>Bs. <%= @product_variant.importerprice %></td>
+                <td>Bs. <%= @product_variant.importerprice*@total_domus %></td>
+              </tr>
+              <tr>
+                <td>Especialista</td>
+                <td><%= @total_especialitas %></td>
+                <td>Bs. <%= @product_variant.specialistprice %></td>
+                <td>Bs. <%= @product_variant.specialistprice*@total_especialitas %></td>
+              </tr>
+              <tr>
+                <td>Mayorista</td>
+                <td><%= @total_mayoristas %></td>
+                <td>Bs. <%= @product_variant.wholesaleprice %></td>
+                <td>Bs. <%= @product_variant.specialistprice*@total_mayoristas %></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
