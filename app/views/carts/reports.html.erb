@@ -65,7 +65,7 @@
       </form>
       <br/>
       <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
-      <div class="table-responsive">
+      <%= link_to "Gráfica de productos", '/reportes/productos', class: "btn btn-info" %>
       <div class="table-responsive">
         <table class="table table-stripped table-hover" id="table-id">
           <thead>

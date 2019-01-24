@@ -10,4 +10,11 @@ class Stock < ApplicationRecord
       Stock.all
     end
   end
+
+  def self.search_report(search)
+    if search
+      Stock.joins(:product_variant)
+    else
+    end
+  end
 end

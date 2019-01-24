@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-lg-11 offset-lg-1">
+        <h1>Productos de stock</h1>
+        <script>
+        function exportDataToExcel(id, filename = '')
+        {
+            var downloadurl;
+            var fileType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(id);
+            var dataHTML = tableSelect.outerHTML;
+            while (dataHTML.indexOf('á') != -1) dataHTML = dataHTML.replace('á', '&aacute;');
+            while (dataHTML.indexOf('é') != -1) dataHTML = dataHTML.replace('é', '&eacute;');
+            while (dataHTML.indexOf('í') != -1) dataHTML = dataHTML.replace('í', '&iacute;');
+            while (dataHTML.indexOf('ó') != -1) dataHTML = dataHTML.replace('ó', '&oacute;');
+            while (dataHTML.indexOf('ú') != -1) dataHTML = dataHTML.replace('ú', '&uacute;');
+            while (dataHTML.indexOf('º') != -1) dataHTML = dataHTML.replace('º', '&ordm;');
+
+            filename = filename?filename+'.xls':'reporte_productos_stock.xls';
+            downloadurl = document.createElement("a");
+            document.body.appendChild(downloadurl);
+           if(navigator.msSaveOrOpenBlob)
+             {
+                var blob = new Blob(['\ufeff', dataHTML],
+                 {
+                    type:  fileType
+                });
+               navigator.msSaveOrOpenBlob( blob, filename);
+             }
+          else
+            {
+             downloadurl.href = 'data:' + fileType + ', ' + encodeURIComponent(dataHTML);
+             downloadurl.download = filename;
+             downloadurl.click();
+           }
+          }
+        </script>
+        <form method="get" action="">
+          <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Buscar por Categoría, Subcategoría y Código de Variante" name="search">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+          </div>
+        </form>
+        <br/>
+        <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
+        <div class="table-responsive">
+          <table class="table table-stripped table-hover" id="table-id">
+            <thead>
+              <tr>
+                <th>Código de Variante</th>
+                <th>Fotografía</th>
+                <th>Descripción</th>
+                <th>Unidad</th>
+                <th>Precio corriente</th>
+                <th>Precio DOMUS</th>
+                <th>Precio especialista</th>
+                <th>Precio mayorista</th>
+                <th>Precio de oferta</th>
+                <th>Saldo</th>
+                <th>Stock mínimo</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @stocks.each do |stock| %>
+                <tr>
+                  <td><%= stock.product_variant.code %></td>
+                  <td><%= image_tag stock.product_variant.product.picture.url, width: "80", height: "80"%></td>
+                  <td><%= stock.product_variant.description %></td>
+                  <td><%= stock.product_variant.product.measure.name %></td>
+                  <td>Bs. <%= stock.product_variant.price %></td>
+                  <td>Bs. <%= stock.product_variant.importerprice %></td>
+                  <td><%=  stock.product_variant.specialistprice %></td>
+                  <td><%=  stock.product_variant.wholesaleprice%></td>
+                  <td>
+                    <% if stock.product_variant.offerprice.nil?%>
+                      No hay oferta
+                    <%else%>
+                      <%= stock.product_variant.offerprice %>
+                    <%end%>
+                  </td>
+                  <td><%= stock.quantity %></td>
+                  <td><%= stock.limit %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
