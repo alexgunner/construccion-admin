@@ -1,5 +1,38 @@
 <div class="row">
     <div class="col-lg-10 offset-lg-1">
+      <script>
+      function exportDataToExcel(id, filename = '')
+      {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(id);
+          var dataHTML = tableSelect.outerHTML;
+          while (dataHTML.indexOf('á') != -1) dataHTML = dataHTML.replace('á', '&aacute;');
+          while (dataHTML.indexOf('é') != -1) dataHTML = dataHTML.replace('é', '&eacute;');
+          while (dataHTML.indexOf('í') != -1) dataHTML = dataHTML.replace('í', '&iacute;');
+          while (dataHTML.indexOf('ó') != -1) dataHTML = dataHTML.replace('ó', '&oacute;');
+          while (dataHTML.indexOf('ú') != -1) dataHTML = dataHTML.replace('ú', '&uacute;');
+          while (dataHTML.indexOf('º') != -1) dataHTML = dataHTML.replace('º', '&ordm;');
+
+          filename = filename?filename+'.xls':'reporte_productos_vendidos.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + encodeURIComponent(dataHTML);
+           downloadurl.download = filename;
+           downloadurl.click();
+         }
+        }
+      </script>
       <h1>Productos vendidos</h1>
       <form method="get" action="">
         <div class="row">
@@ -31,8 +64,10 @@
         </div>
       </form>
       <br/>
+      <button class="btn btn-success" onclick="exportDataToExcel('table-id')">Exportar Excel</button>
       <div class="table-responsive">
-        <table class="table table-stripped table-hover">
+      <div class="table-responsive">
+        <table class="table table-stripped table-hover" id="table-id">
           <thead>
             <tr>
               <th>Código de Variante</th>
