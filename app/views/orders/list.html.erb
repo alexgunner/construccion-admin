@@ -27,7 +27,11 @@
 
     <tbody>
       <% @orders.each do |order| %>
+        <%if order.state == "Rechazado"%>
+          <tr bgcolor="#FFA28E">
+        <%else%>
         <tr>
+        <%end%>
           <td><%= order.id %></td>
           <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
           <td><%= order.client.name %></td>
