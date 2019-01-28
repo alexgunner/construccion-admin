@@ -86,7 +86,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: domus_production
-  host: localhost
+  host: 178.62.66.223
   pool: 5
   username: postgres
   password: root
