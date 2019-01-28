@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :offices
   resources :sold_products
   resources :banks
   resources :deliveries
@@ -61,6 +62,7 @@ get '/reportes/ordenes' => 'orders#reports_list'
 get '/reportes/ordenes/:id' => 'orders#show_order'
 get '/bancos' => 'banks#list'
 get '/usuario/:id' => 'users#showuser'
+get '/sucursales' => 'offices#list'
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
 get '/product-variants/:id' => 'product_variants#show'

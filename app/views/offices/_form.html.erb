@@ -1,0 +1,64 @@
+<%= form_with(model: office, local: true, html: { multipart: true }) do |form| %>
+  <div class="form-group">
+    <%= form.label "Nombre de sucursal" %>
+    <%= form.text_field :name, id: :office_name, class: "form-control", :required => true, :maxlength => 100 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Ciudad o Departamento" %>
+    <%= form.text_field :city, id: :office_city, class: "form-control", :required => true, :maxlength => 100 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Teléfono" %>
+    <%= form.number_field :phone, id: :office_phone, class: "form-control", :required => true, :maxlength => 50 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Celular" %>
+    <%= form.number_field :cellphone, id: :office_cellphone, class: "form-control", :required => true, :maxlength => 50 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Celular WhatsApp" %>
+    <%= form.number_field :cellwsp, id: :office_cellwsp, class: "form-control", :required => true, :maxlength => 50 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Dirección" %>
+    <%= form.text_field :address, id: :office_address, class: "form-control", :required => true, :maxlength => 256 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Latitud" %>
+    <%= form.text_field :lat, id: :office_lat, class: "form-control", :required => true, :maxlength => 100 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Longitud" %>
+    <%= form.text_field :long, id: :office_long, class: "form-control", :required => true, :maxlength => 100 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Correo eléctronico" %>
+    <%= form.text_field :email, id: :office_email, class: "form-control", :required => true, :maxlength => 100 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :picture, id: :office_picture_id, class: "form-control" %>
+  </div>
+
+  <%if office.picture.url  != "/images/original/missing.png" %>
+    <div class="form-group">
+      <center><%= image_tag office.picture, class: "img-thumbnail" %></center>
+    </div>
+  <%end%>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-success" %>
+      <%= link_to "Cancelar", "/sucursales", class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

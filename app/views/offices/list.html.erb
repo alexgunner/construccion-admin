@@ -1,0 +1,35 @@
+<h1>Sucursales</h1>
+
+<%= link_to 'Crear sucursal', new_office_path, class: "btn btn-primary"  %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ciudad o Departamento</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Correo eléctronico</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @offices.each do |office| %>
+        <tr>
+          <td><%= office.name %></td>
+          <td><%= office.city %></td>
+          <td><%= office.phone %></td>
+          <td><%= office.address %></td>
+          <td><%= office.lat %></td>
+          <td><%= office.long %></td>
+          <td><%= office.email %></td>
+          <td><%= link_to 'Editar', edit_office_path(office) %></td>
+          <td><%= link_to 'Eliminar', office, method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
