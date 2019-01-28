@@ -35,9 +35,13 @@ class ClientsController < ApplicationController
       @client.phone = client_data.phone
       @client.cellphone = client_data.cellphone
       @client.cellwsp = client_data.cellwsp
-      @client.nameinvoice = client_data.nameinvoice
+      if client_data.nameinvoice.blank?
+        @client.nameinvoice = "Sin Nombre"
+      else
+        @client.nameinvoice = client_data.nameinvoice
+      end
       @client.nit = client_data.nit
-      @client.role = client_data.role 
+      @client.role = client_data.role
       @client.increment(:count,1)
     else
       @client.count = 1

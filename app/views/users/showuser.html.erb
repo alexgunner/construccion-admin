@@ -17,8 +17,11 @@
         <h5><strong>CI Cliente/CI Representante Legal:</strong> <%= @user.ci%></h5>
       </div>
       <div class="form-group">
+        <h5><strong>Departamento:</strong> <%= @user.city%></h5>
+      </div>
+      <div class="form-group">
         <h5><strong>Nombre para la Factura:</strong>
-        <% if @user.nameinvoice.nil? %>
+        <% if @user.nameinvoice.nil? || @user.nameinvoice.blank? %>
           <strong>No Registrado</strong></h5>
         <%else%>
           <%= @user.nameinvoice %></h5>
