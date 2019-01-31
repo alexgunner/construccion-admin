@@ -59,6 +59,6 @@ class DestinationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def destination_params
-      params.require(:destination).permit(:name, :city, :country)
+      params.require(:destination).permit(:name, :city, :country, :cash)
     end
 end

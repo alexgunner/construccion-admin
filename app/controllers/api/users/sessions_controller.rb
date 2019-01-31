@@ -27,6 +27,7 @@ class Api::Users::SessionsController < Devise::SessionsController
         cellwsp: user.cellwsp,
         role: user.role,
         state: user.state,
+        city: user.city,
         image: user.image,
         imageci: user.imageci
       }

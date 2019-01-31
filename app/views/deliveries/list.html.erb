@@ -10,6 +10,7 @@
         <th>Destino</th>
         <th>Costo</th>
         <th>Tipo de envío</th>
+        <th>Tipo de entrega</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -23,6 +24,7 @@
           <td><%= delivery.destination.name %> - <%=delivery.destination.city %></td>
           <td><%= delivery.cost %></td>
           <td><%= delivery.typedelivery %></td>
+          <td><%= delivery.shipping %></td>
           <td><%= link_to 'Editar', edit_delivery_path(delivery) %></td>
           <td><%= link_to 'Eliminar', delivery, method: :delete %></td>
         </tr>
