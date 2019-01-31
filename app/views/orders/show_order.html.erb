@@ -37,6 +37,9 @@
             <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
             <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
           <%end%>
+          <% if @order.typedelivery == "Tienda" %>
+            <h5><strong>Tienda:</strong> <%= @order.office %></h5>
+          <%end%>
       </div>
       <h4 style="color:#172769;"><strong>Productos<strong></h4>
       <div class="table-responsive">

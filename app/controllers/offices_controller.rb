@@ -9,7 +9,7 @@ class OfficesController < ApplicationController
 
   # GET /offices/1
   def show
-    @office = Office.find(params[:id])
+    render json: @office
   end
 
   # GET /offices/new
