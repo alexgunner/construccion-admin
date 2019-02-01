@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :deliveries
   resources :destinations
   resources :stocks
-  resources :extras
+  resources :extras, :defaults => { :format => :json }
   resources :clients
-  resources :contacts
+  resources :contacts, :defaults => { :format => :json }
   devise_for :users,  path: 'api/users', controllers: { sessions: "api/users/sessions", registrations: "api/users/registrations" }
 
 
