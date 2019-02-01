@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-    has_many :carts
+    has_many :carts, dependent: :delete_all
     belongs_to :client
     belongs_to :delivery
     has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
