@@ -7,6 +7,10 @@ class TrainingsController < ApplicationController
     render json: @trainings
   end
 
+  def training
+    @trainings = Training.all
+  end
+
   # GET /trainings/1
   def show
   end

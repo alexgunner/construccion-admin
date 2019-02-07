@@ -75,4 +75,5 @@ get '/users/:id' => 'users#show'
 patch '/users/:id' => 'users#update'
 get '/usuarios/:id/contacto' => 'users#contact'
 post '/users/do_contact' => 'users#do_contact'
+get '/training' => 'trainings#training'
 end
