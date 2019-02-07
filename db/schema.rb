@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190131164155) do
+ActiveRecord::Schema.define(version: 20190207192858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "adminpack"
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -269,6 +268,17 @@ ActiveRecord::Schema.define(version: 20190131164155) do
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
     t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "docu_file_name"
+    t.string "docu_content_type"
+    t.integer "docu_file_size"
+    t.datetime "docu_updated_at"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|
