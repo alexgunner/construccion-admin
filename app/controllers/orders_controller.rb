@@ -130,14 +130,14 @@ class OrdersController < ApplicationController
 
   def calculateTotal
     order = Order.find(params[:id])
-    cost_transport = 0
-    amount = 0
+    cost_transport = order.delivery.cost.to_i
+    costmin_transport = order.delivery.costmin.to_i
+    cost_total_transport = 0
     mult = 0
-    if order.typedelivery == "Domicilio"
+    if (order.typedelivery == "Domicilio" or order.typedelivery == "Transportista")
       cost_transport = order.delivery.cost.to_i
     end
     order.carts.each do |cart|
-      quantity = cart.quantity
       price = cart.product_variant.price
       if cart.product_variant.offerprice.nil?
         if cart.role == "Mayorista "
@@ -152,13 +152,15 @@ class OrdersController < ApplicationController
       else
         price = cart.product_variant.offerprice
       end
-      mult = quantity * price
-      if order.delivery.typedelivery != "Local"
-        mult = mult + (cost_transport * cart.product_variant.weight.to_i)
-      end
-      amount = amount + mult
+      mult = mult + (cart.quantity * price)
+      cost_total_transport = cost_transport * cart.product_variant.weight.to_i * cart.quantity
     end
-    order.total = amount + cost_transport
+    if cost_total_transport >= costmin_transport
+      mult = mult + cost_total_transport
+    else
+      mult = mult + costmin_transport
+    end
+    order.total = mult
     order.save
     puts order.total
   end

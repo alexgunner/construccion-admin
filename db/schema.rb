@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190207192858) do
+ActiveRecord::Schema.define(version: 20190208055626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 20190207192858) do
     t.string "address"
     t.integer "phone"
     t.string "shipping"
+    t.float "costmin"
   end
 
   create_table "destinations", force: :cascade do |t|
