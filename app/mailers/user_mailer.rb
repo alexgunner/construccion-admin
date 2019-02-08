@@ -40,7 +40,7 @@ class UserMailer < ApplicationMailer
 
   def deposit_email(order)
     @order = order
-    mail(to: 'dharamadai@gmail.com', subject: '¡Importante! Notificación de comprabante bancario.')
+    mail(to: 'domus.importadora@gmail.com', subject: '¡Importante! Notificación de comprabante bancario.')
   end
 
 end
