@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
+      UserMailer.deposit_email(@order).deliver_now
       redirect_to '/ordenes', notice: 'Order was successfully updated.'
     else
       render :edit
