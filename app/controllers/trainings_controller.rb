@@ -29,7 +29,7 @@ class TrainingsController < ApplicationController
     @training = Training.new(training_params)
 
     if @training.save
-      redirect_to @training, notice: 'Training was successfully created.'
+      redirect_to '/training', notice: 'Documento creado correctamente'
     else
       render :new
     end
@@ -38,7 +38,7 @@ class TrainingsController < ApplicationController
   # PATCH/PUT /trainings/1
   def update
     if @training.update(training_params)
-      redirect_to @training, notice: 'Training was successfully updated.'
+      redirect_to '/training', notice: 'Documento actualizado correctamente'
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class TrainingsController < ApplicationController
   # DELETE /trainings/1
   def destroy
     @training.destroy
-    redirect_to trainings_url, notice: 'Training was successfully destroyed.'
+    redirect_to '/training', notice: 'Documento eliminado correctamente'
   end
 
   private

@@ -2,10 +2,13 @@
 
 <h1>Trainings</h1>
 
-<table>
+<%= link_to 'Crear documento de capacitacion', new_training_path, class: "btn btn-primary" %>
+
+<table class="table-responsive">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +17,9 @@
     <% @trainings.each do |training| %>
       <tr>
         <td><%= training.name %></td>
-        <td><%= link_to 'Show', training %></td>
-        <td><%= link_to 'Edit', edit_training_path(training) %></td>
-        <td><%= link_to 'Destroy', training, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= training.description %></td>
+        <td><%= link_to 'Editar', edit_training_path(training) %></td>
+        <td><%= link_to 'Eliminar', training, method: :delete, data: { confirm: 'Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Training', new_training_path %>
+
