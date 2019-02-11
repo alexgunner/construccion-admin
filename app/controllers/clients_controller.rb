@@ -40,7 +40,11 @@ class ClientsController < ApplicationController
       else
         @client.nameinvoice = client_data.nameinvoice
       end
-      @client.nit = client_data.nit
+      if client_data.nit.blank?
+        @client.nit = 0
+      else
+        @client.nit = client_data.nit
+      end
       @client.role = client_data.role
       @client.increment(:count,1)
     else

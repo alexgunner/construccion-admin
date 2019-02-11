@@ -16,7 +16,7 @@ class Order < ApplicationRecord
       if search!="Todos"
         Order.joins(:client).where('role LIKE ?', "%#{search}%")
       else
-        Order.all
+        Order.all.order('id DESC')
       end
     end
 end

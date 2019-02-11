@@ -93,13 +93,13 @@ class OrdersController < ApplicationController
       end
     client = Khipu::PaymentsApi.new
     response = client.payments_post('Pago de productos DOMUS S.R.L.', 'BOB', @order.total, {
-        transaction_id: 'FACT2001',
-        expires_date: DateTime.new(2019, 2, 10),
+        transaction_id: 'FACT' + @order.id.to_s,
+        expires_date: DateTime.new(2019, 3, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
         return_url: 'http://todo-construccion.herokuapp.com',
-        cancel_url: 'http://localhost:3000/cancel_payment',
-        notify_url: 'http://localhost:3000/notify_payment',
+        #cancel_url: 'http://localhost:3000/cancel_payment',
+        #notify_url: 'http://localhost:3000/notify_payment',
         notify_api_version: '1.3',
         payer_name: 'Pago para Demo',
         payer_email: @order.client.mail,
@@ -156,11 +156,23 @@ class OrdersController < ApplicationController
       mult = mult + (cart.quantity * price)
       cost_total_transport = cost_transport * cart.product_variant.weight.to_i * cart.quantity
     end
-    if cost_total_transport >= costmin_transport
-      mult = mult + cost_total_transport
+    if order.typedelivery == "Tienda"
+      order.cost = 0
     else
-      mult = mult + costmin_transport
+      if order.delivery.typedelivery !="Local"
+        if cost_total_transport >= costmin_transport
+          order.cost = cost_total_transport
+          mult = mult + cost_total_transport
+        else
+          order.cost = costmin_transport
+          mult = mult + costmin_transport
+        end
+      else
+        order.cost = cost_transport
+        mult = mult + cost_transport
+      end
     end
+
     order.total = mult
     order.save
     puts order.total
@@ -221,6 +233,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image, :picture, :userid, :office)
+      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost)
     end
 end

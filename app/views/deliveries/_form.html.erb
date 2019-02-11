@@ -26,12 +26,12 @@
 
   <div class="form-group">
     <%= form.label "Costo (Por Kg)" %>
-    <%= form.text_field :cost, id: :delivery_cost,  class: "form-control"  %>
+    <%= form.text_field :cost, id: :delivery_cost,  class: "form-control", :required => true, :maxlength => 10 %>
   </div>
 
   <div class="form-group">
     <%= form.label "Costo Mínimo (1 Kg)" %>
-    <%= form.text_field :costmin, id: :delivery_costmin,  class: "form-control"  %>
+    <%= form.text_field :costmin, id: :delivery_costmin,  class: "form-control", :required => true, :maxlength => 10  %>
   </div>
 
 

@@ -19,7 +19,6 @@
         <th>Número de orden</th>
         <th>Fecha de la orden</th>
         <th>Cliente</th>
-        <th>Delivery</th>
         <th>Estado</th>
         <th colspan="2"></th>
       </tr>
@@ -35,7 +34,6 @@
           <td><%= order.id %></td>
           <td><%= order.orderdate.strftime("%d-%m-%Y") %></td>
           <td><%= order.client.name %></td>
-          <td><%= order.delivery.name %></td>
           <td><%= order.state %></td>
           <td><%= link_to 'Ver', '/ordenes/' + order.id.to_s + '/editar'%></td>
           <td><%= link_to 'Eliminar', order, method: :delete %></td>
