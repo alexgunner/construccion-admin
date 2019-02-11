@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :carousels
   resources :trainings
   resources :offices
   resources :sold_products
@@ -76,4 +77,5 @@ patch '/users/:id' => 'users#update'
 get '/usuarios/:id/contacto' => 'users#contact'
 post '/users/do_contact' => 'users#do_contact'
 get '/training' => 'trainings#training'
+get '/carousel_list' => 'carousels#carousel_list'
 end

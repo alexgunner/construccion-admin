@@ -1,0 +1,28 @@
+<%= form_with(model: carousel, local: true,  html: { multipart: true }) do |form| %>
+  <% if carousel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carousel.errors.count, "error") %> prohibited this carousel from being saved:</h2>
+
+      <ul>
+      <% carousel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :pic, id: :carousel_pic_id, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Carrusel principal?" %>
+    <%= form.check_box :pic_type, id: :carousel_pic_type_id, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Aceptar", class: "btn btn-success" %>
+    <%= link_to "Cancelar", "/carousel_list", class: "btn btn-danger" %>
+  </div>
+<% end %>
