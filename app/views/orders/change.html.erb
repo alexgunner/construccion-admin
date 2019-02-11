@@ -36,7 +36,7 @@
             <%end%>
           <% if @order.typedelivery == "Domicilio" %>
             <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
-            <h5><strong>Costo:</strong> <%= @order.delivery.cost %></h5>
+            <h5><strong>Costo de envío:</strong> <%= @order.cost %></h5>
           <%end%>
           <% if @order.typedelivery == "Tienda" %>
             <h5><strong>Tienda:</strong> <%= @order.office %></h5>

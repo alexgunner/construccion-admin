@@ -35,7 +35,7 @@ class Product < ApplicationRecord
     if search
       Product.where('name LIKE ?', "%#{search}%")
     else
-      Product.all
+      Product.all.order('id DESC')
     end
   end
 end

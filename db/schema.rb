@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190211165858) do
+=======
+ActiveRecord::Schema.define(version: 20190211052202) do
+>>>>>>> 75c90a9940872539d5c74ad4953c2ac08779f125
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -99,6 +104,7 @@ ActiveRecord::Schema.define(version: 20190211165858) do
     t.string "address"
     t.integer "phone"
     t.string "shipping"
+    t.float "costmin"
   end
 
   create_table "destinations", force: :cascade do |t|
@@ -180,6 +186,7 @@ ActiveRecord::Schema.define(version: 20190211165858) do
     t.datetime "picture_updated_at"
     t.integer "userid"
     t.string "office"
+    t.float "cost"
   end
 
   create_table "product_variants", force: :cascade do |t|

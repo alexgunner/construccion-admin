@@ -9,6 +9,7 @@
         <th>Teléfono</th>
         <th>Destino</th>
         <th>Costo</th>
+        <th>Costo mínimo</th>
         <th>Tipo de envío</th>
         <th>Tipo de entrega</th>
         <th colspan="2"></th>
@@ -23,6 +24,7 @@
           <td><%= delivery.phone %></td>
           <td><%= delivery.destination.name %> - <%=delivery.destination.city %></td>
           <td><%= delivery.cost %></td>
+          <td><%= delivery.costmin %></td>
           <td><%= delivery.typedelivery %></td>
           <td><%= delivery.shipping %></td>
           <td><%= link_to 'Editar', edit_delivery_path(delivery) %></td>
