@@ -8,7 +8,7 @@ class User < ApplicationRecord
      if search
        User.where('name LIKE ? or lastname LIKE ?', "%#{search}%", "%#{search}%")
      else
-       User.all
+       User.all.order('id ASC')
      end
    end
 
