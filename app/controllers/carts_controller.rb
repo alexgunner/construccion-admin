@@ -56,7 +56,7 @@ class CartsController < ApplicationController
   def reports
     SoldProduct.find_each(&:destroy)
     carts = Cart.all
-    order_id = Cart.find(1).order.id
+    order_id = Cart.first.order.id
     carts.each do |cart|
       total_price = (price_product(cart.id)*cart.quantity)
       if SoldProduct.count == 0

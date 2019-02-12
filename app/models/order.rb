@@ -6,9 +6,9 @@ class Order < ApplicationRecord
     validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
     def self.search(search)
       if search
-        Order.where('state LIKE ? or id LIKE ?', "%#{search}%", "%#{search}%")
+        Order.where('state LIKE ?', "%#{search}%")
       else
-        Order.all
+        Order.all.order('id ASC')
       end
     end
 

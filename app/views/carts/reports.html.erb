@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-lg-5 offset-lg-4">
               <div class="input-group">
-                <h5>Order por: <br/></h5>
+                <h5>Ordenar por: <br/></h5>
                 <select class="form-control" name="ordenar">
                   <option>Todos</option>
                   <option>Código de Variante</option>
@@ -57,7 +57,7 @@
             <div class="col-lg-10 offset-lg-1">
               <div class="input-group">
                 <h5>Buscar/Filtrar: <br/></h5>
-                <input type="text" class="form-control" placeholder="Buscar por Categoría, Subcategoría y Código de Variante" name="search">
+                <input type="text" class="form-control" placeholder="Código de Variante" name="search">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
               </div>
             </div>
@@ -89,7 +89,13 @@
                 <td><%= sold.product_variant.description.truncate(100) %></td>
                 <td><%= sold.product_variant.product.category.name %></td>
                 <td><%= sold.quantity %></td>
-                <td><%= (sold.product_variant.price + sold.product_variant.wholesaleprice + sold.product_variant.specialistprice + sold.product_variant.importerprice)/4 %></td>
+                <td>
+                  <%if sold.product_variant.wholesaleprice.nil?%>
+                    <%= sold.product_variant.price%>
+                  <%else%>
+                  <%= (sold.product_variant.price + sold.product_variant.wholesaleprice + sold.product_variant.specialistprice + sold.product_variant.importerprice)/4 %>
+                  <%end%>
+                </td>
                 <td>Bs. <%= sold.total %></td>
                 <td><%= sold.total_sold %></td>
                 <td><%= sold.product_variant.product.in_offer%></td>
