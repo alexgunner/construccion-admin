@@ -26,6 +26,7 @@
 
     <tbody>
       <% @users.each do |user| %>
+      <%if user.id != 1%>
         <%if user.role == "Bloqueado"%>
         <tr bgcolor="#FFD587">
           <td><%= user.name %></td>
@@ -80,6 +81,7 @@
         </tr>
         <%end%>
       <% end %>
+    <%end%>
     </tbody>
   </table>
 </div>
