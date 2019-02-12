@@ -81,7 +81,6 @@ class OrdersController < ApplicationController
 
   def pay
     @order = Order.find(params[:id])
-    total(id)
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
