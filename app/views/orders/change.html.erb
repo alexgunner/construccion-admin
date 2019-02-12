@@ -34,8 +34,9 @@
                 <%end%>
               </center>
             <%end%>
-          <% if @order.typedelivery == "Domicilio" %>
+          <% if @order.typedelivery == "Domicilio" or @order.typedelivery == "Transportista" %>
             <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
+            <h5><strong>Destino:</strong> <%= @order.delivery.destination.name%> - <%= @order.delivery.destination.city%> </h5>
             <h5><strong>Costo de envío:</strong> <%= @order.cost %></h5>
           <%end%>
           <% if @order.typedelivery == "Tienda" %>
