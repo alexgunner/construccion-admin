@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    puts order_params
     @order = Order.new(order_params)
     if @order.save
       UserMailer.receive_email(@order).deliver_now
@@ -282,6 +281,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :delivery_id, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost)
+      params.require(:order).permit(:orderdate, :client_id, :deliveryid, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost)
     end
 end
