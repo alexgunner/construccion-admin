@@ -92,7 +92,9 @@
                                         <script>
                                           function addToCart()
                                           {
-                                            localStorage.setItem("variant_id", "<%= variant.id %>");
+                                            var variant_ids = [];
+                                            localStorage.setItem("variant_ids", JSON.stringify("<%= variant.id%>"));
+                                            var carts = JSON.parse(localStorage.getItem("variant_ids"));
                                           }
                                         </script>
                                         <%else%>
