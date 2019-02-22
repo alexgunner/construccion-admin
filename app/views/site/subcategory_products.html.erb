@@ -1,0 +1,8 @@
+<center>
+	<h2 class="title"><%= @subcategory.name %></h2>
+</center>
+<p class="justified-text">
+	<%= @subcategory.description %>
+</p>
+
+<%= render 'shared/show_products', products: @subcategory.products, title: "" %>

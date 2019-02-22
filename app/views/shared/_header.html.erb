@@ -1,0 +1,107 @@
+<header id="header"><!--header-->
+	<div class="header_top"><!--header_top-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="contactinfo">
+						<ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i> <%= contact_information.phone %></a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i> <%= contact_information.email %></a></li>
+              <li><a href="<%= contact_information.facebook %>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="social-icons pull-right">
+						<ul class="nav navbar-nav">
+              <li>
+								<% if current_user != nil %>
+									<div class="dropdown">
+										<a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<i class="fa fa-user"></i>{{session.data.authenticated.namecompany}}
+										<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li><a href="/profile/{{session.data.authenticated.id}}"><span class="glyphicon glyphicon-pencil"></span> Perfil</a></li>
+											<li><a href="/history"><span class="glyphicon glyphicon-list-alt"></span> Historial de compras</a></li>
+											<li><a href="/" {{action 'logout' items}}><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+										</ul>
+									</div>
+								<%else%>
+									<a href="/login"><i class="fa fa-user"></i></a>
+								<%end%>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header_top-->
+
+	<div class="header-middle"><!--header-middle-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="logo pull-left">
+						<a href="/"><img src="{{extras.lastObject.logo}}" alt="" class="img-responsive" /></a>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<div class="shop-menu pull-right">
+						<ul class="nav navbar-nav">
+							<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Carrito de compras
+							<span class="badge"></span></a></li>
+						</ul>
+						<ul class="nav navbar-nav">
+							<% if current_user == nil %>
+								<li><a href="/login"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a></li>
+							<%end%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header-middle-->
+
+	<div class="header-bottom"><!--header-bottom-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="mainmenu pull-left">
+						<ul class="nav navbar-nav collapse navbar-collapse">
+							<li><a href="/">Inicio</a></li>
+							<li><a href="/about-us">Nosotros</a></li>
+							<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="/categories">Productos</a></li>
+                                    <li><a href="/products-offer">Ofertas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/services">Servicios</a></li>
+							<li class="dropdown"><a href="#">Contactos y <br/> Sucursales<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+                                    <li><a href="/contact">Contactos</a></li>
+                                    <li><a href="/offices">Tiendas y Sucursales</a></li>
+                                </ul>
+							</li>
+							<li><a href="/training">Capacitación</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="search_box pull-right">
+						<a href="/results"  class="btn btn-default add-to-cart">Buscar <i class="fa fa-search"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header-bottom-->
+</header><!--/header-->

@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   resources :extras
   resources :clients
   resources :contacts
-  devise_for :users,  path: 'api/users', controllers: { sessions: "api/users/sessions", registrations: "api/users/registrations" }
+  devise_for :users
 
 
-  root 'products#list'
+  root 'site#index'
 
   resources :products
   resources :product_variants
@@ -30,6 +30,7 @@ get 'password_resets/new'
 post '/total' => 'orders#calculateTotal'
 get '/pay/:id' => 'orders#pay'
 
+#Admin Routes
 get '/productos' => 'products#list'
 get '/productos/:product_id/variantes' => 'product_variants#list'
 get '/productos/:product_id/product_variants/new' => 'product_variants#new'
@@ -65,6 +66,7 @@ get '/reportes/ordenes/:id' => 'orders#show_order'
 get '/bancos' => 'banks#list'
 get '/usuario/:id' => 'users#showuser'
 get '/sucursales' => 'offices#list'
+
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'
 get '/product-variants/:id' => 'product_variants#show'
@@ -78,4 +80,9 @@ get '/usuarios/:id/contacto' => 'users#contact'
 post '/users/do_contact' => 'users#do_contact'
 get '/training' => 'trainings#training'
 get '/carousel_list' => 'carousels#carousel_list'
+
+#Site Routes
+get '/category_products/:id' => 'site#category_products'
+get '/subcategory_products/:id' => 'site#subcategory_products'
+get '/product_details/:id' => 'site#product_details'
 end

@@ -1,0 +1,15 @@
+<div class="features_items"><!--features_items-->
+	<h2 class="title text-center"><%= title %></h2>
+	<% categories.each do |category| %>
+		<div class="col-sm-3">
+			<a class="category-image-wrapper" href="/category_products/<%= category.id %>">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<%= image_tag category.picture.url(:original), class: "img-responsive" %>
+						<p><%= category.name %></p>
+					</div>
+				</div>
+			</a>
+		</div>
+	<% end %>
+</div><!--features_items-->

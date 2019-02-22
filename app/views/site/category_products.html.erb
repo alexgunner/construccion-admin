@@ -1,0 +1,14 @@
+<center>
+	<h2 class="title"><%= @category.name %></h2>
+</center>
+<p class="justified-text">
+	<%= @category.description %>
+</p>
+<% @category.subcategories.each do |subcategory| %>
+	<h4 class="title"><%= subcategory.name %></h4>
+	<p class="justified-text">
+		<%= subcategory.description %>
+	</p>
+
+	<%= render 'shared/show_products', products: subcategory.products, title: "" %>
+<% end %>

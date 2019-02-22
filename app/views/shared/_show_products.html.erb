@@ -1,0 +1,16 @@
+<div class="features_items">
+  <h2 class="title text-center"><%= title %></h2>
+    <% products.each do |product| %>
+      <div class="col-sm-3">
+        <a class="product-image-wrapper" href="/product_details/<%= product.id%>" >
+          <div class="single-products">
+            <div class="productinfo text-center">
+              <%= image_tag product.picture.url(:original), class: "img-responsive" %>
+              <h2><%= product.code%></h2>
+              <p class="justified-text"><%= product.description.truncate(40) %></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <%end%>
+</div>

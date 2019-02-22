@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Panel de administracion</title>
+    <title>DOMUS S.R.L.</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,17 +11,28 @@
     <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
   </head>
-
   <body>
-    <%= render 'shared/menu' %>
+    <%= render 'shared/header', contact_information: Contact.first, extras: Extra.first %>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+    <section>
+      <div class="container">
+        <div class="row">
+          <%= render 'shared/left_menu', categories: Category.all, manufacturers: Manufacturer.all, extras: Extra.first %>
+
+          <div class="col-sm-9 padding-right">
+  	        <%= yield %>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <%= render 'shared/footer', contact_information: Contact.first %>
   </body>
 </html>
