@@ -1,6 +1,7 @@
 class ProductVariantsController < ApplicationController
   before_action :set_product_variant, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  layout "dashboard"
   # GET /product_variants
   def index
     @product_variants = ProductVariant.all

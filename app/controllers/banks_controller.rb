@@ -1,6 +1,7 @@
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  layout "dashboard"
   # GET /banks
   def index
     @banks = Bank.all

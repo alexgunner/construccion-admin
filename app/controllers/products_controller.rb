@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  #skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
+  layout "dashboard"
   # GET /products
   # GET /products.json
   def index

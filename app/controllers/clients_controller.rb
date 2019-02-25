@@ -1,8 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
-  deserializable_resource :client, only: [:create]
-
+  layout "dashboard"
   # GET /clients
   def index
     @clients = Client.all

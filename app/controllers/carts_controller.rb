@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
-  deserializable_resource :cart, only: [:create, :update]
+  layout "dashboard"
 
   # GET /carts
   def index

@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
-  deserializable_resource :order, only: [:create, :update]
+  before_action :authenticate_user!
+  layout "dashboard"
 
   # GET /orders
   def index
