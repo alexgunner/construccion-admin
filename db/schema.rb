@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219035030) do
+ActiveRecord::Schema.define(version: 20190227040952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,13 +315,19 @@ ActiveRecord::Schema.define(version: 20190219035030) do
     t.string "nit"
     t.string "role"
     t.boolean "state"
-    t.string "image"
     t.integer "cellphone"
     t.integer "cellwsp"
     t.string "namecompany"
-    t.string "imageci"
     t.string "nameinvoice"
     t.string "city"
+    t.string "imageci_file_name"
+    t.string "imageci_content_type"
+    t.integer "imageci_file_size"
+    t.datetime "imageci_updated_at"
+    t.string "imagenit_file_name"
+    t.string "imagenit_content_type"
+    t.integer "imagenit_file_size"
+    t.datetime "imagenit_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
