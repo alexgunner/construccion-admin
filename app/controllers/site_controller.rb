@@ -10,6 +10,7 @@ class SiteController < ApplicationController
 	end
 
 	def about_us
+		@categories = Category.all
 		@contact_information = Contact.first
 	end
 
