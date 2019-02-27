@@ -1,22 +1,19 @@
-<section>
-    <div class="container">
-        <div class="row">
-		
-        <h3>Acerca de nosotros</h3>
-        <p class="justified-text text-big">
-        <%= @contact_information.about %>
-        </p>
+<div class="row">
+    
+    <h4>Acerca de nosotros</h4>
+    <p class="justified-text text-big">
+    <%= @contact_information.about %>
+    </p>
 
-        <h3>Misión</h3>
-        <p class="justified-text text-big">
-            <%= @contact_information.mission %>
-        </p>
+    <h4>Misión</h4>
+    <p class="justified-text text-big">
+        <%= @contact_information.mission %>
+    </p>
 
-        <h3>Visión</h3>
-        <p class="justified-text text-big">
-            <%= @contact_information.vision %>
-        </p>
-        <img src="<%= @contact_information.picture %>" class="img-fluid">
-        </div>
-    </div>
-</section>
+    <h4>Visión</h4>
+    <p class="justified-text text-big">
+        <%= @contact_information.vision %>
+    </p>
+    <img src="<%= @contact_information.picture %>" class="img-responsive">
+
+</div>
