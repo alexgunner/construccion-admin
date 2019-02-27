@@ -3,6 +3,7 @@ class SiteController < ApplicationController
 
 	def index
 		@products_in_offer = Product.where(offer: true)
+		@main_carousels = Carousel.all.where(pic_type: true)
 	end
 
 	def contact
@@ -15,7 +16,7 @@ class SiteController < ApplicationController
 	end
 
 	def product_categories
-
+		@categories = Category.all
 	end
 
 	def product_offers
@@ -26,7 +27,7 @@ class SiteController < ApplicationController
 		@category = Category.find(params[:id])
 	end
 
-  def product_details
+  	def product_details
 		@product = Product.find(params[:id])
 	end
 
@@ -40,6 +41,14 @@ class SiteController < ApplicationController
 
 	def services
 		@services = Extra.first.services
+	end
+
+	def offices_list
+		@offices = Office.all
+	end
+
+	def training_list
+		@trainings = Training.all
 	end
 
 	def search
