@@ -90,6 +90,7 @@ div.field, div.actions {
 /* line 82, /home/dharita/Proyects/construccion-admin/app/assets/stylesheets/scaffolds.scss */
 label {
   display: block;
+  font-size: 15px;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -106,5 +107,3 @@ label {
 
 
  */
-
-

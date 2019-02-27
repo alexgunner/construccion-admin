@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
   deserializable_resource :user, only: [:create, :update]
-
+  before_action :authenticate_user!
+  layout "dashboard"
   def index
     @users = User.all
     render json: @users
@@ -99,6 +100,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :namecompany, :phone, :address, :ci, :nit, :email, :password, :password_confirmation,
-      :image, :cellphone, :cellwsp, :nameinvoice, :imageci, :city)
+      :imagenit, :cellphone, :cellwsp, :nameinvoice, :imageci, :city)
     end
 end
