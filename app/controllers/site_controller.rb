@@ -16,10 +16,7 @@ class SiteController < ApplicationController
 	end
 
 	def product_categories
-<<<<<<< HEAD
-=======
 		@categories = Category.all
->>>>>>> bc3e28ceb960561cb8ec6d3064e5755e46bbf4cd
 	end
 
 	def product_offers
