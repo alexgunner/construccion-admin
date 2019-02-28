@@ -1,0 +1,57 @@
+<style type="text/css" media="all">
+   h4,p {display: inline;}
+</style>
+<div class="col-sm-12 padding-right">
+   <h2 class="title text-center">Productos en el carrito</h2>
+     <div class="border-panel">
+       <%@carts.each do |cart|%>
+         <div {{action 'changeBorder'}}>
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                     <h2 class="title text-center"><%=cart.product_variant.code%></h2>
+                 </div>
+                 <div class="panel-body">
+                     <div class="col-sm-4">
+                         <%= image_tag cart.product_variant.product.picture.url(:original), heigh: 150, width: 150%>
+                     </div>
+                     <h4>Descripción:</h4>
+                     <p><%=cart.product_variant.description%></p><br/><br/>
+                     <h4>Precio:</h4>
+                     <%if cart.product_variant.offerprice.nil?%>
+                       <%if current_user.role == 'Mayorista '%>
+                           <p>Bs. <%=cart.product_variant.wholesaleprice%></p><br/><br/>
+                       <%end%>
+                       <%if current_user.role == 'Especialista '%>
+                           <p>Bs. <%=cart.product_variant.specialistprice%></p><br/><br/>
+                       <%end%>
+                       <%if current_user.role == 'Cliente Minorista '%>
+                           <p>Bs. <%=cart.product_variant.price%></p><br/><br/>
+                       <%end%>
+                       <%if current_user.role == 'Cliente DOMUS '%>
+                           <p>Bs. <%=cart.product_variant.importerprice%></p><br/><br/>
+                       <%end%>
+                     <%else%>
+                        <p>Bs. <%=cart.product_variant.offerprice%></p><br/><br/>
+                     <%end%>
+                     <%= form_for :do_quantity, url: "/cart/do_quantity" do |f|%>
+                     <%= f.hidden_field :id, :value => cart.id %>
+                      <h4>Cantidad:</h4>
+                      <div class="row">
+                      <div class="col-sm-2">
+                        <%= f.number_field :quantity, autofocus: true, class: "form-control", :maxlength => 10, value: cart.quantity, min: 1 %>
+                      </div>
+                      <%= f.submit "Actualizar Cantidad", class: "btn btn-default" %>
+                      <%= link_to '<i class="fas fa-trash-alt"></i> Quitar del carrito'.html_safe, cart, method: :delete, class: "btn btn-danger" %>
+                    </div>
+                     <%end%>
+                 </div>
+             </div>
+         </div>
+        <%end%>
+     </div>
+     <%= link_to '<i class="fas fa-trash-alt"></i> Eliminar todo'.html_safe, '/', class: "btn btn-danger" %>
+     <center>
+      <a href ="javascript:history.back(-1);" type="button" class="btn btn-default">Seguir Comprando</a>
+      <a href="/register" type="button" class="btn btn-info">Continuar con la Compra</a>
+    </center>
+</div>

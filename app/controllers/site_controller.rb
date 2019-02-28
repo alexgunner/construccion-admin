@@ -14,7 +14,6 @@ class SiteController < ApplicationController
 	end
 
 	def product_categories
-
 	end
 
 	def product_offers

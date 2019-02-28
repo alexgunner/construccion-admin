@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  layout "dashboard"
-
   # GET /carts
   def index
     @carts = Cart.all
@@ -25,10 +23,14 @@ class CartsController < ApplicationController
   # POST /carts
   def create
     @cart = Cart.new(cart_params)
-    if @cart.save
-      render json: @cart, status: :created
-    else
-      render json: @cart.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @cart.save
+        format.html { redirect_to '/cart/'+ @cart.user_id.to_s, notice: 'Producto creado correctamente' }
+        format.json { render :show, status: :created, location: @cart }
+      else
+        format.html { render :new }
+        format.json { render json: @cart.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -44,7 +46,7 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   def destroy
     @cart.destroy
-    redirect_to carts_url, notice: 'Cart was successfully destroyed.'
+    redirect_to '/cart/'+ @cart.user_id.to_s, notice: 'Cart was successfully destroyed.'
   end
 
   def count
@@ -123,6 +125,18 @@ class CartsController < ApplicationController
     @total_especialitas = @product_variant.carts.where("role = ?", "Especialista ").sum("quantity")
     @total_mayoristas = @product_variant.carts.where("role = ?", "Mayorista ").sum("quantity")
   end
+
+  def carrito
+    @carts = Cart.where('user_id = ? and state = false', params[:id])
+  end
+
+  def do_quantity
+    cart = Cart.find(params[:do_quantity][:id])
+    cart.quantity = params[:do_quantity][:quantity]
+    cart.save
+    redirect_to "/cart/"+cart.user_id.to_s
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
@@ -131,6 +145,6 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-       params.require(:cart).permit(:quantity, :order_id, :product_variant_id, :role)
+       params.require(:cart).permit(:quantity, :order_id, :product_variant_id, :role, :user_id, :state)
     end
 end
