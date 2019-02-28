@@ -3,6 +3,7 @@ class SiteController < ApplicationController
 
 	def index
 		@products_in_offer = Product.where(offer: true)
+		@main_carousels = Carousel.all.where(pic_type: true)
 	end
 
 	def contact
@@ -10,10 +11,15 @@ class SiteController < ApplicationController
 	end
 
 	def about_us
+		@categories = Category.all
 		@contact_information = Contact.first
 	end
 
 	def product_categories
+<<<<<<< HEAD
+=======
+		@categories = Category.all
+>>>>>>> bc3e28ceb960561cb8ec6d3064e5755e46bbf4cd
 	end
 
 	def product_offers
@@ -24,7 +30,7 @@ class SiteController < ApplicationController
 		@category = Category.find(params[:id])
 	end
 
-  def product_details
+  	def product_details
 		@product = Product.find(params[:id])
 	end
 
@@ -38,6 +44,14 @@ class SiteController < ApplicationController
 
 	def services
 		@services = Extra.first.services
+	end
+
+	def offices_list
+		@offices = Office.all
+	end
+
+	def training_list
+		@trainings = Training.all
 	end
 
 	def search
