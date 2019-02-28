@@ -43,14 +43,14 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="logo pull-left">
-						<a href="/"><img src="{{extras.lastObject.logo}}" alt="" class="img-responsive" /></a>
+						<a href="/"><img src="<%= extras.logo.url(:original) %>" alt="" class="img-responsive" /></a>
 					</div>
 				</div>
 				<div class="col-sm-8">
 					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
-							<li><a href="/cart"><i class="fa fa-shopping-cart"></i> Carrito de compras
-							<span class="badge"></span></a></li>
+							<li><a href="/cart/<%=current_user.id%>"><i class="fa fa-shopping-cart"></i> Carrito de compras
+							<span class="badge"><%=Cart.where('user_id = ? and state = false', current_user.id).count%></span></a></li>
 						</ul>
 						<ul class="nav navbar-nav">
 							<% if current_user == nil %>

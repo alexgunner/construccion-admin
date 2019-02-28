@@ -17,6 +17,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @client = Client.find(params[:id])
+    render :layout => "application"
   end
 
   # GET /orders/1/edit
@@ -27,9 +29,21 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    if @order.save
-      UserMailer.receive_email(@order).deliver_now
-      render json: @order
+    respond_to do |format|
+      if @order.save
+        carts = Cart.where('user_id = ? and state = false', @order.userid)
+        carts.each do |cart|
+          cart.order_id = @order.id
+          cart.state = true
+          cart.save
+        end
+        format.html { redirect_to '/confirm/'+@order.id.to_s, notice: 'Orden creado correctamente' }
+        UserMailer.receive_email(@order).deliver_now
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -273,6 +287,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def confirm
+    @order = Order.find(params[:id])
+    @banks = Bank.all
+    render :layout => "application"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -281,6 +301,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :deliveryid, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost)
+      params.require(:order).permit(:orderdate, :client_id, :deliveryid, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost, :destination_id)
     end
 end

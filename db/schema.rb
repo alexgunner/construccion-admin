@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190227192149) do
+ActiveRecord::Schema.define(version: 20190228044355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 20190227192149) do
     t.integer "cellwsp"
     t.string "nit"
     t.string "role"
+    t.integer "destination_id"
   end
 
   create_table "contacts", force: :cascade do |t|

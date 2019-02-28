@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+    default_value_for :orderdate, DateTime.now
+    default_value_for :state, "Nuevo"
     has_many :carts, dependent: :delete_all
     belongs_to :client
     has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"

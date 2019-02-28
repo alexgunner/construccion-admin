@@ -1,52 +1,49 @@
 <%= form_with(model: client, local: true) do |form| %>
-  <% if client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-      <ul>
-      <% client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label>Nombre Completo Cliente/Representate Legal:</label>
+        <%= form.text_field :name, id: :client_name, value: current_user.name, class: "form-control", :required => true, :maxlength => 100 %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :client_name %>
+    <div class="form-group">
+        <label>CI Cliente/Representate Legal:</label>
+        <%= form.number_field :ci, id: :client_ci, value: current_user.ci, class: "form-control", :required => true, :maxlength => 20 %>
+    </div>
+    <div class="form-group">
+        <label>Teléfono:</label>
+        <%= form.number_field :phone, id: :client_phone, value: current_user.phone, class: "form-control", :required => true, :maxlength => 20 %>
+    </div>
+    <div class="form-group">
+        <label>Celular:</label>
+        <%= form.number_field :cellphone, id: :client_cellphone, value: current_user.cellphone, class: "form-control", :required => true, :maxlength => 20 %>
+    </div>
+    <div class="form-group">
+        <label>Celular de WhatsApp:</label>
+        <%= form.number_field :cellwsp, id: :client_cellwsp, value: current_user.cellwsp, class: "form-control", :required => true, :maxlength => 20 %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :lastName %>
-    <%= form.text_field :lastName, id: :client_lastname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_area :address, id: :client_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.number_field :phone, id: :client_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mail %>
-    <%= form.text_field :mail, id: :client_mail %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nit %>
-    <%= form.number_field :nit, id: :client_nit %>
-  </div>
-
-  <div class="field">
-    <%= form.label :count %>
-    <%= form.number_field :count, id: :client_count %>
+  <div class="col-sm-6 ">
+    <div class="form-group">
+        <label>Nombre para la Factura: (Si se requiere)</label>
+        <%= form.text_field :cellphone, id: :client_cellphone, value: current_user.nameinvoice, class: "form-control", :maxlength => 100 %>
+    </div>
+    <div class="form-group">
+        <label>NIT Factura Cliente/Representate Legal: (Si se requiere)</label>
+        <%= form.number_field :cellphone, id: :client_cellphone, value: current_user.nit, class: "form-control", :maxlength => 30 %>
+    </div>
+    <div class="form-group">
+        <label>Destino:</label>
+        <%= form.collection_select :destination_id, Destination.all, :id, :name_with_city, id: :client_destination_id %>
+    </div>
+    <div class="form-group">
+        <label>Dirección:</label>
+        <%= form.text_area :address, id: :client_address, :rows => 5, :cols => 100, value: current_user.address, class: "form-control", :required => true, :maxlength => 256 %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-info"%>
+      <a href="/cart/<%=current_user.id%>" class="btn btn-default">Cancelar</a>
+    </center>
   </div>
 <% end %>

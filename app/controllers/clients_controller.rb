@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
+    render :layout => "application"
   end
 
   # GET /clients/1/edit
@@ -48,8 +49,15 @@ class ClientsController < ApplicationController
     else
       @client.count = 1
     end
-    @client.save
-    render json: @client
+    respond_to do |format|
+      if @client.save
+        format.html { redirect_to '/orders/new/' + @client.id.to_s, notice: 'Producto creado correctamente' }
+        format.json { render :show, status: :created, location: @client }
+      else
+        format.html { render :new }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /clients/1
@@ -89,6 +97,6 @@ class ClientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def client_params
-      params.require(:client).permit(:name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp, :role)
+      params.require(:client).permit(:name, :address, :phone, :mail, :ci, :count, :nit, :nameinvoice, :cellphone, :cellwsp, :role, :destination_id)
     end
 end
