@@ -35,7 +35,7 @@
                       <h4 style="display:inline;">Descripción:</h4> <%=@product.description%><br/><br/>
                       <% if @product.details.url!="/details/original/missing.png"%>
                           <p class="justified-text">
-                            <%= link_to "Descargar ficha técnica", product.details.url, target: "_blank", class: "btn btn-primary" %>
+                            <%= link_to "Descargar ficha técnica", @product.details.url, target: "_blank", class: "btn btn-primary" %>
                           </p>
                       <%end%>
                   </div>
