@@ -95,7 +95,11 @@
             						</td>
             						<td align="left">
             							<% if variant.available%>
-													<%= link_to '<i class="fa fa-shopping-cart"></i> Añadir al carrito'.html_safe, carts_path(cart: {order_id: nil, quantity: 1, state: false, product_variant_id: variant.id, role: current_user.role, user_id: current_user.id}), method: :post, class: "btn btn-default add-to-cart" %>
+                            <%if current_user != nil%>
+													    <%= link_to '<i class="fa fa-shopping-cart"></i> Añadir al carrito'.html_safe, carts_path(cart: {order_id: nil, quantity: 1, state: false, product_variant_id: variant.id, role: current_user.role, user_id: current_user.id}), method: :post, class: "btn btn-default add-to-cart" %>
+                            <%else%>
+                              <button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+                            <%end%>
                           <%else%>
             								<p>No disponible en stock</p>
             							<%end%>

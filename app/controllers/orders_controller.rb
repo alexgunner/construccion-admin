@@ -94,6 +94,7 @@ class OrdersController < ApplicationController
 
   def pay
     @order = Order.find(params[:id])
+    calculateTotal(@order.id)
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
@@ -142,63 +143,14 @@ class OrdersController < ApplicationController
     @orders = Order.search(params[:search])
   end
 
-  def calculateTotal
-    order = Order.find(params[:id])
-    cost_transport = order.delivery.cost.to_i
-    costmin_transport = order.delivery.costmin.to_i
-    cost_total_transport = 0
-    mult = 0
-    if (order.typedelivery == "Domicilio" or order.typedelivery == "Transportista")
-      cost_transport = order.delivery.cost.to_i
-    end
-    order.carts.each do |cart|
-      price = cart.product_variant.price
-      if cart.product_variant.offerprice.nil?
-        if cart.role == "Mayorista "
-          price = cart.product_variant.wholesaleprice
-        end
-        if cart.role == "Especialista "
-          price = cart.product_variant.specialistprice
-        end
-        if cart.role == "Cliente DOMUS "
-          price = cart.product_variant.importerprice
-        end
-      else
-        price = cart.product_variant.offerprice
-      end
-      mult = mult + (cart.quantity * price)
-      cost_total_transport = cost_transport * cart.product_variant.weight.to_i * cart.quantity
-    end
-    if order.typedelivery == "Tienda"
-      order.cost = 0
-    else
-      if order.delivery.typedelivery !="Local"
-        if cost_total_transport >= costmin_transport
-          order.cost = cost_total_transport
-          mult = mult + cost_total_transport
-        else
-          order.cost = costmin_transport
-          mult = mult + costmin_transport
-        end
-      else
-        order.cost = cost_transport
-        mult = mult + cost_transport
-      end
-    end
-
-    order.total = mult
-    order.save
-    puts order.total
-  end
-
-  def total(id)
+  def calculateTotal(id)
     order = Order.find(id)
-    cost_transport = order.delivery.cost.to_i
-    costmin_transport = order.delivery.costmin.to_i
+    cost_transport = Delivery.find(order.deliveryid).cost.to_i
+    costmin_transport = Delivery.find(order.deliveryid).costmin.to_i
     cost_total_transport = 0
     mult = 0
     if (order.typedelivery == "Domicilio" or order.typedelivery == "Transportista")
-      cost_transport = order.delivery.cost.to_i
+      cost_transport = Delivery.find(order.deliveryid).cost.to_i
     end
     order.carts.each do |cart|
       price = cart.product_variant.price
@@ -221,7 +173,7 @@ class OrdersController < ApplicationController
     if order.typedelivery == "Tienda"
       order.cost = 0
     else
-      if order.delivery.typedelivery !="Local"
+      if Delivery.find(order.deliveryid).typedelivery !="Local"
         if cost_total_transport >= costmin_transport
           order.cost = cost_total_transport
           mult = mult + cost_total_transport

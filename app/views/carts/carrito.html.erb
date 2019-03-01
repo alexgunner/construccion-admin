@@ -3,6 +3,9 @@
 </style>
 <div class="col-sm-12 padding-right">
    <h2 class="title text-center">Productos en el carrito</h2>
+    <%if @carts.count == 0%>
+      <center><h2>No tienes productos en el carrito</h2></center>
+    <%else%>
      <div class="border-panel">
        <%@carts.each do |cart|%>
          <div {{action 'changeBorder'}}>
@@ -54,4 +57,5 @@
       <a href ="javascript:history.back(-1);" type="button" class="btn btn-default">Seguir Comprando</a>
       <a href="/clients/new" type="button" class="btn btn-info">Continuar con la Compra</a>
     </center>
+    <%end%>
 </div>
