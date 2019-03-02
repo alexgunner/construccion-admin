@@ -3,8 +3,8 @@
 <%= form.hidden_field :userid, :value => current_user.id %>
 <div class="col-sm-6">
     <div class="form-group">
+      <label>Entrega:</label>
       <%if @client.destination.cash?%>
-        <label>Entrega:</label>
         <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista'], ['Recoger en tienda']], {}, {:class => "form-control"} ) %>
       <%else%>
         <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista']], {}, {:class => "form-control"} ) %>
@@ -14,22 +14,23 @@
         <label>Delivery:</label>
         <%= form.collection_select :deliveryid, Delivery.where('destination_id = ?', @client.destination.id), :id, :name_with_cost, id: :order_deliveryid %>
     </div>
-    <div class="form-group">
-        <label>Tiendas y Sucursales:</label>
-        <%= form.collection_select :office, Office.all, :id, :name, id: :order_office %>
-    </div>
 </div>
 <div class="col-sm-6">
   <div class="form-group">
+    <label>Forma de pago:</label><br/>
       <%if @client.destination.cash?%>
-        <label>Forma de pago:</label><br/>
         <%= form.select(:typepay, [['Tarjeta'], ['Depósito Bancario'], ['Al momento de la entrega']], {}, {:class => "form-control"} ) %>
       <%else%>
         <%= form.select(:typepay, [['Tarjeta'], ['Depósito Bancario']], {}, {:class => "form-control"} ) %>
       <%end%>
   </div>
+  <div class="form-group">
+    <label>Tiendas y Sucursales:</label>
+    <%= form.collection_select :office, Office.all, :id, :name, id: :order_office %>
+  </div>
 </div>
-
+<br/>
+<br/>
 <div class="actions">
   <center>
     <%= form.submit "Aceptar", class: "btn btn-info"%>

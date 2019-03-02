@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
           cart.state = true
           cart.save
         end
+        calculateTotal(@order.id)
         format.html { redirect_to '/confirm/'+@order.id.to_s, notice: 'Orden creado correctamente' }
         UserMailer.receive_email(@order).deliver_now
         format.json { render :show, status: :created, location: @order }
@@ -94,7 +95,6 @@ class OrdersController < ApplicationController
 
   def pay
     @order = Order.find(params[:id])
-    calculateTotal(@order.id)
     receiver_id = 181015
     secret_key = "d45a7bf32e03c687a0ede52bc9b2aa56ee61c23a"
 
@@ -111,7 +111,7 @@ class OrdersController < ApplicationController
         expires_date: DateTime.new(2019, 3, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
-        return_url: 'http://todo-construccion.herokuapp.com',
+        return_url: 'http://api.domusbolivia.com',
         #cancel_url: 'http://localhost:3000/cancel_payment',
         #notify_url: 'http://localhost:3000/notify_payment',
         notify_api_version: '1.3',

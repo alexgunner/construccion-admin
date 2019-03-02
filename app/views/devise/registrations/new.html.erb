@@ -64,9 +64,6 @@
       </div>
       <div class="form-group">
           <label>Contraseña:</label>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
           <%= f.password_field :password, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
           <p>Debe ser de 8-16 caracteres y contener al menos una mayúscula, una minúscula y un número.</p>
       </div>
