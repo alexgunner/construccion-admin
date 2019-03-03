@@ -22,9 +22,9 @@
 										<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											<li><a href="#"><i class="fas fa-edit"></i> Editar perfil</a></li>
-											<li><a href="/history"><i class="fas fa-history"></i> Historial de compras</a></li>
-											<li><%= link_to '<i class="fas fa-sign-out-alt"></i> Cerrar Sesion'.html_safe, destroy_user_session_path, method: :delete %></li>
+											<li><a href="#"><i class="fas fa-edit"></i> Editar Datos Personales</a></li>
+											<li><a href="/history"><i class="fas fa-history"></i> Mi Historial de Compras</a></li>
+											<li><%= link_to '<i class="fas fa-sign-out-alt"></i> Cerrar está Sesión (Salir)'.html_safe, destroy_user_session_path, method: :delete %></li>
 										</ul>
 									</div>
 								<%else%>
