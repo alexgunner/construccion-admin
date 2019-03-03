@@ -97,4 +97,5 @@ get '/cart/:id' => 'carts#carrito'
 post '/cart/do_quantity' => 'carts#do_quantity'
 get '/orders/new/:id' => 'orders#new'
 get '/confirm/:id' => 'orders#confirm'
+post '/cart/do_file' => 'orders#do_file'
 end

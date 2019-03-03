@@ -5,6 +5,8 @@ class Order < ApplicationRecord
     belongs_to :client
     has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+    has_attached_file :deposit, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+    validates_attachment_content_type :deposit, content_type: /\Aimage\/.*\z/
     def self.search(search)
       if search
         Order.where('state LIKE ?', "%#{search}%")

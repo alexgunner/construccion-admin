@@ -245,6 +245,10 @@ class OrdersController < ApplicationController
     render :layout => "application"
   end
 
+  def do_file
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -253,6 +257,6 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:orderdate, :client_id, :deliveryid, :state, :typepay, :typedelivery, :image, :picture, :userid, :office, :cost, :destination_id)
+      params.require(:order).permit(:orderdate, :client_id, :deliveryid, :state, :typepay, :typedelivery, :deposit, :picture, :userid, :office, :cost, :destination_id)
     end
 end

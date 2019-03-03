@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190228044355) do
+ActiveRecord::Schema.define(version: 20190303012108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,7 +174,6 @@ ActiveRecord::Schema.define(version: 20190228044355) do
     t.string "state"
     t.string "typepay"
     t.string "typedelivery"
-    t.string "image"
     t.text "comment"
     t.float "total"
     t.string "picture_file_name"
@@ -185,6 +184,10 @@ ActiveRecord::Schema.define(version: 20190228044355) do
     t.string "office"
     t.float "cost"
     t.integer "deliveryid"
+    t.string "deposit_file_name"
+    t.string "deposit_content_type"
+    t.integer "deposit_file_size"
+    t.datetime "deposit_updated_at"
   end
 
   create_table "product_variants", force: :cascade do |t|
