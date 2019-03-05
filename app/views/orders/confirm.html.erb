@@ -62,18 +62,18 @@
         <h4>Costos de envío: Bs. <%=@order.cost%></h4><br/><br/>
         <h4>Recuerda que los gastos de envio serán considerados en el cobro.</h4><br/><br/>
       <%end%>
-
+      <h2 align="right">Total: Bs. <%=@order.total%></h2>
       <% if @order.typedelivery == "Recoger en tienda" %>
         <h4>Puedes pasar por tu pedido dentro de 24 horas, a partir de este momento.
             Por favor revisa nuestra dirección y teléfonos, en la sección de <a  href="/contact">Contactos</a>.
             No olvides revisar tu número de pedido, en el historial de compras, para hacer más facil la búsqueda de la entrega, o puedes exportar en PDF los detalles de tú pedido
-            dando click  aquí.
+            dando click  <a onclick="savePDF()">aquí.</a>
         </h4>
       <%end%>
 
       <%if @order.typepay == "Al momento de la entrega"%>
-          <h4>¡Muchas gracias por la confianza! Puedes ponerte en contacto con nosotros o revisar tu historial de compras para ver el estado de tu pedido.</h4>
-           <a href="/" class="btn btn-info">Entendido</a>
+          <h4>No olvides revisar tu historial de compras para ver el estado de tu pedido.</h4><br/><br/>
+           <center><a href="/" class="btn btn-info">Entendido</a></center>
       <%end%>
 
       <%if @order.typepay == "Depósito Bancario" %>
@@ -131,3 +131,80 @@
         </center>
       <%end%>
 </div>
+
+<div class="col-sm-10 padding-right" id="content" style="display:none;">
+   <h2 class="title text-center">Proforma de Compras DOMUS</h2>
+    Número de orden:<h4> <%=@order.id%></h4>
+     <div class="border-panel">
+       <% @order.carts.each do |cart|%>
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 <h2 class="title text-center"><%=cart.product_variant.code%></h2>
+             </div>
+             <div class="panel-body">
+                 <div class="col-sm-4">
+                     <%= image_tag cart.product_variant.product.picture.url(:original), heigh: 170, width: 170%>
+                 </div>
+                 <h4>Nombre Producto:</h4>
+                 <p><%=cart.product_variant.product.name%></p><br/><br/>
+                 <h4>Descripción:</h4>
+                 <p><%=cart.product_variant.description%></p><br/><br/>
+                 <h4>Precio Unitario:</h4>
+                 <%if cart.product_variant.offerprice.nil?%>
+                   <%if current_user.role == 'Mayorista '%>
+                       <p>Bs. <%=cart.product_variant.wholesaleprice%></p><br/><br/>
+                   <%end%>
+                   <%if current_user.role == 'Especialista '%>
+                       <p>Bs. <%=cart.product_variant.specialistprice%></p><br/><br/>
+                   <%end%>
+                   <%if current_user.role == 'Cliente Minorista '%>
+                       <p>Bs. <%=cart.product_variant.price%></p><br/><br/>
+                   <%end%>
+                   <%if current_user.role == 'Cliente DOMUS '%>
+                       <p>Bs. <%=cart.product_variant.importerprice%></p><br/><br/>
+                   <%end%>
+                 <%else%>
+                    <p>Bs. <%=cart.product_variant.offerprice%></p><br/><br/>
+                 <%end%>
+                  <h4>Cantidad:</h4>
+                  <p><%=cart.quantity%></p><br/><br/>
+                  <h4>Subtotal:</h4>
+                  <%if cart.product_variant.offerprice.nil?%>
+                    <%if current_user.role == 'Mayorista '%>
+                        <p>Bs. <%=cart.quantity*cart.product_variant.wholesaleprice%></p><br/><br/>
+                    <%end%>
+                    <%if current_user.role == 'Especialista '%>
+                        <p>Bs. <%=cart.quantity*cart.product_variant.specialistprice%></p><br/><br/>
+                    <%end%>
+                    <%if current_user.role == 'Cliente Minorista '%>
+                        <p>Bs. <%=cart.quantity*cart.product_variant.price%></p><br/><br/>
+                    <%end%>
+                    <%if current_user.role == 'Cliente DOMUS '%>
+                        <p>Bs. <%=cart.quantity*cart.product_variant.importerprice%></p><br/><br/>
+                    <%end%>
+                  <%else%>
+                     <p>Bs. <%=cart.quantity*cart.product_variant.offerprice%></p><br/><br/>
+                  <%end%>
+                </div>
+             </div>
+        <%end%>
+        <h2 align="right">Total: Bs. <%=@order.total%></h2>
+</div>
+<script>
+    var testDivElement = document.getElementById('content');
+    function savePDF() {
+        $('#content').show();
+        var imgData;
+        html2canvas($("#content"), {
+            useCORS: true,
+            onrendered: function (canvas) {
+                imgData = canvas.toDataURL(
+                    'image/png');
+                var doc = new jsPDF('p', 'pt', 'a4');
+                doc.addImage(imgData, 'PNG', 10, 10);
+                doc.save('order-file-<%=@order.id%>.pdf');
+                $('#content').hide();
+            }
+        });
+    }
+</script>

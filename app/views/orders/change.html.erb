@@ -40,7 +40,7 @@
             <h5><strong>Costo de envío:</strong> <%= @order.cost %></h5>
           <%end%>
           <% if @order.typedelivery == "Recoger en tienda" %>
-            <h5><strong>Tienda:</strong> <%= @order.office %></h5>
+            <h5><strong>Tienda:</strong> <%= Office.find(@order.office).name_with_city %></h5>
           <%end%>
       </div>
       <h4 style="color:#172769;"><strong>Productos<strong></h4>

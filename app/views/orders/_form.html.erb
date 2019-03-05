@@ -29,9 +29,9 @@
       <%end%>
   </div>
   <%if @client.destination.cash?%>
-    <div class="form-group">
+    <div class="form-group" id="tien" style="display:none;">
       <label>Tiendas y Sucursales:</label>
-        <%= form.collection_select :office, Office.all, :id, :name, id: :order_office %>
+        <%= form.collection_select(:office, Office.all.order('name ASC'), :id, :name_with_city,{}, {class: "form-control"}) %>
     </div>
   <%else%>
     <br/>
@@ -58,12 +58,21 @@
     if(typedelivery == "A domicilio"){
       console.log("domi");
       $('#trans').hide();
+      $('#tien').hide();
       $('#dom').show();
     }
     else{
-      console.log("trans");
-      $('#trans').show();
-      $('#dom').hide();
+      if(typedelivery == "Recoger en transportista"){
+        console.log("trans");
+        $('#trans').show();
+        $('#dom').hide();
+        $('#tien').hide();
+      }else{
+        console.log("tien");
+        $('#trans').hide();
+        $('#dom').hide();
+        $('#tien').show();
+      }
     }
   });
   
