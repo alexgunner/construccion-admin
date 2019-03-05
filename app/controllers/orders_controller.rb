@@ -246,7 +246,10 @@ class OrdersController < ApplicationController
   end
 
   def do_file
-    
+    order = Order.find(params[:do_file][:id])
+    order.deposit = params[:do_file][:deposit]
+    order.save
+    redirect_to '/'
   end
 
   private

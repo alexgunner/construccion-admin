@@ -25,21 +25,21 @@
         <h4 style="color:#172769;"><strong>Pago y Envío<strong></h4>
           <h5><strong>Tipo de pago:</strong> <%= @order.typepay%></h5>
           <h5><strong>Tipo de envío:</strong> <%= @order.typedelivery%></h5>
-            <% if @order.typepay== "Deposito" %>
+            <% if @order.typepay== "Depósito Bancario" %>
               <center>
-                <%if @order.image.nil? %>
+                <%if @order.deposit == '/images/original/missing.png' %>
                   <h5><strong>No subido</strong></h5>
                 <%else%>
-                  <%= image_tag @order.image, class: "img-thumbnail" %>
+                  <%= image_tag @order.deposit.url, class: "img-thumbnail" %>
                 <%end%>
               </center>
             <%end%>
-          <% if @order.typedelivery == "Domicilio" or @order.typedelivery == "Transportista" %>
-            <h5><strong>Transporte:</strong> <%= @order.delivery.name %></h5>
-            <h5><strong>Destino:</strong> <%= @order.delivery.destination.name%> - <%= @order.delivery.destination.city%> </h5>
+          <% if @order.typedelivery == "A domicilio" or @order.typedelivery == "Recoger en transportista" %>
+            <h5><strong>Transporte:</strong> <%= Delivery.find(@order.deliveryid).name %></h5>
+            <h5><strong>Destino:</strong> <%= @order.client.destination.name_with_city%></h5>
             <h5><strong>Costo de envío:</strong> <%= @order.cost %></h5>
           <%end%>
-          <% if @order.typedelivery == "Tienda" %>
+          <% if @order.typedelivery == "Recoger en tienda" %>
             <h5><strong>Tienda:</strong> <%= @order.office %></h5>
           <%end%>
       </div>

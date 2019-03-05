@@ -114,9 +114,13 @@
               <br/>
           <center>
               <%= form_for :do_file, url: "/order/do_file" do |f|%>
+              <%= f.hidden_field :id, :value => @order.id %>
               <label>Subir depósito: </label>
                 <%= f.file_field :deposit, id: :order_deposit_id, class: "form-control" %>
-                <%= f.submit '<i class="fas fa-piggy-bank"></i> Aceptar'.html_safe, class: "btn btn-info"%>
+                <br/>
+                <%= f.button :submit,  class: "btn btn-info" do %>
+                    <i class="fas fa-piggy-bank"></i> Aceptar
+                <% end %>
               <%end%>
           </center>
       <%end%>
