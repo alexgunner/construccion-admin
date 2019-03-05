@@ -5,29 +5,41 @@
     <div class="form-group">
       <label>Entrega:</label>
       <%if @client.destination.cash?%>
-        <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista'], ['Recoger en tienda']], {}, {:class => "form-control"} ) %>
+        <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista'], ['Recoger en tienda']], {}, {:class => "form-control"}) %>
       <%else%>
         <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista']], {}, {:class => "form-control"} ) %>
       <%end%>
     </div>
-    <div class="form-group">
+    <div class="form-group" id="dom">
         <label>Delivery:</label>
-        <%= form.collection_select :deliveryid, Delivery.where('destination_id = ?', @client.destination.id), :id, :name_with_cost, id: :order_deliveryid %>
+        <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Domicilio"), :id, :name_with_cost, {}, {class: "form-control"})%>
+    </div>
+    <div class="form-group" id="trans" style="display:none;">
+        <label>Delivery:</label>
+        <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Transportista"), :id, :name_with_cost, {}, {class: "form-control"})%>
     </div>
 </div>
 <div class="col-sm-6">
   <div class="form-group">
     <label>Forma de pago:</label><br/>
       <%if @client.destination.cash?%>
-        <%= form.select(:typepay, [['Tarjeta'], ['Depósito Bancario'], ['Al momento de la entrega']], {}, {:class => "form-control"} ) %>
+        <%= form.select(:typepay, [['Tarjeta crédito o débito'], ['Depósito Bancario'], ['Al momento de la entrega']], {}, {:class => "form-control"} ) %>
       <%else%>
-        <%= form.select(:typepay, [['Tarjeta'], ['Depósito Bancario']], {}, {:class => "form-control"} ) %>
+        <%= form.select(:typepay, [['Tarjeta crédito o débito'], ['Depósito Bancario']], {}, {:class => "form-control"} ) %>
       <%end%>
   </div>
-  <div class="form-group">
-    <label>Tiendas y Sucursales:</label>
-    <%= form.collection_select :office, Office.all, :id, :name, id: :order_office %>
-  </div>
+  <%if @client.destination.cash?%>
+    <div class="form-group">
+      <label>Tiendas y Sucursales:</label>
+        <%= form.collection_select :office, Office.all, :id, :name, id: :order_office %>
+    </div>
+  <%else%>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+  <%end%>
 </div>
 <br/>
 <br/>
@@ -38,3 +50,21 @@
   </center>
 </div>
 <%end%>
+<script type="text/javascript">
+  var typedelivery =  $("#order_typedelivery").val(); 
+  $("select").change(function(){ 
+    typedelivery =  $("#order_typedelivery").val(); 
+    console.log(typedelivery); 
+    if(typedelivery == "A domicilio"){
+      console.log("domi");
+      $('#trans').hide();
+      $('#dom').show();
+    }
+    else{
+      console.log("trans");
+      $('#trans').show();
+      $('#dom').hide();
+    }
+  });
+  
+</script>

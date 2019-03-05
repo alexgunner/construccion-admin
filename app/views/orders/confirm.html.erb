@@ -125,7 +125,7 @@
           </center>
       <%end%>
 
-      <%if @order.typepay == "Tarjeta"%>
+      <%if @order.typepay == "Tarjeta crédito o débito"%>
         <center>
             <a  href="/pay/<%=@order.id%>" type="button" class="btn btn-info"><i class="fas fa-credit-card"></i> Pagar</a>
         </center>
