@@ -1,0 +1,69 @@
+<style type="text/css" media="all">
+   h4,p {display: inline;}
+</style>
+<div class="col-sm-12 padding-right">
+    <h2 class="title text-center"> Historial de compras realizadas</h2>
+    <% @orders.each do |order| %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="title text-center">Número de orden: <%=order.id%></h2>
+        </div>
+        <div class="panel-body">
+            <h4>Productos:</h4>
+            <div class="table-responsive">
+                <table class="table table-stripped table-hover">
+                <thead>
+                    <tr>
+                    <th>Código</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% order.carts.each do |cart|%>
+                    <tr>
+                        <td><%=cart.product_variant.code%></td>
+                        <td><%=cart.quantity%></td>
+                        <%if cart.product_variant.offerprice.nil?%>
+                            <%if current_user.role == 'Mayorista '%>
+                                <td>Bs. <%=cart.product_variant.wholesaleprice%></td>
+                            <%end%>
+                            <%if current_user.role == 'Especialista '%>
+                                <td>Bs. <%=cart.product_variant.specialistprice%></td>
+                            <%end%>
+                            <%if current_user.role == 'Cliente Minorista '%>
+                                <td>Bs. <%=cart.product_variant.price%></td>
+                            <%end%>
+                            <%if current_user.role == 'Cliente DOMUS '%>
+                                <td>Bs. <%=cart.product_variant.importerprice%></td>
+                            <%end%>
+                        <%else%>
+                            <td>Bs. <%=cart.product_variant.offerprice%></td>
+                        <%end%>
+                        <td><img src="<%=cart.product_variant.product.picture.url%>" height="80" width="80"></td>
+                    </tr>
+                    <%end%>
+                </tbody>
+                </table>
+            </div>
+            <h4>Forma de pago:</h4><p> <%=order.typepay%></p><br/><br/>
+            <%if order.typepay == "Depósito Bancario"%>
+                <%if order.deposit == '/images/original/missing.png' %>%
+                    <a type="button" href="/confirm/<%=order.id%>" class="btn btn-info">Subir depósito</a>
+                <%else%>
+                    <p><b>Comprobante subido</b></p><br/><br/>
+                <%end%>
+            <%end%>
+            <h4>Forma de entrega:</h4><p> <%=order.typedelivery%></p><br/><br/>
+            <%if order.typedelivery == "Recoger en tienda"%>
+                <h4>Tienda:</h4><p> <%=Office.find(order.office).name_with_city%></p><br/><br/>
+            <%end%>
+            <h4>Medio de envío:</h4> <p><%=Delivery.find(order.deliveryid).name%></p><br/><br/>
+            <h4>Estado:</h4><p> <%=order.state%></p><br/><br/>
+        </div>
+    </div>
+    <%end%>
+ <center><a href ="/" type="button" class="btn btn-default">Volver</a></center>
+</div>

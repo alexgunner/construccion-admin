@@ -62,7 +62,7 @@
         <h4>Costos de envío: Bs. <%=@order.cost%></h4><br/><br/>
         <h4>Recuerda que los gastos de envio serán considerados en el cobro.</h4><br/><br/>
       <%end%>
-      <h2 align="right">Total: Bs. <%=@order.total%></h2>
+      <h2 align="right">Total a pagar: Bs. <%=@order.total%></h2>
       <% if @order.typedelivery == "Recoger en tienda" %>
         <h4>Puedes pasar por tu pedido dentro de 24 horas, a partir de este momento.
             Por favor revisa nuestra dirección y teléfonos, en la sección de <a  href="/contact">Contactos</a>.
@@ -188,7 +188,7 @@
                 </div>
              </div>
         <%end%>
-        <h2 align="right">Total: Bs. <%=@order.total%></h2>
+        <h2 align="right">Total a pagar: Bs. <%=@order.total%></h2>
 </div>
 <script>
     var testDivElement = document.getElementById('content');
