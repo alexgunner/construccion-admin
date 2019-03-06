@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :carts
   resources :password_resets
+  resources :users
 
 get 'password_resets/new'
 post '/total' => 'orders#calculateTotal'
@@ -75,7 +76,6 @@ get '/ordenes/:id/edit' => 'orders#edit'
 patch '/ordenes/:id' => 'orders#update'
 get '/users' => 'users#index'
 get '/users/:id' => 'users#show'
-patch '/users/:id' => 'users#update'
 get '/usuarios/:id/contacto' => 'users#contact'
 post '/users/do_contact' => 'users#do_contact'
 get '/training' => 'trainings#training'
@@ -99,4 +99,6 @@ get '/orders/new/:id' => 'orders#new'
 get '/confirm/:id' => 'orders#confirm'
 post '/order/do_file' => 'orders#do_file'
 get '/history/:id' => 'orders#history'
+get '/users/:id/edit' => 'users#edit'
+#patch '/users/:id' => 'users#update'
 end

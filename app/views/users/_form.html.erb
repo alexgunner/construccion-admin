@@ -1,6 +1,4 @@
-<div class="col-sm-12 padding-right">
-  <h2 class="title text-center">Perfil de usuario</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_with(model: user, local: true) do |f|  %>
     <div class="col-sm-6">
       <div class="form-group">
           <label>Nombre Completo Cliente/Representante Legal:</label>
@@ -75,4 +73,3 @@
       </center>
     </div>
     <% end %>
-</div>

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
-  deserializable_resource :user, only: [:create, :update]
   before_action :authenticate_user!
   layout "dashboard"
   def index
@@ -19,6 +17,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    render :layout => "application"
   end
 
   def create
@@ -31,10 +30,16 @@ class UsersController < ApplicationController
 
 
   def update
-    if @user.update(user_params)
-      redirect_to '/usuarios', notice: 'User was successfully updated.'
-    else
-      render :edit
+    puts "entro a update"
+    puts user_params
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to '/', notice: 'Usuario editado correctamente' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
