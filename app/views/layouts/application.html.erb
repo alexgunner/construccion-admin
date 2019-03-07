@@ -27,7 +27,7 @@
 
     <section>
       <div class="container">
-        <% if @index %>
+        <% if @index and Carousel.all.where(pic_type: true).count > 0 %>
           <div class="row slide-row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
               <!-- Wrapper for slides -->
