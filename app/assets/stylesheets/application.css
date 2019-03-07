@@ -14,3 +14,19 @@
  *= require_self
  */
 
+ .carousel-inner>.item>img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    line-height: 1;
+    width: 100%; 
+    position: center;
+}
+
+.slide-row {
+    z-index: 1;
+}
+.content-row{
+    z-index: 3;
+    margin-top: -8%;
+}

@@ -3,6 +3,7 @@
 <h1>Carrusel</h1>
 <%= link_to 'Agregar imagen', new_carousel_path, class: "btn btn-primary" %>
 
+<div class="table-responsive">
 
 <table class="table table-stripped">
   <thead>
@@ -16,7 +17,7 @@
   <tbody>
     <% @carousels.each do |carousel| %>
       <tr>
-        <td><img src="<%= carousel.pic.url %>"></td>
+        <td><img src="<%= carousel.pic.url %>" width="300px;"></td>
         <td>
           <% if carousel.pic_type == true %>
             Carrusel principal
@@ -34,3 +35,4 @@
 <br>
 
 
+</div>
