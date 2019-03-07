@@ -103,7 +103,9 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<a href="/results"  class="btn btn-default add-to-cart">Buscar <i class="fa fa-search"></i></a>
+						<%= form_tag("/search", method: "post") do %>
+							<%= text_field_tag(:name, "", placeholder: "Busca aquí") %>
+						<% end %>
 					</div>
 				</div>
 			</div>
