@@ -30,8 +30,6 @@ class UsersController < ApplicationController
 
 
   def update
-    puts "entro a update"
-    puts user_params
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to '/', notice: 'Usuario editado correctamente' }
@@ -96,6 +94,26 @@ class UsersController < ApplicationController
     UserMailer.notice_email(user, message).deliver_now
     redirect_to "/usuarios"
   end
+
+  def do_edit
+    user = User.find(params[:do_edit][:id])
+    user.name = params[:do_edit][:name]
+    user.namecompany = params[:do_edit][:namecompany]
+    user.ci = params[:do_edit][:ci]
+    user.nit = params[:do_edit][:nit]
+    user.address = params[:do_edit][:address]
+    user.phone = params[:do_edit][:phone]
+    user.cellphone = params[:do_edit][:cellphone]
+    user.cellwsp = params[:do_edit][:cellwsp]
+    puts params[:do_edit][:imageci]
+    if params[:do_edit][:imageci] != " "
+      user.imageci = params[:do_edit][:imageci]
+    end
+    user.imagenit = params[:do_edit][:imagenit]
+    user.save
+    #redirect_to '/'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

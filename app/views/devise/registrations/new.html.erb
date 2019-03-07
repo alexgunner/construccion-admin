@@ -1,7 +1,7 @@
 <div class="col-sm-12 padding-right">
   <h2 class="title text-center">Registro de usuario</h2>
     <div class="text-right">
-        <button class="btn btn-warning"><span class="glyphicon glyphicon-new-window"></span> Ver ayuda registro</button>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#help"><i class="fas fa-question"></i> Ayuda de Registro</button>
     </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <p>Los campos con arteristico son opcionales.</p>
@@ -34,17 +34,7 @@
    <div class="col-sm-6">
       <div class="form-group">
           <label>Departamento:</label>
-           <select id="departamento" class="form-control">
-              <option value="Beni">Beni</option>
-              <option value="Chuquisaca">Chuquisaca</option>
-              <option value="Cochabamba">Cochabamba</option>
-              <option value="La Paz">La Paz</option>
-              <option value="Oruro">Oruro</option>
-              <option value="Pando">Pando</option>
-              <option value="Potosi">Potosí</option>
-              <option value="Santa Cruz">Santa Cruz</option>
-              <option value="Tarija">Tarija</option>
-          </select>
+           <%= f.select(:city, [['Beni'],['Chuquisaca'], ['Cochabamba'], ['La Paz'], ['Oruro'], ['Pando'], ['Potosí'], ['Santa Cruz'], ['Tarija']], {:prompt => 'Selecciona tu ciudad'}, {:class => "form-control", :required => true}) %>
       </div>
       <div class="form-group">
           <label>Teléfono:</label>
@@ -91,7 +81,7 @@
             <div class="form-group">
                 <label>*CI (Incluir la imagen de su Carnet de Identidad o Pasaporte)</label>
                 <center>
-                    <%= f.file_field :imagenci, class: "form-control" %>
+                    <%= f.file_field :imageci, class: "form-control" %>
                 </center>
             </div>
         </div>
@@ -103,3 +93,24 @@
         </center>
     <%end%>
 </div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="pictureModal">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <center><h2>Instructivo de Registro</h2></center>
+        </div>
+        <div class="modal-body">
+          <center><i class="fas fa-question" style="font-size: 5.5em;"></i></center>
+          <h3 align='justify'>Estas a punto de crear una cuenta en nuestro portal, por favor toma en cuenta las siguientes indicaciones para que ingreses los datos según el tipo de cliente al cual correspondes.
+            <br/><br/><b>Minorista (Ventas por unidades  docenas a clientes no frecuentes, omitir datos de rubro)</b> 
+            <br/><br/><b>Especialista (Profesionales del rubro; constructores, arquitectos, plomeros, carpinteros)</b>
+            <br/><br/><b>Mayorista (Negocios del rubro; Ferreterias, comerciales, supermerados y grandes superficies)</b>
+            <br/><br/><b>Cliente DOMUS (Cliente especial con beneficios de descuentos)</b></h3>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Help Modal -->

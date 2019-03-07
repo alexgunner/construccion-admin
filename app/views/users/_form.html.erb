@@ -1,69 +1,76 @@
-<%= form_with(model: user, local: true) do |f|  %>
+<%= form_for :do_edit, url: "/users/do_edit" do |f|  %>
+<%= f.hidden_field :id, :value => user.id %>
     <div class="col-sm-6">
       <div class="form-group">
           <label>Nombre Completo Cliente/Representante Legal:</label>
-          <%= f.text_field :name, autofocus: true, class: "form-control", :required => true, :maxlength => 100 %>
+          <%= f.text_field :name, autofocus: true, class: "form-control", :required => true, :maxlength => 100, value: user.name %>
       </div>
       <div class="form-group">
           <label>Nombre de Usuario/Nombre de la Empresa:</label>
-          <%= f.text_field :namecompany, autofocus: true, class: "form-control", :required => true, :maxlength => 30 %>
+          <%= f.text_field :namecompany, autofocus: true, class: "form-control", :required => true, :maxlength => 30, value: user.namecompany %>
       </div>
       <div class="form-group">
           <label>CI Cliente/Representate Legal:</label>
-          <%= f.number_field :ci, autofocus: true, class: "form-control", :required => true, :maxlength => 50 %>
+          <%= f.number_field :ci, autofocus: true, class: "form-control", :required => true, :maxlength => 50, value: user.ci %>
       </div>
       <div class="form-group">
           <label>*Nombre para la Factura:</label>
-          <%= f.text_field :nameinvoice, autofocus: true, class: "form-control", :maxlength => 100 %>
+          <%= f.text_field :nameinvoice, autofocus: true, class: "form-control", :maxlength => 100, value: user.nameinvoice%>
       </div>
       <div class="form-group">
           <label>*NIT:</label>
-          <%= f.number_field :nit, autofocus: true, class: "form-control", :maxlength => 50 %>
+          <%= f.number_field :nit, autofocus: true, class: "form-control", :maxlength => 50, value: user.nit %>
       </div>
       <div class="form-group">
           <label>Dirección:</label>
-          <%= f.text_area :address, :rows => 5, :cols => 100, autofocus: true, class: "form-control", :required => true, :maxlength => 256 %>
+          <%= f.text_area :address, :rows => 5, :cols => 100, autofocus: true, class: "form-control", :required => true, :maxlength => 256, value: user.address %>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-          <label>Departamento:</label>
-           <select id="departamento" class="form-control">
-              <option value="Beni">Beni</option>
-              <option value="Chuquisaca">Chuquisaca</option>
-              <option value="Cochabamba">Cochabamba</option>
-              <option value="La Paz">La Paz</option>
-              <option value="Oruro">Oruro</option>
-              <option value="Pando">Pando</option>
-              <option value="Potosi">Potosí</option>
-              <option value="Santa Cruz">Santa Cruz</option>
-              <option value="Tarija">Tarija</option>
-          </select>
+          <label>Departamento: <%= user.city%></label>
+            <%= f.select(:city, [['Beni'],['Chuquisaca'], ['Cochabamba'], ['La Paz'], ['Oruro'], ['Pando'], ['Potosí'], ['Santa Cruz'], ['Tarija']], {:prompt => 'Selecciona tu ciudad'}, {:class => "form-control"}) %>
       </div>
       <div class="form-group">
           <label>Teléfono:</label>
-          <%= f.number_field :phone, autofocus: true, class: "form-control", :required => true, :maxlength => 50 %>
+          <%= f.number_field :phone, autofocus: true, class: "form-control", :required => true, :maxlength => 50, value: user.phone %>
       </div>
       <div class="form-group">
           <label>Celular:</label>
-          <%= f.number_field :cellphone, autofocus: true, class: "form-control", :required => true, :maxlength => 50 %>
+          <%= f.number_field :cellphone, autofocus: true, class: "form-control", :required => true, :maxlength => 50, value: user.cellphone %>
       </div>
       <div class="form-group">
           <label>Celular de WhatsApp:</label>
-          <%= f.number_field :cellwsp, autofocus: true, class: "form-control", :required => true, :maxlength => 50 %>
+          <%= f.number_field :cellwsp, autofocus: true, class: "form-control", :required => true, :maxlength => 50, value: user.cellwsp %>
       </div>
-      <div class="form-group">
+      <%if user.imagenit.url  != "/images/original/missing.png" %>
+        <div class="form-group">
         <label>*NIT (Incluir la imagen del certificado de su Número de Identificación Tributaria)</label>
-        <%= f.file_field :imagenit, class: "form-control"%>
-      </div>
-       <div class="form-group">
-        <label>*CI (Incluir la imagen de su Carnet de Identidad o Pasaporte)</label>
-        <%= f.file_field :imagenci, class: "form-control"%>
-      </div>
-      <div class="form-group">
-          <label>Confirmar contraseña:</label>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
-      </div>
+            <%= f.file_field :imagenit, class: "form-control"%>
+            <%= image_tag user.imagenit, class: "img-thumbnail" %>
+        </div>
+      <%else%>
+        <div class="form-group">
+            <label>*NIT (Incluir la imagen del certificado de su Número de Identificación Tributaria)</label>
+            <%= f.file_field :imagenit, class: "form-control"%>
+        </div>
+      <%end%>
+
+      <%if user.imageci.url  != "/images/original/missing.png" %>
+        <div class="form-group">
+            <label>*CI (Incluir la imagen de su Carnet de Identidad o Pasaporte)</label>
+            <%= f.file_field :imageci, class: "form-control"%>
+            <%= image_tag user.imageci, class: "img-thumbnail" %>
+        </div>
+      <%else%>
+        <div class="form-group">
+            <label>*CI (Incluir la imagen de su Carnet de Identidad o Pasaporte)</label>
+            <%= f.file_field :imageci, class: "form-control"%>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+      <%end%>
     </div>
       
     <div class="actions">
