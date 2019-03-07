@@ -83,6 +83,7 @@ get '/carousel_list' => 'carousels#carousel_list'
 #Site Routes
 get '/category_products/:id' => 'site#category_products'
 get '/subcategory_products/:id' => 'site#subcategory_products'
+get '/manufacturer_products/:id' => 'site#manufacturer_products'
 get '/product_details/:id' => 'site#product_details'
 get '/dashboard' => 'dashboard#index'
 get '/about_us' => 'site#about_us'
