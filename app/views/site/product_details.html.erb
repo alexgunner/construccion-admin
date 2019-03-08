@@ -119,7 +119,7 @@
 							<% @product.category.products.each do |product_category|%>
 									<%if product_category.id!=@product.id%>
 									<div class="col-sm-3">
-											<a class="product-image-wrapper" href="/product-details/<%=product_category.id%>">
+											<a class="product-image-wrapper" href="/product_details/<%=product_category.id%>">
 													<div class="single-products">
 															<div class="productinfo text-center">
 																	<%= image_tag product_category.picture.url(:original), class: "img-responsive" %>
