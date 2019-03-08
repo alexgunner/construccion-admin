@@ -1,9 +1,10 @@
 class SiteController < ApplicationController
-	before_action :set_categories
+	before_action :set_categories, :is_index
 
 	def index
 		@products_in_offer = Product.where(offer: true)
 		@main_carousels = Carousel.all.where(pic_type: true)
+		@index = true
 	end
 
 	def contact
@@ -65,5 +66,9 @@ class SiteController < ApplicationController
 	private
 	def set_categories
 		@categories = Category.order(name: :asc)
+	end
+
+	def is_index
+		@index = false
 	end
 end
