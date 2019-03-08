@@ -50,7 +50,7 @@
             </div>
             <h4>Forma de pago:</h4><p> <%=order.typepay%></p><br/><br/>
             <%if order.typepay == "Depósito Bancario"%>
-                <%if order.deposit == '/images/original/missing.png' %>%
+                <%if order.deposit.url == '/images/original/missing.png' %>%
                     <a type="button" href="/confirm/<%=order.id%>" class="btn btn-info">Subir depósito</a>
                 <%else%>
                     <p><b>Comprobante subido</b></p><br/><br/>
