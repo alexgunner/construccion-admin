@@ -106,12 +106,14 @@ class UsersController < ApplicationController
     user.cellphone = params[:do_edit][:cellphone]
     user.cellwsp = params[:do_edit][:cellwsp]
     puts params[:do_edit][:imageci]
-    if params[:do_edit][:imageci] != " "
+    if params[:do_edit][:imageci] != nil
       user.imageci = params[:do_edit][:imageci]
     end
-    user.imagenit = params[:do_edit][:imagenit]
+    if params[:do_edit][:imagenit] != nil
+      user.imagenit = params[:do_edit][:imagenit]
+    end
     user.save
-    #redirect_to '/'
+    redirect_to '/'
   end
 
   private
