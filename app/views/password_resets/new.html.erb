@@ -1,0 +1,22 @@
+<div class="col-sm-12 padding-right">
+    <h2 class="title text-center">Recuperar contraseña</h2>
+    <h4>Por favor ingresa tu correo electrónico, te enviaremos un email con un enlace
+        que caducará en un par de horas.
+    </h4>
+    <br/>
+     <%= form_tag password_resets_path, :method => :post do %>
+        <div class="form-group">
+            <div class="col-sm-8">
+            <label>Correo electrónico:</label>
+                <%= text_field_tag :email, params[:email], placeholder: "Correo electrónico", class: "form-control" %>
+            </div>
+        </div>
+        <center>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <button type="submit" class="btn btn-info">Aceptar</button>
+        </center>
+    <%end%>
+</div>

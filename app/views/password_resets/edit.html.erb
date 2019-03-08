@@ -1,22 +1,24 @@
-<div class="row" id="pwd-container">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <section class="login-form">
-        <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-          <%= image_tag 'logo.jpg',  width: "350", height: "250", class: "img-responsive" %>
-          <h5>Por favor ingresa una nueva contraseña.</h5>
-          <div class="field">
-            <label><b>Contraseña:</b></label>
-            <%= f.password_field :password, class: "form-control input-lg", type: "password", placeholder:"Contraseña" %>
-          </div>
-          <br/>
-          <div class="field">
-            <label><b>Confirmar Contraseña:</b></label>
-            <%= f.password_field :password, class: "form-control input-lg", type: "password", placeholder:"Confirmar Contraseña" %>
-          </div>
-          <br/>
-          <%= f.submit "Enviar", class:"btn btn-lg btn-primary btn-block" %>
-        <%end%>
-      </section>
-    </div>
+<div class="col-sm-12 padding-right">
+<h2 class="title text-center">Recuperar contraseña</h2>
+  <div class="row" id="pwd-container">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+          <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+            <h5>Por favor ingresa una nueva contraseña.</h5>
+            <div class="field">
+              <label><b>Contraseña:</b></label>
+              <%= f.password_field :password, class: "form-control", type: "password", placeholder:"Contraseña" %>
+            </div>
+            <br/>
+            <div class="field">
+              <label><b>Confirmar Contraseña:</b></label>
+              <%= f.password_field :password, class: "form-control", type: "password", placeholder:"Confirmar Contraseña" %>
+            </div>
+            <br/>
+            <center>
+              <%= f.submit "Enviar", class:"btn btn-info"%>
+            </center>
+          <%end%>
+      </div>
+  </div>
 </div>
