@@ -1,5 +1,6 @@
 <%= form_with(model: client, local: true) do |form| %>
 <%= form.hidden_field :mail, id: :client_mail, value: current_user.email %>
+<%= form.hidden_field :role, id: :client_role, value: current_user.role %>
   <div class="col-sm-6">
     <div class="form-group">
         <label>Nombre Completo Cliente/Representate Legal:</label>

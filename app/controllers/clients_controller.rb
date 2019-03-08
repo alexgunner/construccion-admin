@@ -35,6 +35,7 @@ class ClientsController < ApplicationController
       @client.cellphone = client_data.cellphone
       @client.cellwsp = client_data.cellwsp
       @client.mail = client_data.mail
+      @client.destination_id = client_data.destination_id
       if client_data.nameinvoice.blank?
         @client.nameinvoice = "Sin Nombre"
       else
