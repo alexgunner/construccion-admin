@@ -1,4 +1,5 @@
 <%= form_with(model: client, local: true) do |form| %>
+<%= form.hidden_field :mail, id: :client_mail, value: current_user.email %>
   <div class="col-sm-6">
     <div class="form-group">
         <label>Nombre Completo Cliente/Representate Legal:</label>
@@ -24,7 +25,7 @@
   <div class="col-sm-6 ">
     <div class="form-group">
         <label>Nombre para la Factura: (Si se requiere)</label>
-        <%= form.text_field :cellphone, id: :client_cellphone, value: current_user.nameinvoice, class: "form-control", :maxlength => 100 %>
+        <%= form.text_field :nameinvoice, id: :client_nameinvoice, value: current_user.nameinvoice, class: "form-control", :maxlength => 100 %>
     </div>
     <div class="form-group">
         <label>NIT Factura Cliente/Representate Legal: (Si se requiere)</label>
