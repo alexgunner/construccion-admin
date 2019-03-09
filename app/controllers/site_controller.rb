@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
 	before_action :set_categories, :is_index
-
+	helper_method :cart_exist
 	def index
 		@products_in_offer = Product.where(offer: true)
 		@main_carousels = Carousel.all.where(pic_type: true)
@@ -63,6 +63,15 @@ class SiteController < ApplicationController
 		end
 	end
 
+	def cart_exist(variant, user)
+		cart = Cart.where('user_id = ? and product_variant_id = ? and state = false', user, variant).first
+		if cart.nil?
+		  return false;
+		else
+		  return true;
+		end
+	end
+
 	private
 	def set_categories
 		@categories = Category.order(name: :asc)
@@ -71,4 +80,5 @@ class SiteController < ApplicationController
 	def is_index
 		@index = false
 	end
+
 end
