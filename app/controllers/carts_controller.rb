@@ -56,7 +56,8 @@ class CartsController < ApplicationController
   #Metodos para admin
   def reports
     SoldProduct.find_each(&:destroy)
-    carts = Cart.all
+    carts = Cart.where('state = true')
+    order_id = 0
     order_id = Cart.first.order.id
     carts.each do |cart|
       total_price = (price_product(cart.id)*cart.quantity)
@@ -86,6 +87,7 @@ class CartsController < ApplicationController
     else
       @solds = SoldProduct.search(params[:search])
     end
+    render :layout => "dashboard"
   end
 
   def product_exist(id)
