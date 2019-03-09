@@ -53,7 +53,7 @@
       <div class="form-group">
         <h5><strong>CI:</strong></h5>
         <center>
-          <%if @user.imageci == "no" %>
+          <%if @user.imageci.url == "/images/original/missing.png" %>
             <h5><strong>No registrado</strong></h5>
           <%else%>
             <%= image_tag @user.imageci, width: "500", height: "500", class: "img-thumbnail"%>
@@ -63,10 +63,10 @@
       <div class="form-group">
         <h5><strong>NIT:</strong></h5>
         <center>
-          <%if @user.image == "no" %>
+          <%if @user.imagenit.url == "/images/original/missing.png" %>
             <h5><strong>No registrado</strong></h5>
           <%else%>
-            <%= image_tag @user.image, width: "500", height: "500", class: "img-thumbnail"%>
+            <%= image_tag @user.imagenit, width: "500", height: "500", class: "img-thumbnail"%>
           <%end%>
         </center>
       </div>
