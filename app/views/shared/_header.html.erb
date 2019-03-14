@@ -1,55 +1,39 @@
 <header id="header"><!--header-->
-	<div class="header_top"><!--header_top-->
+	<div class="header-middle"><!--header-middle-->
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
-					<div class="contactinfo">
-						<ul class="nav nav-pills">
-							<li><a href="#"><i class="fa fa-phone"></i> <%= contact_information.phone %></a></li>
-							<li><a href="#"><i class="fa fa-envelope"></i> <%= contact_information.email %></a></li>
-              <li><a href="<%= contact_information.facebook %>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-						</ul>
+				<div class="col-lg-3">
+					<div class="logo pull-left">
+						<a href="/"><img src="<%= extras.logo.url(:original) %>" alt="" class="img-responsive" /></a>
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<div class="social-icons pull-right">
+				<div class="col-lg-8">
+					<br>
+					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
-              <li>
-								<% if current_user != nil %>
-									<div class="dropdown">
-										<a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<li>
+								<div class="search_box">
+									<%= form_tag("/search", method: "post") do %>
+										<%= text_field_tag(:name, "", size: 30, placeholder: "Busca aquí", class: "form-control") %>
+									<% end %>
+								</div>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav">
+							<% if current_user != nil %>
+								<li>	
+									<div class="dropdown header-drop">
+										<a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										<i class="fa fa-user"></i> <b><%=current_user.namecompany %></b>
 										<span class="caret"></span>
 										</a>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 											<li><a href="/users/<%=current_user.id%>/edit"><i class="fas fa-edit"></i> Editar Datos Personales</a></li>
 											<li><a href="/history/<%=current_user.id%>"><i class="fas fa-history"></i> Mi Historial de Compras</a></li>
 											<li><%= link_to '<i class="fas fa-sign-out-alt"></i> Cerrar está Sesión (Salir)'.html_safe, destroy_user_session_path, method: :delete %></li>
 										</ul>
 									</div>
-								<%else%>
-									<a href="/users/sign_in"><i class="fa fa-user"></i></a>
-								<%end%>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--/header_top-->
-
-	<div class="header-middle"><!--header-middle-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="logo pull-left">
-						<a href="/"><img src="<%= extras.logo.url(:original) %>" alt="" class="img-responsive" /></a>
-					</div>
-				</div>
-				<div class="col-sm-8">
-					<div class="shop-menu pull-right">
-						<ul class="nav navbar-nav">
-							<% if current_user != nil %>
+								</li>
 								<li><a href="/cart/<%=current_user.id%>"><i class="fa fa-shopping-cart"></i> Carrito de compras
 								<span class="badge"><%=Cart.where('user_id = ? and state = false', current_user.id).count%></span></a></li>
 							<%else%>
@@ -101,13 +85,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="search_box pull-right">
-						<%= form_tag("/search", method: "post") do %>
-							<%= text_field_tag(:name, "", placeholder: "Busca aquí") %>
-						<% end %>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div><!--/header-bottom-->

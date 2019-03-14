@@ -31,14 +31,14 @@
           <div class="row slide-row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
               <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
+              <div class="carousel-inner" role="listbox" >
                 <% Carousel.all.where(pic_type: true).each_with_index do |carousel, index| %>
                   <% if index == 0 %>
                     <div class="item active">
                   <% else %>
                     <div class="item">
                   <% end %>
-                    <img src="<%= carousel.pic.url(:original) %>">
+                    <img src="<%= carousel.pic.url(:original) %>" class="carousel-pic">
                   </div>
                 <% end %>
               </div>

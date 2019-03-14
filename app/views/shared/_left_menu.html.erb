@@ -1,6 +1,12 @@
+<% if @index %>
+  <br>
+  <br>
+  <br>
+<% end %>
 <div class="col-lg-3 hidden-xs">
   <div class="left-sidebar">
-    <h2 class="lower-case">Categoría</h2>
+    <br>
+    <h2 class="lower-case">Categorías</h2>
     <div class="panel-group category-products" id="accordian"><!--category-products-->
       <% categories.each do |category| %>
         <div class="panel panel-default">
@@ -44,7 +50,36 @@
     </div><!--/brands_products-->
 
     <div class="shipping text-center"><!--shipping-->
-      <img src="<%= extras.banner.url(:original) %>" alt="" class="img-responsive" />
+      <% if Carousel.all.where(pic_type: false).count > 0 %>
+          <div class="row slide-row">
+            <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox" >
+                <% Carousel.all.where(pic_type: false).each_with_index do |carousel, index| %>
+                  <% if index == 0 %>
+                    <div class="item active">
+                  <% else %>
+                    <div class="item">
+                  <% end %>
+                    <img src="<%= carousel.pic.url(:original) %>" class="carousel-pic2">
+                  </div>
+                <% end %>
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic2" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic2" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            
+          </div>
+        <% end %>
+      <br>
     </div><!--/shipping-->
 
   </div>

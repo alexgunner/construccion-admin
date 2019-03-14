@@ -92,14 +92,13 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy4PzSIG77OtqMciXyhMuTD9tQSICh0LM&callback=initMap<%= office.id %>">
                 </script>
                 <div class="col-lg-8">
+                    <h4>Nombre: </h4><p><%= office.name %></p>
                     <div id="map<%= office.id %>" style="width: 550px; height: 400px;" data-lat="<%= office.lat %>" data-lng="<%= office.long %>"></div>
                     <br/>
                     <br/>
                 </div>
                 <div class="col-lg-4">
-                    <h4>Nombre: </h4><p><%= office.name %></p>
-                    <br/>
-                    <br/>
+                    <br>
                     <h4>Ciudad: </h4><p><%= office.city %></p>
                     <br/>
                     <br/>
