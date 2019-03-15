@@ -8,7 +8,7 @@
     <%else%>
      <div class="border-panel">
        <%@carts.each do |cart|%>
-         <div {{action 'changeBorder'}}>
+         <div id="<%=cart.id%>" onclick="myFunction(<%=cart.id%>)"> 
              <div class="panel panel-default">
                  <div class="panel-heading">
                      <h2 class="title text-center"><%=cart.product_variant.code%></h2>
@@ -59,3 +59,17 @@
     </center>
     <%end%>
 </div>
+<button type="button" onclick="myFunction()">Set solid border</button>  
+<script>
+  localStorage.setItem("0", "0");
+  function myFunction(id){ 
+    console.log("actual: " + id);
+    document.getElementById(id).style.borderStyle = "solid";
+    document.getElementById(id).style.color = "#0C3792";
+    if(localStorage.getItem("0") != id && localStorage.getItem("0")!= "0"){
+      document.getElementById(localStorage.getItem(0)).style.borderStyle = "none";
+    }
+    console.log("anterior: " + localStorage.getItem(0));
+    localStorage.setItem("0", id);
+  } 
+</script>
