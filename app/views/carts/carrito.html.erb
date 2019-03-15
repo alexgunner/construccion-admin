@@ -52,6 +52,7 @@
          </div>
         <%end%>
      </div>
+     <br/>
      <%= link_to '<i class="fas fa-trash-alt"></i> Eliminar todo'.html_safe, '/', class: "btn btn-danger" %>
      <center>
       <a href ="javascript:history.back(-1);" type="button" class="btn btn-default">Añadir más productos</a>
@@ -59,7 +60,6 @@
     </center>
     <%end%>
 </div>
-<button type="button" onclick="myFunction()">Set solid border</button>  
 <script>
   localStorage.setItem("0", "0");
   function myFunction(id){ 

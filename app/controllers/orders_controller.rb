@@ -108,7 +108,7 @@ class OrdersController < ApplicationController
     client = Khipu::PaymentsApi.new
     response = client.payments_post('Pago de productos DOMUS S.R.L.', 'BOB', @order.total, {
         transaction_id: 'FACT' + @order.id.to_s,
-        expires_date: DateTime.new(2019, 3, 10),
+        expires_date: DateTime.new(2019, 5, 10),
         body: 'El monto total de los productos se muestra a continuación, por favor complete la operación.
         Gracias.',
         return_url: 'http://api.domusbolivia.com',

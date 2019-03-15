@@ -139,6 +139,11 @@ class CartsController < ApplicationController
     redirect_to "/cart/"+cart.user_id.to_s
   end
 
+  def destroy_them_all
+    Cart.destroy_all
+    redirect_to articles_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
