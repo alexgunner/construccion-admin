@@ -28,42 +28,44 @@
         
         <div class="col-lg-12">    
             <h3>Formulario de contacto</h3>
-            <form action="#">
+            <%= form_tag("/post_message", method: "post") do %>
                 <div class="row">
                     <div class="col-lg-6">    
                         <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Telefono</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>País</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Ciudad</label>
-                    <input type="text" class="form-control">
-                </div>
+                            <%= label_tag("Nombre") %>
+                            <%= text_field_tag(:name, nil, class: "form-control") %>
+                        </div>
+                        <div class="form-group">
+                            <%= label_tag("Telefono") %>
+                            <%= text_field_tag(:phone, nil, class: "form-control") %>
+                        </div>
+                        <div class="form-group">
+                            <%= label_tag("País") %>
+                            <%= text_field_tag(:country, nil, class: "form-control") %>
+                        </div>
+                        <div class="form-group">
+                            <%= label_tag("Ciudad") %>
+                            <%= text_field_tag(:city, nil, class: "form-control") %>
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <%= label_tag("Correo electrónico") %>
+                                <%= text_field_tag(:email, nil, class: "form-control") %>
+                            </div>
+                            <div class="form-group">
+                                <%= label_tag("Mensaje") %>
+                                <%= text_area(:message, nil, class: "form-control", size: "10x8") %>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                    <div class="form-group">
-                    <label>Mensaje</label>
-                    <input type="text" class="form-control">
                 </div>
-                    </div>
-                    </div>
-                </div>
-            
-                
-                
                 <div class="form-group">
-                    
-                    <center><input type="submit" value="Enviar" class="btn btn-success"></center>
+                    <center>
+                        <%= submit_tag("Enviar", class: "btn btn-success") %>
+                    </center>
                 </div>
-            </form>
+            <% end %>
         </div>
     </div>
        

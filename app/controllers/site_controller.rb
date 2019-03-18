@@ -72,6 +72,10 @@ class SiteController < ApplicationController
 		end
 	end
 
+	def providers_list
+		@providers = Provider.all.reverse
+	end
+
 	private
 	def set_categories
 		@categories = Category.order(name: :asc)
