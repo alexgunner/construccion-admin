@@ -13,14 +13,8 @@
  *= require_tree .
  *= require_self
  */
-
- .carousel-inner>.item>img {
-    display: block;
-    height: auto;
-    max-width: 100%;
-    line-height: 1;
-    width: 100%; 
-    position: center;
+ .carousel-inner .item .active img {
+    width: 150% !important;
 }
 
 .slide-row {
@@ -29,4 +23,12 @@
 .content-row{
     z-index: 3;
     margin-top: -25%;
+}
+
+.search {
+    width: 300px;
+}
+
+.logo {
+    margin-top: -3%;
 }
