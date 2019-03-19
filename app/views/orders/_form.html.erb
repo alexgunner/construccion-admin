@@ -10,14 +10,22 @@
         <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista']], {}, {:class => "form-control"} ) %>
       <%end%>
     </div>
+    <%if Delivery.where('destination_id = ? and shipping = ?', @client.destination_id, "Domicilio").count == 0%>
+      <p id="dom"><b>NOTA: </b>Aún no contamos con envío a domicilio en tu destino, prueba con otra opción.</p>
+    <%else%>
     <div class="form-group" id="dom">
-        <label>Delivery:</label>
-        <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Domicilio"), :id, :name_with_cost, {}, {class: "form-control"})%>
+      <label>Delivery:</label>
+      <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Domicilio"), :id, :name_with_cost, {}, {class: "form-control"})%>
     </div>
+    <%end%>
+    <%if Delivery.where('destination_id = ? and shipping = ?', @client.destination_id, "Transportista").count == 0%>
+      <p id="trans" style="display:none;"><b>NOTA: </b>Aún no contamos con envío para recoger en transportista en tu destino, prueba con otra opción.</p>
+    <%else%>
     <div class="form-group" id="trans" style="display:none;">
         <label>Delivery:</label>
         <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Transportista"), :id, :name_with_cost, {}, {class: "form-control"})%>
     </div>
+    <%end%>
 </div>
 <div class="col-sm-6">
   <div class="form-group">
