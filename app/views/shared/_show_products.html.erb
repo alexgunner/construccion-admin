@@ -7,7 +7,7 @@
             <div class="productinfo text-center">
               <%= image_tag product.picture.url(:original), class: "img-responsive" %>
               <h2><%= product.code%></h2>
-              <p class="justified-text"><%= product.description.truncate(40) %></p>
+              <button class="btn btn-domus btn-block"><%= product.description.truncate(40) %></button>
             </div>
           </div>
         </a>

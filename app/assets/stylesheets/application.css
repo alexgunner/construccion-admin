@@ -32,3 +32,11 @@
 .logo {
     margin-top: -3%;
 }
+
+.btn-domus {
+    background-color: #DCDCDC;
+}
+
+.btn-domus:hover {
+    text-decoration: none;
+}
