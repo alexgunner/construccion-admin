@@ -277,10 +277,10 @@ a#scrollUp i{
   font-family: 'roboto';
   font-size: 12px;
   font-weight: 300;
-  height: 35px;
+  height: 45px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
+  width: 350%;
   background-image: url(/assets/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
@@ -1446,7 +1446,7 @@ h2.title {
 **************************/
 
 .logo-404 {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 .content-404 h1 {

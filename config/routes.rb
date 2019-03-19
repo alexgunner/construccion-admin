@@ -66,6 +66,9 @@ get '/reportes/ordenes/:id' => 'orders#show_order'
 get '/bancos' => 'banks#list'
 get '/usuario/:id' => 'users#showuser'
 get '/sucursales' => 'offices#list'
+get '/messages' => 'dashboard#messages'
+post '/post_message' => 'dashboard#post_message'
+get '/providers_list' => 'site#providers_list'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'

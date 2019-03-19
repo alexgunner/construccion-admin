@@ -4,12 +4,14 @@
   <thead>
     <tr>
       <th>Nombre</th>
+      <th>Logo</th>
       <th>Descripción</th>
       <th>Dirección</th>
       <th>Correo electrónico</th>
       <th>Teléfono</th>
       <th>País</th>
       <th>Ciudad</th>
+      <th>Web</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -18,12 +20,14 @@
     <% @providers.each do |provider| %>
       <tr>
         <td><%= provider.name %></td>
+        <td><img src="<%= provider.cover.url %>" width="100"></td>
         <td><%= provider.description %></td>
         <td><%= provider.address %></td>
         <td><%= provider.email %></td>
         <td><%= provider.phone %></td>
         <td><%= provider.country %></td>
         <td><%= provider.city %></td>
+        <td><%= provider.website_link %></td>
         <td><%= link_to 'Editar', edit_provider_path(provider) %></td>
       </tr>
     <% end %>
