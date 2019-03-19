@@ -105,7 +105,9 @@ class UsersController < ApplicationController
     user.phone = params[:do_edit][:phone]
     user.cellphone = params[:do_edit][:cellphone]
     user.cellwsp = params[:do_edit][:cellwsp]
-    puts params[:do_edit][:imageci]
+    if !params[:do_edit][:city].blank?
+      user.city = params[:do_edit][:city]
+    end
     if params[:do_edit][:imageci] != nil
       user.imageci = params[:do_edit][:imageci]
     end
