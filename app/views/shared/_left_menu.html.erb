@@ -2,12 +2,16 @@
   <br>
   <br>
   <br>
-<% end %>
-<div class="col-lg-3 hidden-xs">
+  <div class="col-lg-3 hidden-xs">
   <div class="left-sidebar" style="margin-top: 4%;">
     <br><br><br>
+<% else %>
+  <div class="col-lg-3 hidden-xs">
+  <div class="left-sidebar" style="margin-top: 4%;">
+<% end %>
+
     <div class="panel-group category-products" id="accordian"><!--category-products-->
-      <h2 class="lower-case">Categorías</h2>
+      <h2 class="lower-case" style="margin-top: -1%;">Categorías</h2>
       <% categories.each do |category| %>
         <div class="panel panel-default">
           <div class="panel-heading">

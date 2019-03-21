@@ -17,16 +17,12 @@ body{
     background-color: #F8F8F8 !important;
 }
 
- .carousel-inner .item .active img {
-    width: 150% !important;
-}
-
 .slide-row {
     z-index: 1;
 }
 .content-row{
     z-index: 3;
-    margin-top: -25%;
+    margin-top: -30%;
 }
 
 .search {
