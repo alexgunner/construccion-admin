@@ -11,6 +11,6 @@ class DashboardController < ApplicationController
 
 	def post_message
 		Message.create! name: params[:name], phone: params[:phone], email: params[:email], country: params[:country], city: params[:city], message: params[:message]
-		redirect_to '/contact' flash: Mensaje enviado correctamente
+		redirect_to '/contact'
 	end
 end

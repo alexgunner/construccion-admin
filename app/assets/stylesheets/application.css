@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+body{
+    background-color: #F8F8F8 !important;
+}
+
  .carousel-inner .item .active img {
     width: 150% !important;
 }
@@ -34,7 +38,7 @@
 }
 
 .btn-domus {
-    background-color: #DCDCDC;
+    background-color: #E8E8E8;
 }
 
 .btn-domus:hover {
