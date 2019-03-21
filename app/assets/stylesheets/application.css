@@ -44,3 +44,7 @@ body{
 .btn-domus:hover {
     text-decoration: none;
 }
+
+.header-search {
+    margin-top: -1%;
+}
