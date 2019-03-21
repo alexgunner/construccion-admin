@@ -17,6 +17,8 @@ ul li {
   list-style: none;
 }
 
+
+
 a:hover {
 outline: none;
 text-decoration:none;
@@ -713,7 +715,7 @@ ul.sub-menu {
 h2.title:before{
 	content: " ";
 	position: absolute;
-	background: #fff;
+	background: #F8F8F8;
 	bottom: -6px;
 	width: 220px;
 	height: 30px;

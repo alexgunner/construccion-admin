@@ -1,7 +1,7 @@
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center"><%= title %></h2>
-	<% categories.each_with_index do |category, index| %>
-		<div class="col-lg-3">
+	<% categories.each do |category| %>
+		<div class="col-lg-3 item-pad">
 			<a class="category-image-wrapper" href="/category_products/<%= category.id %>">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -11,6 +11,5 @@
 				</div>
 			</a>
 		</div>
-		<br>
 	<% end %>
 </div><!--features_items-->

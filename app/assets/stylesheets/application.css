@@ -39,6 +39,7 @@ body{
 
 .btn-domus {
     background-color: #E8E8E8;
+    line-height: 3;
 }
 
 .btn-domus:hover {
@@ -47,4 +48,8 @@ body{
 
 .header-search {
     margin-top: -1%;
+}
+
+.item-pad {
+    padding-bottom: 30px;
 }
