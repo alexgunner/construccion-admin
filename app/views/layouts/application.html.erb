@@ -26,10 +26,11 @@
     <%= render 'shared/header', contact_information: Contact.first, extras: Extra.first %>
 
     <section>
-      <div class="container-fluid" style="padding: 1.8%;">
+      <div class="container-fluid" >
         <% if @index and Carousel.all.where(pic_type: true).count > 0 %>
           <div class="row slide-row">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-left: 1%">
+            <center>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox" >
                 <% Carousel.all.where(pic_type: true).each_with_index do |carousel, index| %>
@@ -53,7 +54,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-            
+            </center>
           </div>
         <% end %>
       </div>
