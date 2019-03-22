@@ -61,24 +61,16 @@
               <div class="carousel-inner" role="listbox" >
                 <% Carousel.all.where(pic_type: false).each_with_index do |carousel, index| %>
                   <% if index == 0 %>
-                    <div class="item active">
+                    <div class="item active" style="margin-left: 30%;">
                   <% else %>
-                    <div class="item">
+                    <div class="item" style="margin-left: 30%;">
                   <% end %>
                     <img src="<%= carousel.pic.url(:original) %>" class="carousel-pic2">
                   </div>
                 <% end %>
               </div>
 
-              <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic2" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic2" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+              
             </div>
             
           </div>

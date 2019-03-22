@@ -25,10 +25,6 @@ body{
     margin-top: -30%;
 }
 
-.search {
-    width: 300px;
-}
-
 .logo {
     margin-top: -3%;
 }
@@ -49,3 +45,7 @@ body{
 .item-pad {
     padding-bottom: 30px;
 }
+
+.item {
+    padding-left: 5%;
+  }
