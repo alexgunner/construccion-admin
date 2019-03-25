@@ -78,7 +78,7 @@ class SiteController < ApplicationController
 
 	private
 	def set_categories
-		@categories = Category.order(name: :asc)
+		@categories = Category.order(number: :asc)
 	end
 
 	def is_index
