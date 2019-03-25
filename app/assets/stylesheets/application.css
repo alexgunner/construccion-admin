@@ -14,7 +14,7 @@
  *= require_self
  */
 body{
-    background-color: #F8F8F8 !important;
+    background-color: #F6F6F6 !important;
 }
 
 .slide-row {
@@ -31,7 +31,8 @@ body{
 
 .btn-domus {
     background-color: #E8E8E8;
-    line-height: 3;
+    line-height: 2;
+    border-radius: 0%;
 }
 
 .btn-domus:hover {

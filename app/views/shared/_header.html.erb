@@ -28,7 +28,7 @@
 										<li>	
 											<div class="dropdown header-drop">
 												<a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #F8F8F8;">
-													<i class="fa fa-user"></i><%= current_user.namecompany %>
+													Alexander <%= current_user.namecompany %><i class="fa fa-user"></i>
 													<span class="caret"></span>
 												</a>
 												<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -38,8 +38,7 @@
 												</ul>
 											</div>
 										</li>
-										<li><a href="/cart/<%=current_user.id%>" style="background-color: #F8F8F8;"><i class="fa fa-shopping-cart"></i> Carrito
-										<span class="badge"><%=Cart.where('user_id = ? and state = false', current_user.id).count%></span></a></li>
+										
 									<%else%>
 										<li><a href="/users/sign_in" style="background-color: #F8F8F8;"><i class="fa fa-shopping-cart"></i> Carrito
 										<span class="badge"></span></a></li>
@@ -87,7 +86,7 @@
 									<li><a href="/providers_list">Provedores</a></li>
                                 </ul>
 							</li>
-							
+							<li><a href="/cart/<%=current_user.id%>" style="background-color: #F8F8F8;"><i class="fa fa-shopping-cart"></i>
 						</ul>
 					</div>
 				</div>
