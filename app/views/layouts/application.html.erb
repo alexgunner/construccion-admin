@@ -65,7 +65,7 @@
         <% else %>
           <div class="row">
         <% end %>
-          <%= render 'shared/left_menu', categories: Category.all, manufacturers: Manufacturer.all, extras: Extra.first %>
+          <%= render 'shared/left_menu', categories: Category.order(number: :asc), manufacturers: Manufacturer.all, extras: Extra.first %>
 
           <div class="col-sm-9 padding-right">
   	        <%= yield %>
