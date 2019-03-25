@@ -1,1 +1,1 @@
-<%= render 'shared/show_products', products: @manufacturer.products, title: @manufacturer.name %>
+<%= render 'shared/show_products', products: @manufacturer.products.order(name: :asc), title: @manufacturer.name %>

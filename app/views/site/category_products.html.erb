@@ -10,5 +10,5 @@
 		<%= subcategory.description %>
 	</p>
 
-	<%= render 'shared/show_products', products: subcategory.products, title: "" %>
+	<%= render 'shared/show_products', products: subcategory.products.order(name: :asc), title: "" %>
 <% end %>
