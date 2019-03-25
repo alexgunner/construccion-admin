@@ -6,7 +6,7 @@
           <div class="single-products" style="background-color: white;">
             <div class="productinfo text-center">
               <%= image_tag product.picture.url(:original), class: "img-responsive" %>
-              <h2><%= product.name%></h2>
+              <h4><%= product.name.truncate(20) %></h4>
               <button class="btn btn-domus btn-block"><%= product.description.truncate(20) %></button>
             </div>
           </div>

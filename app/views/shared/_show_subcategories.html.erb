@@ -1,0 +1,15 @@
+<div class="features_items"><!--features_items-->
+	<h2 class="title text-center"><%= title %></h2>
+	<% subcategories.each do |subcategory| %>
+		<div class="col-lg-3 item-pad">
+			<a class="category-image-wrapper" href="/subcategory_products/<%= subcategory.id %>">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<%= image_tag subcategory.picture.url(:original), class: "img-responsive" %>
+						<button class="btn btn-domus btn-block"><%= subcategory.name %></button>
+					</div>
+				</div>
+			</a>
+		</div>
+	<% end %>
+</div><!--features_items-->

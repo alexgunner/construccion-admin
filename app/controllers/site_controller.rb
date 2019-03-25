@@ -20,6 +20,10 @@ class SiteController < ApplicationController
 		@categories = Category.all
 	end
 
+	def product_subcategories
+		@subcategories = Subcategory.all
+	end
+
 	def product_offers
 		@products_in_offer = Product.where(offer: true)
 	end
@@ -57,7 +61,7 @@ class SiteController < ApplicationController
 		search_name = search_name.downcase
 		@products = []
 		Product.all.each do |product|
-			if product.name.downcase.include? search_name
+			if product.name.downcase.include? search_name or product.description.downcase.include? search_name or product.category.name.downcase.include? search_name or product.subcategory.name.downcase.include? search_name or product.manufacturer.name.downcase.include? search_name
 				@products.push product
 			end
 		end
