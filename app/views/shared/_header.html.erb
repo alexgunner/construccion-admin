@@ -7,7 +7,7 @@
 						<a href="/"><img src="<%= extras.logo.url(:original) %>" alt="" class="img-responsive" /></a>
 					</div>
 				</div>
-				<div class="col-lg-8 header-search">
+				<div class="col-lg-9 header-search">
 					<br>
 					<div class="row">
 						<div class="shop-menu">
@@ -16,35 +16,30 @@
 									<li>
 										<div class="search_box">
 											<%= form_tag("/search", method: "post") do %>
-												<%= text_field_tag(:name, "", placeholder: "Busca aquí", class: "form-control") %>
+												<div class="form-group">
+													<%= text_field_tag(:name, "", placeholder: "Busca aquí", class: "form-control") %>
+												</div>
 											<% end %>
 										</div>
 									</li>
 								</ul>
 							</div>
 							<div class="col-lg-4">
-								<ul class="nav navbar-nav pull-right" style="margin-top: 0.5%; margin-left: 1%;">
+								<ul class="nav navbar-nav pull-right">
 									<% if current_user != nil %>
 										<li>	
-											<div class="dropdown header-drop">
-												<a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #F8F8F8;">
-													Alexander <%= current_user.namecompany %><i class="fa fa-user"></i>
-													<span class="caret"></span>
-												</a>
-												<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-													<li><a href="/users/<%=current_user.id%>/edit"><i class="fas fa-edit"></i> Editar Datos Personales</a></li>
-													<li><a href="/history/<%=current_user.id%>"><i class="fas fa-history"></i> Mi Historial de Compras</a></li>
-													<li><%= link_to '<i class="fas fa-sign-out-alt"></i> Cerrar está Sesión (Salir)'.html_safe, destroy_user_session_path, method: :delete %></li>
-												</ul>
-											</div>
+											<a class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #F6F6F6; margin-right: -35px;">
+													<%= current_user.name %>&nbsp&nbsp<i class="fa fa-user"></i>
+											</a>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+												<li><a href="/users/<%=current_user.id%>/edit"><i class="fas fa-edit"></i> Editar Datos Personales</a></li>
+												<li><a href="/history/<%=current_user.id%>"><i class="fas fa-history"></i> Mi Historial de Compras</a></li>
+												<li><%= link_to '<i class="fas fa-sign-out-alt"></i> Cerrar está Sesión (Salir)'.html_safe, destroy_user_session_path, method: :delete %></li>
+											</ul>
 										</li>
 										
 									<%else%>
-										<li><a href="/users/sign_in" style="background-color: #F8F8F8;"><i class="fa fa-shopping-cart"></i> Carrito
-										<span class="badge"></span></a></li>
-									<%end%>
-									<% if current_user == nil %>
-										<li><a href="/users/sign_in" style="background-color: #F8F8F8;"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a></li>
+										<li><a href="/users/sign_in" style="background-color: #F6F6F6;"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a></li>
 									<%end%>
 								</ul>
 							</div>
@@ -58,39 +53,47 @@
 	<div class="header-bottom"><!--header-bottom-->
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-9">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="mainmenu pull-left">
+				<nav class="navbar">
+					<div class="container-fluid">
 						<ul class="nav navbar-nav collapse navbar-collapse">
 							<li><a href="/">Inicio</a></li>
 							<li><a href="/about_us">Nosotros</a></li>
 							<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="/product_categories">Productos</a></li>
-                                    <li><a href="/product_offers">Ofertas</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/services">Servicios</a></li>
+								<ul role="menu" class="sub-menu">
+									<li><a href="/product_categories">Productos</a></li>
+									<li><a href="/product_offers">Ofertas</a></li>
+								</ul>
+							</li>
+							<li><a href="/services">Servicios</a></li>
 							<li><a href="/training_list">Capacitación</a></li>
 							<li class="dropdown"><a href="#">Contactos<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-                                    <li><a href="/contact">Contactos</a></li>
-                                    <li><a href="/offices_list">Sucursales</a></li>
+									<li><a href="/contact">Contactos</a></li>
+									<li><a href="/offices_list">Sucursales</a></li>
 									<li><a href="/providers_list">Provedores</a></li>
-                                </ul>
+								</ul>
 							</li>
-							<li><a href="/cart/<%=current_user.id%>" style="background-color: #F8F8F8;"><i class="fa fa-shopping-cart"></i>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<% if current_user %>
+								<li>
+									<a href="/cart/<%=current_user.id%>"><i class="fa fa-shopping-cart">
+								</i> &nbsp&nbsp&nbsp&nbsp&nbsp|
+								<li><a href="#"><i class="fab fa-facebook"></i>
+								<li><a href="#"><i class="fab fa-twitter-square"></i>
+								<li><a href="#"><i class="fab fa-youtube-square"></i>
+							<% else %>
+								<li>
+									<a href="/users/sign_in"><i class="fa fa-shopping-cart">
+								</i> &nbsp&nbsp&nbsp&nbsp&nbsp|
+								<li><a href="#"><i class="fab fa-facebook"></i>
+								<li><a href="#"><i class="fab fa-twitter-square"></i>
+								<li><a href="#"><i class="fab fa-youtube-square"></i>
+							<% end %>
+							
 						</ul>
 					</div>
-				</div>
-				
+				</nav>
 			</div>
 		</div>
 	</div><!--/header-bottom-->

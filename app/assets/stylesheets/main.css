@@ -244,8 +244,8 @@ a#scrollUp i{
 }
 
 .header-bottom {
-  padding-bottom: 30px;
-  padding-top: 30px;
+  
+  
 }
 
 .navbar-collapse.collapse{
@@ -285,7 +285,7 @@ a#scrollUp i{
   height: 45px;
   outline: medium none;
   padding-left: 10px;
-  width: 340%;
+  width: 320%;
   background-image: url(/assets/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
@@ -346,9 +346,16 @@ ul.sub-menu {
     color: rgb(10,32,120);
 }
 
+.navbar-nav>li>a {
+  font-size: 18px;
+  color: grey;
+}
+
 .fa-angle-down{
   padding-left: 5px;
 }
+
+
 
 @-webkit-keyframes fadeInUp {
   0% {

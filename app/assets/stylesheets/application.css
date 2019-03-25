@@ -25,10 +25,6 @@ body{
     margin-top: -30%;
 }
 
-.logo {
-    margin-top: -3%;
-}
-
 .btn-domus {
     background-color: #E8E8E8;
     line-height: 2;
@@ -49,4 +45,4 @@ body{
 
 .item {
     padding-left: 5%;
-  }
+}
