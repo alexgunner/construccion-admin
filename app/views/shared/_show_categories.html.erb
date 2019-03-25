@@ -5,7 +5,11 @@
 			<a class="category-image-wrapper" href="/category_products/<%= category.id %>">
 				<div class="single-products">
 					<div class="productinfo text-center">
-						<%= image_tag category.picture.url(:original), class: "img-responsive" %>
+						<% if category.picture.url(:original) != "/images/original/missing.png" %>
+							<%= image_tag category.picture.url(:original), class: "img-responsive" %>
+						<% else %>
+							<img src="/assets/domusnoimage.png" class="img-responsive">
+						<% end %>
 						<button class="btn btn-domus btn-block"><%= category.name %></button>
 					</div>
 				</div>
