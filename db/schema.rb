@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325150538) do
+ActiveRecord::Schema.define(version: 20190409181015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20190325150538) do
     t.integer "pic_file_size"
     t.datetime "pic_updated_at"
     t.boolean "pic_type"
+    t.string "web_link"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -91,6 +92,8 @@ ActiveRecord::Schema.define(version: 20190325150538) do
     t.string "picture_content_type"
     t.integer "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string "twitter"
+    t.string "youtube"
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -305,6 +308,12 @@ ActiveRecord::Schema.define(version: 20190325150538) do
     t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
+  create_table "training_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trainings", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -315,6 +324,8 @@ ActiveRecord::Schema.define(version: 20190325150538) do
     t.datetime "docu_updated_at"
     t.string "description"
     t.string "videolink"
+    t.bigint "training_category_id"
+    t.index ["training_category_id"], name: "index_trainings_on_training_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -361,4 +372,5 @@ ActiveRecord::Schema.define(version: 20190325150538) do
   add_foreign_key "products", "providers"
   add_foreign_key "products", "subcategories"
   add_foreign_key "subcategories", "categories"
+  add_foreign_key "trainings", "training_categories"
 end

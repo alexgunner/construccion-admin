@@ -69,6 +69,17 @@ class ProductsController < ApplicationController
     @products = Product.search(params[:search])
   end
 
+  def search
+    search_name = params[:name].to_s
+		search_name = search_name.downcase
+		@products = []
+		Product.all.each do |product|
+			if product.name.downcase.include? search_name or product.description.downcase.include? search_name or product.subcategory.name.downcase.include? search_name or product.manufacturer.name.downcase.include? search_name
+				@products.push product
+			end
+		end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

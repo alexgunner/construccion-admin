@@ -1,0 +1,23 @@
+<%= form_with(model: training_category, local: true) do |form| %>
+  <% if training_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(training_category.errors.count, "error") %> prohibited this training_category from being saved:</h2>
+
+      <ul>
+      <% training_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :training_category_name, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", class: "btn btn-success" %>
+    <%= link_to 'Cancelar', training_categories_path, class: "btn btn-danger" %>
+  </div>
+<% end %>

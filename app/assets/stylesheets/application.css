@@ -28,7 +28,12 @@ body{
 .btn-domus {
     background-color: #E8E8E8;
     line-height: 2;
-    border-radius: 0%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.img-rounded {
+    border-radius: 5px;
 }
 
 .btn-domus:hover {

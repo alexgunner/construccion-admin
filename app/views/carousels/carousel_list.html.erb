@@ -10,6 +10,7 @@
     <tr>
       <th>Imagen</th>
       <th>Tipo</th>
+      <th>Enlace</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,9 @@
           <% else %>
             Carrusel publicidad
           <% end %>
+        </td>
+        <td>
+          <%= carousel.web_link %>
         </td>
         <td><%= link_to 'Editar', edit_carousel_path(carousel) %></td>
         <td><%= link_to 'Eliminar', carousel, method: :delete, data: { confirm: 'Está seguro?' } %></td>

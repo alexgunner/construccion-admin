@@ -7,6 +7,8 @@
         <th>Teléfono</th>
         <th>Correo electrónico</th>
         <th>Facebook</th>
+        <th>Twitter</th>
+        <th>Youtube</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -18,6 +20,8 @@
           <td><%= contact.phone %></td>
           <td><%= contact.email %></td>
           <td><%= contact.facebook %></td>
+          <td><%= contact.twitter %></td>
+          <td><%= contact.youtube %></td>
           <td><%= link_to 'Editar', edit_contact_path(contact) %></td>
         </tr>
       <% end %>

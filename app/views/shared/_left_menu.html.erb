@@ -2,80 +2,71 @@
   <br>
   <br>
   <div class="col-lg-3 hidden-xs">
-  <div class="left-sidebar" style="margin-top: -3%;">
+  <div class="left-sidebar" style="margin-top: -19%;">
     <br><br><br>
 <% else %>
   <div class="col-lg-3 hidden-xs">
   <div class="left-sidebar" style="margin-top: 4%;">
 <% end %>
 
-    <div class="panel-group category-products" id="accordian"><!--category-products-->
-      <h2 class="lower-case" style="margin-top: -1%;">Categorías</h2>
-      <% categories.each do |category| %>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <% if category.subcategories.count == 0 %>
-                <a href="#"><%= category.name %></a>
-              <% else %>
-                <a data-toggle="collapse" data-parent="#accordian" href="#category<%= category.id %>">
-                  <span class="badge pull-right"><i class="fas fa-chevron-down"></i></span>
-                  <%= category.name %>
-                </a>
-              <% end %>
-            </h4>
-          </div>
-
-          <% if category.subcategories.count > 0 %>
-            <div id="category<%= category.id %>" class="panel-collapse collapse">
-              <div class="panel-body">
-                <ul>
-                  <% category.subcategories.order(name: :asc).each do |subcategory| %>
-                    <li><a href="/subcategory_products/<%= subcategory.id %>"><%= subcategory.name %></a></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div><!--/category-products-->
-
-    <div class="brands_products"><!--brands_products-->
-      <h2 class="lower-case">Fabricantes</h2>
-      <div class="brands-name">
-        <ul class="nav nav-pills nav-stacked">
-          <% manufacturers.order(name: :asc).each do |manufacturer| %>
-            <li><a href="/manufacturer_products/<%= manufacturer.id %>"> <span class="pull-right">(<%= manufacturer.products.count %>)</span><%= manufacturer.name %></a></li>
-          <% end %>
-        </ul>
-      </div>
-    </div><!--/brands_products-->
-
-    <div class="shipping text-center"><!--shipping-->
-      <% if Carousel.all.where(pic_type: false).count > 0 %>
-          <div class="row slide-row">
-            <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox" >
-                <% Carousel.all.where(pic_type: false).each_with_index do |carousel, index| %>
-                  <% if index == 0 %>
-                    <div class="item active" style="margin-left: 30%;">
-                  <% else %>
-                    <div class="item" style="margin-left: 30%;">
-                  <% end %>
-                    <img src="<%= carousel.pic.url(:original) %>" class="carousel-pic2">
-                  </div>
+    <% if !@index and !@contact and !@about and !@store %>
+      <div class="panel-group category-products" id="accordian"><!--category-products-->
+        <h2 class="lower-case" style="margin-top: -1%;">Categorías</h2>
+        <% categories.each do |category| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <% if category.subcategories.count == 0 %>
+                  <a href="#"><%= category.name %></a>
+                <% else %>
+                  <a data-toggle="collapse" data-parent="#accordian" href="#category<%= category.id %>">
+                    <span class="badge pull-right"><i class="fas fa-chevron-down"></i></span>
+                    <%= category.name %>
+                  </a>
                 <% end %>
-              </div>
-
-              
+              </h4>
             </div>
-            
+
+            <% if category.subcategories.count > 0 %>
+              <div id="category<%= category.id %>" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul>
+                    <% category.subcategories.order(name: :asc).each do |subcategory| %>
+                      <li><a href="/subcategory_products/<%= subcategory.id %>"><%= subcategory.name %></a></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
-      <br>
-    </div><!--/shipping-->
+      </div><!--/category-products-->
+
+      <div class="brands_products"><!--brands_products-->
+        
+        <div class="brands-name">
+          <ul class="nav nav-pills nav-stacked">
+            <h2 class="lower-case">Marcas y Proveedores</h2>
+            <% manufacturers.order(name: :asc).each do |manufacturer| %>
+              <li><a href="/manufacturer_products/<%= manufacturer.id %>"> <span class="pull-right">(<%= manufacturer.products.count %>)</span><%= manufacturer.name %></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div><!--/brands_products-->
+    <% end %>
+
+    <% if @index or @contact or @about or @store %>
+      <div class="shipping text-center" style="border-radius: 5px;"><!--shipping-->
+        <% if Carousel.all.where(pic_type: false).count > 0 %>
+            <div class="row slide-row">
+              <% Carousel.all.where(pic_type: false).each do |carousel| %>
+                <img src="<%= carousel.pic.url(:original) %>" class="img-responsive"><br>
+              <% end %>
+            </div>
+          <% end %>
+        <br>
+      </div><!--/shipping-->
+    <% end %>
 
   </div>
 </div>

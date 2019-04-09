@@ -1,12 +1,12 @@
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center"><%= title %></h2>
 	<% categories.each do |category| %>
-		<div class="col-lg-3 item-pad">
+		<div class="col-lg-4 item-pad">
 			<a class="category-image-wrapper" href="/category_products/<%= category.id %>">
 				<div class="single-products">
 					<div class="productinfo text-center">
 						<% if category.picture.url(:original) != "/images/original/missing.png" %>
-							<%= image_tag category.picture.url(:original), class: "img-responsive" %>
+							<%= image_tag category.picture.url(:original), class: "img-responsive", style: "border-radius: 2%;" %>
 						<% else %>
 							<img src="/assets/domusnoimage.png" class="img-responsive">
 						<% end %>

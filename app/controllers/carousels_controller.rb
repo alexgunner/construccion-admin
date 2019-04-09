@@ -59,6 +59,6 @@ class CarouselsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def carousel_params
-      params.require(:carousel).permit(:pic, :pic_type)
+      params.require(:carousel).permit(:pic, :pic_type, :web_link)
     end
 end

@@ -8,7 +8,7 @@
               <% if product.picture.url(:original) != "/images/original/missing.png" %>
                 <%= image_tag product.picture.url(:original), class: "img-responsive" %>
               <% else %>
-                <img src="/assets/domusnoimage.png" class="img-responsive">
+                <img src="/assets/domusnoimage.png" class="img-responsive img-rounded">
               <% end %>
               <h4><%= product.name.truncate(20) %></h4>
               <button class="btn btn-domus btn-block"><%= product.description.truncate(20) %></button>

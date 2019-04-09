@@ -42,6 +42,16 @@
   </div>
 
   <div class="form-group">
+    <%= form.label "Twitter" %>
+    <%= form.text_field :twitter, id: :contact_twitter, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Youtube" %>
+    <%= form.text_field :youtube, id: :contact_youtube, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= form.label "Introducción de nosotros" %>
     <%= form.text_area :about, id: :contact_about, class: "form-control" %>
   </div>

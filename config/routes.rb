@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :training_categories
   resources :carousels
   resources :trainings
   resources :offices
@@ -69,6 +70,7 @@ get '/sucursales' => 'offices#list'
 get '/messages' => 'dashboard#messages'
 post '/post_message' => 'dashboard#post_message'
 get '/providers_list' => 'site#providers_list'
+get '/admin_product_search' => 'products#search'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'

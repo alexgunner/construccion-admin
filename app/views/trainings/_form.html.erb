@@ -31,6 +31,11 @@
     <%= form.file_field :docu, id: :product_docu_id, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= form.label "Categoría" %>
+    <%= form.collection_select :training_category_id, TrainingCategory.all, :id, :name, id: :training_training_category_id, class: "form-control" %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Aceptar", class: "btn btn-success" %>
     <%= link_to "Atrás", "/training", class: "btn btn-primary" %>
