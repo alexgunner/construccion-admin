@@ -109,7 +109,7 @@
             							<% if variant.available%>
                             <%if current_user != nil%>
                               <%if cart_exist(variant.id, current_user.id) %>
-                                <a href='/cart/<%=current_user.id%>' class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> En carrito</a>
+                                <a href='/cart/<%=current_user.id%>' class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Ya está en tú carrito</a>
                               <%else%>
 													      <%= link_to '<i class="fa fa-shopping-cart"></i> Añadir al carrito'.html_safe, carts_path(cart: {order_id: nil, quantity: 1, state: false, product_variant_id: variant.id, role: current_user.role, user_id: current_user.id}), method: :post, class: "btn btn-default add-to-cart" %>
                               <%end%>
