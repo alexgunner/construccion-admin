@@ -9,7 +9,7 @@
     <tr>
       <th>Nombre</th>
       <th>Descripción</th>
-      <th>Categoría</th>
+     
       <th>Video</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +20,7 @@
       <tr>
         <td><%= training.name %></td>
         <td><%= training.description %></td>
-        <td><%= training.training_category.name %></td>
+        
         <td><iframe width="420" height="315" src="<%= training.videolink %>"></iframe></td>
         <td><%= link_to 'Editar', edit_training_path(training) %></td>
         <td><%= link_to 'Eliminar', training, method: :delete, data: { confirm: 'Está seguro?' } %></td>
