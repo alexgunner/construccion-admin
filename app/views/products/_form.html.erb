@@ -1,37 +1,47 @@
 <%= form_with(model: product, local: true, html: { multipart: true }) do |form| %>
   <div class="form-group">
     <%= form.label "Nombre" %>
-    <%= form.text_field :name, id: :product_name, class: "form-control" %>
+    <%= form.text_field :name, id: :product_name, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Descripción" %>
-    <%= form.text_area :description, id: :product_description, class: "form-control" %>
+    <%= form.text_area :description, id: :product_description, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Unidad de medida" %>
-    <%= form.collection_select :measure_id, Measure.all, :id, :name, id: :product_meausure_id, class: "form-control" %>
+    <%= form.collection_select :measure_id, Measure.all, :id, :name, id: :product_meausure_id, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Categoría" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, id: :product_category_id, class: "form-control" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, id: :product_category_id, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Subcategoría" %>
-    <%= form.collection_select :subcategory_id, Subcategory.all, :id, :name, id: :product_subcategory_id, class: "form-control" %>
+    <%= form.collection_select :subcategory_id, Subcategory.all, :id, :name, id: :product_subcategory_id, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Proveedor" %>
-    <%= form.collection_select :provider_id, Provider.all, :id, :name, id: :product_provider_id, class: "form-control" %>
+    <%= form.collection_select :provider_id, Provider.all, :id, :name, id: :product_provider_id, class: "form-control", :required => true %>
   </div>
 
   <div class="form-group">
     <%= form.label "Fabricante" %>
-    <%= form.collection_select :manufacturer_id, Manufacturer.all, :id, :name, id: :product_manufacturer_id, class: "form-control" %>
+    <%= form.collection_select :manufacturer_id, Manufacturer.all, :id, :name, id: :product_manufacturer_id, class: "form-control", :required => true%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Industria" %>
+    <%= form.text_field :industry, id: :product_industry, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Garantía" %>
+    <%= form.text_field :warranty, id: :product_warranty, class: "form-control" %>
   </div>
 
   <div class="form-group">

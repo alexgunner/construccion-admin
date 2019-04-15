@@ -52,6 +52,12 @@
             						<th>Descripción</th>
             						<th>Peso</th>
             						<th>Precio</th>
+                        <%if !@product.industry.blank?%>
+                        <th>Industria</th>
+                        <%end%>
+                        <%if !@product.warranty.blank? %>
+                          <th>Garantía</th>
+                        <%end%>
             						<th></th>
             					</thead>
             					<tbody>
@@ -93,6 +99,12 @@
               							OFERTA: Bs. <%=variant.offerprice%>
                           <%end%>
             						</td>
+                        <%if !@product.industry.blank?%>
+                          <td><%=@product.industry%></td>
+                        <%end%>
+                        <%if !@product.warranty.blank?%>
+                          <td><%=@product.warranty%></td>
+                        <%end%>
             						<td align="left">
             							<% if variant.available%>
                             <%if current_user != nil%>
