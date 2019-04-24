@@ -55,12 +55,17 @@
         <% else %>
           <div class="row">
         <% end %>
-          <%= render 'shared/left_menu', categories: Category.order(number: :asc), manufacturers: Manufacturer.all, extras: Extra.first %>
 
-          <div class="col-sm-9 padding-right">
-  	        <%= yield %>
-          </div>
-
+          <% if @index %>
+            <div class="col-lg-12 padding-right">
+              <%= yield %>
+            </div>
+          <% else %>
+            <%= render 'shared/left_menu', categories: Category.order(number: :asc), manufacturers: Manufacturer.all, extras: Extra.first %>
+            <div class="col-sm-9 padding-right">
+              <%= yield %>
+            </div>
+          <% end %>
         </div>
       </div>
     </section>

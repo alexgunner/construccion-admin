@@ -1,5 +1,16 @@
 <br>
 <%= render 'shared/show_categories', categories: @categories, title: "" %>
-<% if !@products_in_offer.nil? %>
+
+<div class="row">
+	<% if Carousel.all.where(pic_type: false).count > 0 %>
+      <% Carousel.all.where(pic_type: false).each do |carousel| %>
+      	<div class="col-lg-4">
+      		<a href="<%= carousel.web_link %>" target="_blank"><img src="<%= carousel.pic.url(:original) %>" class="img-responsive"></a><br>
+      	</div>
+      <% end %>
+	<% end %>
+</div>
+
+<% if @products_in_offer.count != 0 %>
 	<%= render 'shared/show_products', products: @products_in_offer.order(name: :asc), title: "Productos en oferta" %>
 <% end %>
