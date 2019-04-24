@@ -25,6 +25,10 @@ body{
     margin-top: -28%;
 }
 
+.category:hover {
+    border-color: red !important;
+}
+
 .btn-domus {
     background-color: #E8E8E8;
     line-height: 2;

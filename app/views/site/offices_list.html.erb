@@ -86,18 +86,19 @@
     <div class="col-lg-12 padding-right"> 
         <div class="features_items">
             <h2 class="title text-center">Tiendas y Sucursales</h2>
-            <div class="row">
+            
                 <% @offices.each do |office| %>
+                <div class="row">
                 <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy4PzSIG77OtqMciXyhMuTD9tQSICh0LM&callback=initMap<%= office.id %>">
                 </script>
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <h4>Nombre: </h4><p><%= office.name %></p>
                     <div id="map<%= office.id %>" style="width: 500px; height: 400px;" data-lat="<%= office.lat %>" data-lng="<%= office.long %>"></div>
                     <br/>
                     <br/>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <br>
                     <h4>Ciudad: </h4><p><%= office.city %></p>
                     <br/>
@@ -105,19 +106,34 @@
                     <h4>Dirección: </h4><p><%= office.address %></p>
                     <br/>
                     <br/>
-                    <h4>Celular: </h4><p><%= office.cellphone %></p>
+                    <h4>Celular/Whatsapp: </h4><p><%= office.cellphone %> - <%= office.cellwsp %></p>
                     <br/>
                     <br/>
-                    <h4>WhatsApp: </h4><p><%= office.cellwsp %></p>
-                    <br/>
-                    <br/>
-                    <h4>Correo electrónico: </h4><p><%= office.email %></p>
-                    <img class="img-responsive" src="<%= office.picture %>" alt="" />
+                    <h4>Correo electrónico: </h4><p><%= office.email %></p><br><br>
+                    <a href="#" data-toggle="modal" data-target="#office<%= office.id %>"><img class="img-responsive" src="<%= office.picture %>" alt="" /></a>
                     <br/>
                     <br/>
                 </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="office<%= office.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <center>
+                            <img class="img-responsive" src="<%= office.picture %>" alt="" />
+                        </center>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <% end %>
             </div>
-        </div>
+        
     </div>
 </div>

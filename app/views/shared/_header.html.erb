@@ -17,7 +17,8 @@
 										<div class="search_box">
 											<%= form_tag("/search", method: "post") do %>
 												<div class="form-group">
-													<%= text_field_tag(:name, "", placeholder: "INGRESA TU BÚSQUEDA AQUÍ Y PRESIONA ENTER", class: "form-control") %>
+													<%= text_field_tag(:name, "", placeholder: "INGRESA TU BÚSQUEDA AQUÍ Y PRESIONA ENTER ", class: "form-control") %>
+
 												</div>
 											<% end %>
 										</div>
@@ -29,7 +30,7 @@
 									<% if current_user != nil %>
 										<li>	
 											<a class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #F6F6F6; margin-right: -35px;">
-													<%= current_user.name %> - <%= current_user.namecompany %>&nbsp&nbsp<i class="fa fa-user"></i>
+													<%= current_user.namecompany %>&nbsp&nbsp<i class="fa fa-user"></i>
 											</a>
 											<ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 												<li><a href="#"> <%= current_user.role %></a></li>
@@ -79,11 +80,11 @@
 						<ul class="nav navbar-nav navbar-right">
 							<% if current_user %>
 								<li>
-									<a href="/cart/<%=current_user.id%>"><i class="fa fa-shopping-cart">
-								</i> &nbsp&nbsp&nbsp&nbsp&nbsp|
-								<li><a href="<%= Contact.first.facebook %>" target="_blank"><i class="fab fa-facebook"></i>
-								<li><a href="<%= Contact.first.twitter %>" target="_blank"><i class="fab fa-twitter-square"></i>
-								<li><a href="<%= Contact.first.youtube %>" target="_blank"><i class="fab fa-youtube-square"></i>
+									<a href="/cart/<%=current_user.id%>"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp&nbsp&nbsp&nbsp|</a>
+								</i> 
+								<li><a href="<%= Contact.first.facebook %>" target="_blank"><img id="facebook" src="/assets/icons/facebook-grey.png"></a>
+								<li><a href="<%= Contact.first.twitter %>" target="_blank"><img id="twitter" src="/assets/icons/twitter-grey.png"></a>
+								<li><a href="<%= Contact.first.youtube %>" target="_blank"><img id="youtube" src="/assets/icons/youtube-grey.png"></a>
 							<% else %>
 								<li>
 									<a href="/users/sign_in"><i class="fa fa-shopping-cart">
@@ -100,3 +101,23 @@
 		</div>
 	</div><!--/header-bottom-->
 </header><!--/header-->
+
+<script type="text/javascript">
+	$("#facebook").hover(function(){
+	  $(this).attr("src", "/assets/icons/facebook.png");
+	  }, function(){	  
+	  $(this).attr("src", "/assets/icons/facebook-grey.png");
+	});
+
+	$("#twitter").hover(function(){
+	  $(this).attr("src", "/assets/icons/twitter.png");
+	  }, function(){	  
+	  $(this).attr("src", "/assets/icons/twitter-grey.png");
+	});
+
+	$("#youtube").hover(function(){
+	  $(this).attr("src", "/assets/icons/youtube.png");
+	  }, function(){	  
+	  $(this).attr("src", "/assets/icons/youtube-grey.png");
+	});
+</script>

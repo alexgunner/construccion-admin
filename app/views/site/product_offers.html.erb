@@ -5,7 +5,7 @@
             <h2 class="title text-center">Productos en Oferta</h2>
             <% @products_in_offer.each do |product| %>
                 <div class="col-sm-3">
-                    <a class="product-image-wrapper" href="/product-details/<%= product.id %>" >
+                    <a class="product-image-wrapper" href="/product_details/<%= product.id %>" >
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="<%= product.picture %>" alt="" />
