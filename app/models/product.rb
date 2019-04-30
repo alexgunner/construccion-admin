@@ -50,4 +50,10 @@ class Product < ApplicationRecord
       Product.joins('INNER JOIN Subcategories ON Products.subcategory_id=Subcategories.id').where('subcategories.name = ?', "#{search}");
     end
   end
+
+  def self.search_category_subcategory(search_cat, search_subcat)
+    if search_cat and search_subcat
+      Product.joins('INNER JOIN Categories ON Products.category_id=Categories.id').joins('INNER JOIN Subcategories ON Products.subcategory_id=Subcategories.id').where('categories.name = ? and subcategories.name = ?', "#{search_cat}", "#{search_subcat}")
+    end
+  end
 end

@@ -78,6 +78,14 @@ class ProductsController < ApplicationController
     if params[:search_category] == "Todas" and params[:search_subcategory] == "Todas"
       @products = Product.search(params[:search])
     end
+    #compuesto cat y subcat
+    if params[:search_category] != "Todas" and !params[:search_category].blank? and !params[:search_subcategory].blank? and params[:search_subcategory] != "Todas" and params[:search].blank?
+      @products = Product.search_category_subcategory(params[:search_category], params[:search_subcategory])
+    end
+    #compuesto cat, subcat y nombre
+    if params[:search_category] != "Todas" and !params[:search_category].blank? and !params[:search_subcategory].blank? and params[:search_subcategory] != "Todas" and  !params[:search].blank?
+      @products = Product.search(params[:search])
+    end
    
   end
 
