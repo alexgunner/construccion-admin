@@ -44,4 +44,10 @@ class Product < ApplicationRecord
       Product.joins('INNER JOIN Categories ON Products.category_id=Categories.id').where('categories.name = ?', "#{search}");
     end
   end
+
+  def self.search_subcategory(search)
+    if search
+      Product.joins('INNER JOIN Subcategories ON Products.subcategory_id=Subcategories.id').where('subcategories.name = ?', "#{search}");
+    end
+  end
 end

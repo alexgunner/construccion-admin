@@ -66,13 +66,16 @@ class ProductsController < ApplicationController
 
   #Metodos para las vistas
   def list
-    if params[:search_category] != "Todas" and !params[:search_category].blank?  and params[:search].blank?
-      @products = Product.search_category(params[:search_category])
+    if params[:search_subcategory] != "Todas" and !params[:search_subcategory].blank? and params[:search].blank? and params[:search_category] == "Todas"
+      @products = Product.search_subcategory(params[:search_subcategory])
     end 
-    if params[:search].blank? and (params[:search_category].blank? or params[:search_category] == "Todas")
+    if params[:search_category] != "Todas" and !params[:search_category].blank? and params[:search].blank? and params[:search_subcategory] == "Todas"
+      @products = Product.search_category(params[:search_category])
+    end
+    if params[:search].blank? and (params[:search_category] == "Todas" or params[:search_category].blank?) and (params[:search_subcategory] == "Todas" or params[:search_subcategory].blank?)
       @products = Product.search(params[:search])
     end
-    if params[:search_category] == "Todas" 
+    if params[:search_category] == "Todas" and params[:search_subcategory] == "Todas"
       @products = Product.search(params[:search])
     end
    

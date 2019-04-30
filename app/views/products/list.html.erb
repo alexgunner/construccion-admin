@@ -1,4 +1,5 @@
 <h1>Productos</h1>
+<br/>
 <form method="get" action="">
   <div class="row">
       <div class="col-md-6">
@@ -8,6 +9,17 @@
          <option>Todas</option>
         <%Category.all.each do |category|%>
           <option><%=category.name%></option>
+        <%end%>
+        </select>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        </div>
+        <br/>
+        <div class="input-group">
+        <h4>Ver Subcategoría</h4>&nbsp;
+        <select class="form-control" name="search_subcategory">
+         <option>Todas</option>
+        <%Subcategory.all.each do |subcategory|%>
+          <option><%=subcategory.name%></option>
         <%end%>
         </select>
           <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
