@@ -105,10 +105,10 @@ class CartsController < ApplicationController
     cart = Cart.find(id)
     total = cart.product_variant.price
     if cart.product_variant.offerprice.nil?
-      if cart.role == "Mayorista "
+      if cart.role == "Cliente Minorista "
         total = cart.product_variant.wholesaleprice
       end
-      if cart.role == "Especialista "
+      if cart.role == "Cliente Especialista "
         total = cart.product_variant.specialistprice
       end
       if cart.role == "Cliente DOMUS "
@@ -122,10 +122,10 @@ class CartsController < ApplicationController
 
   def show_details_report
     @product_variant = ProductVariant.find(params[:id])
-    @total_minoristas = @product_variant.carts.where("role = ?", "Cliente Minorista ").sum("quantity")
+    @total_minoristas = @product_variant.carts.where("role = ?", "Cliente ").sum("quantity")
     @total_domus = @product_variant.carts.where("role = ?", "Cliente DOMUS ").sum("quantity")
-    @total_especialitas = @product_variant.carts.where("role = ?", "Especialista ").sum("quantity")
-    @total_mayoristas = @product_variant.carts.where("role = ?", "Mayorista ").sum("quantity")
+    @total_especialitas = @product_variant.carts.where("role = ?", "Cliente Especialista ").sum("quantity")
+    @total_mayoristas = @product_variant.carts.where("role = ?", "Cliente Minorista ").sum("quantity")
   end
 
   def carrito

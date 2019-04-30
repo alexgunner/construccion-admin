@@ -155,10 +155,10 @@ class OrdersController < ApplicationController
     order.carts.each do |cart|
       price = cart.product_variant.price
       if cart.product_variant.offerprice.nil?
-        if cart.role == "Mayorista "
+        if cart.role == "Cliente Minorista "
           price = cart.product_variant.wholesaleprice
         end
-        if cart.role == "Especialista "
+        if cart.role == "Cliente Especialista "
           price = cart.product_variant.specialistprice
         end
         if cart.role == "Cliente DOMUS "

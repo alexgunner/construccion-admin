@@ -39,17 +39,17 @@ en la plataforma de DOMUS S.R.L.</p>
           <td><%= cart.product_variant.code %></td>
           <td><%= cart.product_variant.description %></td>
           <td><%= cart.quantity %></td>
-          <%if cart.role.nil? or cart.role == "Cliente Minorista " %>
+          <%if cart.role.nil? or cart.role == "Cliente " %>
             <td>Precio: <%if cart.product_variant.offerprice.nil? %>
                           <%= cart.product_variant.price %></td>
                         <%else%>
                           <%= cart.product_variant.offerprice %></td>
                         <%end%>
           <%else%>
-            <%if cart.role == "Mayorista " %>
+            <%if cart.role == "Cliente Minorista " %>
               <td><%= cart.product_variant.wholesaleprice %></td>
             <%end%>
-            <%if cart.role == "Especialista " %>
+            <%if cart.role == "Cliente Especialista " %>
               <td><%= cart.product_variant.specialistprice %></td>
             <%end%>
             <%if cart.role == "Cliente DOMUS " %>

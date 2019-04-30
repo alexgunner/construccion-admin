@@ -9,8 +9,8 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="<%= product.picture %>" alt="" />
-                                <h2><%= product.code %></h2>
-                                <p><%= product.description %></p>
+                                <h2><%= product.name.truncate(20) %></h2>
+                                <p><%= product.description.truncate(20) %></p>
                             </div>
                         </div>
                     </a>

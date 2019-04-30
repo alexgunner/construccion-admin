@@ -27,13 +27,13 @@
                         <td><%=cart.product_variant.code%></td>
                         <td><%=cart.quantity%></td>
                         <%if cart.product_variant.offerprice.nil?%>
-                            <%if current_user.role == 'Mayorista '%>
+                            <%if current_user.role == 'Cliente Minorista '%>
                                 <td>Bs. <%=cart.product_variant.wholesaleprice%></td>
                             <%end%>
-                            <%if current_user.role == 'Especialista '%>
+                            <%if current_user.role == 'Cliente Especialista '%>
                                 <td>Bs. <%=cart.product_variant.specialistprice%></td>
                             <%end%>
-                            <%if current_user.role == 'Cliente Minorista '%>
+                            <%if current_user.role == 'Cliente '%>
                                 <td>Bs. <%=cart.product_variant.price%></td>
                             <%end%>
                             <%if current_user.role == 'Cliente DOMUS '%>

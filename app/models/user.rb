@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  default_value_for :role, "Cliente Minorista "
+  default_value_for :role, "Cliente "
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    has_attached_file :imageci, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"

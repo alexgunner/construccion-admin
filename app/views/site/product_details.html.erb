@@ -80,16 +80,16 @@
             						<td align="left">
                           <%if variant.offerprice.nil?%>
                             <% if current_user != nil %>
-                              <%if current_user.role == "Cliente Minorista "%>
+                              <%if current_user.role == "Cliente "%>
 																<%=variant.price%>
 															<%end%>
 															<%if current_user.role == "Cliente DOMUS "%>
 																<%=variant.importerprice%>
 															<%end%>
-                              <%if current_user.role == "Mayorista "%>
+                              <%if current_user.role == "Cliente Minorista "%>
 																<%=variant.wholesaleprice%>
 															<%end%>
-                              <%if current_user.role == "Especialista "%>
+                              <%if current_user.role == "Cliente Especialista "%>
 																<%=variant.specialistprice%>
 															<%end%>
                             <%else%>
