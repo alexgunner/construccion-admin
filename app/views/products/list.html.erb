@@ -1,16 +1,28 @@
 <h1>Productos</h1>
-
-<form method="get" action="/admin_product_search">
+<form method="get" action="">
   <div class="row">
-      <div class="col-lg-5 offset-lg-7">
+      <div class="col-md-6">
         <div class="input-group">
+        <h4>Ver Categoría</h4>&nbsp;
+        <select class="form-control" name="search_category">
+         <option>Todas</option>
+        <%Category.all.each do |category|%>
+          <option><%=category.name%></option>
+        <%end%>
+        </select>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+        <h4>Buscar</h4>&nbsp;
           <input type="text" class="form-control" placeholder="Buscar por nombre" name="search">
           <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </div>
       </div>
   </div>
 </form>
-
+<br/>
 <%= link_to 'Crear producto', new_product_path, class: "btn btn-primary" %>
 <div class="table-responsive">
   <table class="table table-stripped table-hover">
