@@ -33,7 +33,7 @@ class Product < ApplicationRecord
 
   def self.search(search)
     if search
-      Product.where('lower(name) = ? or name LIKE ?', search.downcase, "%#{search}%")
+      Product.where('lower(name) LIKE ? or name LIKE ?', "%#{search.downcase}%", "%#{search}%")
     else
       Product.all.order('id ASC')
     end
@@ -41,7 +41,7 @@ class Product < ApplicationRecord
 
   def self.search_category(search)
     if search
-      Product.joins(:category).where('category.name = ?', search)
+      Product.joins('INNER JOIN Categories ON Products.category_id=Categories.id').where('categories.name = ?', "#{search}");
     end
   end
 end

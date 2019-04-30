@@ -66,11 +66,16 @@ class ProductsController < ApplicationController
 
   #Metodos para las vistas
   def list
-    if params[:seach_category].nil? or params[:search_category] == "Todas"
-      @products = Product.search(params[:search])
-    else
+    if params[:search_category] != "Todas" and !params[:search_category].blank?  and params[:search].blank?
       @products = Product.search_category(params[:search_category])
     end 
+    if params[:search].blank? and (params[:search_category].blank? or params[:search_category] == "Todas")
+      @products = Product.search(params[:search])
+    end
+    if params[:search_category] == "Todas" 
+      @products = Product.search(params[:search])
+    end
+   
   end
 
   def search
