@@ -1,0 +1,24 @@
+<h1>Industrias</h1>
+<%= link_to 'Crear industria', new_industry_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>País</th>
+        <th>Origen</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @industries.each do |industry| %>
+        <tr>
+          <td><%= industry.country %></td>
+          <td><%= industry.origin %></td>
+          <td><%= link_to 'Editar', edit_industry_path(industry) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

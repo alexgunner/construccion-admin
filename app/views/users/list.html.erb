@@ -17,6 +17,7 @@
     <thead>
       <tr>
         <th>Nombres Completo</th>
+        <th>Correo electrónico</th>
         <th>CI</th>
         <th>NIT</th>
         <th>Rol</th>
@@ -56,6 +57,7 @@
         <%else%>
         <tr>
           <td><%= user.name %></td>
+          <td><%= user.email %></td>
           <td><%= user.ci %></td>
           <td>
             <% if user.nit.nil? || user.nit.blank? %>

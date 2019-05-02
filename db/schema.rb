@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190415134459) do
+ActiveRecord::Schema.define(version: 20190502040952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(version: 20190415134459) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "industries", force: :cascade do |t|
+    t.string "country"
+    t.string "origin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "manufacturers", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -253,8 +260,8 @@ ActiveRecord::Schema.define(version: 20190415134459) do
     t.string "picture4_content_type"
     t.integer "picture4_file_size"
     t.datetime "picture4_updated_at"
-    t.string "industry"
     t.string "warranty"
+    t.integer "industry_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["measure_id"], name: "index_products_on_measure_id"

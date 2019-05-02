@@ -16,6 +16,7 @@ class Product < ApplicationRecord
   belongs_to :subcategory
   has_many :product_variants
   has_many :stocks
+  belongs_to :industry
 
   def in_offer
   	if self.offer
