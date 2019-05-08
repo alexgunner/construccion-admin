@@ -531,7 +531,7 @@ ProductVariant.create(id: 34	, price: 	46.7	, product_id: 	13	, description: "	C
 ProductVariant.create(id: 35	, price: 	57.3	, product_id: 	13	, description: "	Conector flexible de 80 cm, trenzado con acero inoxidable	", code: "	EAG-E80	")
 ProductVariant.create(id: 36	, product_id: 	13	, code: "	EAG-E80	")
 ProductVariant.create(id: 37	, price: 	60	, product_id: 	13	, description: "	Conector flexible para gas de 100 cm, trenzado con acero inoxidable	", code: "	EAG-E100	")
-ProductVariant.create(id: 38	, price: 	24	, product_id: 	14	, description: "	Conectores flexible de 40 cm,trenzado con  Vinilo reforsado	", code: "	EVL-L40	",	available: TRUE, weight: 1)
+ProductVariant.create(id: 38	, price: 	24	, product_id: 	14	, description: "	Conectores flexible de 40 cm,trenzado con  Vinilo reforsado	", code: "	EVL-L40	", weight: 1)
 ProductVariant.create(id: 39	, price: 	26	, product_id: 	14	, description: "	Conectores flexible de 55 cm, trenzado con  Vinilo reforsado	", code: "	EVL-L55	")
 ProductVariant.create(id: 40	, product_id: 	14	)
 ProductVariant.create(id: 41	, price: 	30.7	, product_id: 	15	, description: "	Chicotillo de 40 cm, trenzado con  vinillo reforzado blanco	", code: 	"EVLB-Z16”	")
