@@ -7,5 +7,5 @@ class ProductSerializer < ActiveModel::Serializer
   belongs_to :measure
   has_many :product_variants
   has_many :stocks
-  #belongs_to :industry
+  belongs_to :industry
 end

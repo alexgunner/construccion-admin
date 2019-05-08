@@ -34,7 +34,10 @@
     <%= form.collection_select :manufacturer_id, Manufacturer.all, :id, :name, id: :product_manufacturer_id, class: "form-control", :required => true%>
   </div>
 
- 
+  <div class="form-group">
+    <%= form.label "Industria" %>
+    <%= form.collection_select :industry_id, Industry.all, :id, :origin, id: :product_industry_id, class: "form-control", :required => true%>
+  </div>
 
   <div class="form-group">
     <%= form.label "Garantía" %>
