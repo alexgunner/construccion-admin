@@ -494,8 +494,8 @@ Product.create(id: 382, name: "	Candado mod.200-Display ", description: "	Candad
 
 
 #ProductVariants
-ProductVariant.create(id: 1	, price: 	29.3	, product_id: 	1	, description: "	 Chicotillo de 30 cm, trenzado con acero inoxidable 	", code: "	AL-A30	",	available: TRUE,					weight: 1)
-ProductVariant.create(id: 2	, price: 	30.7	, product_id: 	1	, description: "	  Chicotillo de 40 cm,trenzado con acero inoxidable	", code: "	AL-A40	",	available: TRUE,		wholesaleprice: 28,	specialistprice: 29,	importerprice: 30,	weight: 1)
+ProductVariant.create(id: 1	, price: 	29.3	, product_id: 	1	, description: "	 Chicotillo de 30 cm, trenzado con acero inoxidable 	", code: "	AL-A30	",					weight: 1)
+ProductVariant.create(id: 2	, price: 	30.7	, product_id: 	1	, description: "	  Chicotillo de 40 cm,trenzado con acero inoxidable	", code: "	AL-A40	",		wholesaleprice: 28,	specialistprice: 29,	importerprice: 30,	weight: 1)
 ProductVariant.create(id: 3	, price: 	29.3	, product_id: 	2	, description: "	Chicotillo de 30 cm, trenzado con  acero inoxidable	", code: "	EAL-D30	")
 ProductVariant.create(id: 4	, price: 	30.7	, product_id: 	2	, description: "	Chicotillo de 40 cm, trenzado con acero inoxidable	", code: "	EAL-D40	")
 ProductVariant.create(id: 5	, price: 	34.7	, product_id: 	2	, description: "	Chicotillo de 50 cm, trenzado con acero inoxidable	", code: "	EAL-D50	")
@@ -506,7 +506,7 @@ ProductVariant.create(id: 9	, price: 	49.3	, product_id: 	2	, description: "	Chi
 ProductVariant.create(id: 10	, price: 	33.3	, product_id: 	1	, description: "	 Chicotillo de 50 cm, trenzado con acero inoxidable	", code: "	AL-A50	")
 ProductVariant.create(id: 11	, price: 	32	, product_id: 	3	, description: "	Chicotillo de 40 cm, trenzado con acero inoxidable 	", code: "	EAS-H40	")
 ProductVariant.create(id: 12	, price: 	34.7	, product_id: 	3	, description: "	Chicotillo de 50 cm, trenzado con acero inoxidable 	", code: "	EAS-H50	")
-ProductVariant.create(id: 13	, price: 	21.3	, product_id: 	4	, description: "	Chicotillo de 30 cm, trenzado con vinilo reforzado	", code: "	EVL-D30	",	available: TRUE)
+ProductVariant.create(id: 13	, price: 	21.3	, product_id: 	4	, description: "	Chicotillo de 30 cm, trenzado con vinilo reforzado	", code: "	EVL-D30	")
 ProductVariant.create(id: 14	, price: 	24	, product_id: 	4	, description: "	Chicotillo de 40 cm,  trenzado con vinilo reforzado	", code: "	EVL-D40	")
 ProductVariant.create(id: 15	, price: 	26.7	, product_id: 	4	, description: "	Chicotillo de 55 cm, trenzado con vinilo reforzado	", code: "	EVL-D55	")
 ProductVariant.create(id: 16	, price: 	37.3	, product_id: 	5	, description: "	Chicotillo de 40 cm,  trenzado con acero inoxidable	", code: "	EAS-G40	")
@@ -514,7 +514,7 @@ ProductVariant.create(id: 17	, price: 	40	, product_id: 	5	, description: "	Chic
 ProductVariant.create(id: 18	, price: 	33.3	, product_id: 	6	, description: "	Chicotillo de 40 cm, trenzado con acero inoxidable	", code: "	AL-M40	")
 ProductVariant.create(id: 19	, price: 	34.7	, product_id: 	6	, description: "	Chicotillo de 50 cm, trenzado con acero inoxidable	", code: "	AL-M50	")
 ProductVariant.create(id: 20	, price: 	37.3	, product_id: 	6	, description: "	Chicotillo de 60 cm, trenzado con acero inoxidable	", code: "	AL-M60	")
-ProductVariant.create(id: 21	, price: 	57.3	, product_id: 	7	, description: "	Chicotillo de 40 cm, trenzado con acero inoxidable	", code: "	EAB-F40	",	available: TRUE)
+ProductVariant.create(id: 21	, price: 	57.3	, product_id: 	7	, description: "	Chicotillo de 40 cm, trenzado con acero inoxidable	", code: "	EAB-F40	")
 ProductVariant.create(id: 22	, price: 	64	, product_id: 	7	, description: "	Chicotillo de 60 cm, trenzado con acero inoxidable	", code: "	EAB-F60	")
 ProductVariant.create(id: 23	, price: 	68	, product_id: 	8	, description: "	Conector flexible de 40 cm, trenzado con acero inoxidable	", code: "	EAB-L40	")
 ProductVariant.create(id: 24	, price: 	78.7	, product_id: 	8	, description: "	Conector flexible de 60 cm, trenzado con acero inoxidable	", code: "	EAB-F60	")
