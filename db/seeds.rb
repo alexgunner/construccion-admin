@@ -107,7 +107,7 @@
 
 
 #Products
-Product.create(id: 1, name: "AL-A", description: "Conector flexible H FIP 1/2” X H 1/2”", code: "AL-A", measure_id: 1,	provider_id: 1,	manufacturer_id: 2,	category_id: 3,	subcategory_id: 2, offer: false)
+Product.create!(id: 1, name: "AL-A", description: "Conector flexible H FIP 1/2” X H 1/2”", code: "AL-A", measure_id: 1,	provider_id: 1,	manufacturer_id: 2,	category_id: 3,	subcategory_id: 2, offer: false)
 Product.create(id: 2,	name: "EAL-D",description: "	H 1/2” x M 1/2”	", code: "EAL-D",	measure_id: 1,	provider_id: 1,	manufacturer_id: 2,	category_id: 3,	subcategory_id: 2,	picture_file_name: "EAL-D.jpg",	picture_content_type: "image/jpeg",	picture_file_size: 30658,	picture_updated_at: "12/26/2018  11:43:09 PM",	offer: false)
 Product.create(id: 3,	name: "EAS-H",description: "	Conector Flexible H AM 7/8” x M 1/2”	", code: "EAS-H",	measure_id: 1,	provider_id: 1,	manufacturer_id: 2,	category_id: 3,	subcategory_id: 2,	picture_file_name: "EAS-H.jpg",	picture_content_type: "image/jpeg",	picture_file_size: 27757,	picture_updated_at: "12/27/2018  12:21:13 AM",	offer: false)
 Product.create(id: 4,	name: "EAS-G",description: "	Conector flexibe H FIP 1/2” X M 1/2”	", code: "EVL-D",	measure_id: 1,	provider_id: 1,	manufacturer_id: 2,	category_id: 3,	subcategory_id: 2,	picture_file_name: "VL-D.jpg",	picture_content_type: "image/jpeg",	picture_file_size: 29408,	picture_updated_at: "12/27/2018  12:21:28 AM",	offer: false)
