@@ -28,7 +28,8 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    puts "----->"
+    puts @product.id
     respond_to do |format|
       if @product.save
         format.html { redirect_to '/productos', notice: 'Producto creado correctamente' }
@@ -109,6 +110,6 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:code, :name, :description, :measure_id, :provider_id, :manufacturer_id, :category_id, :subcategory_id, :picture, :offer, :details,
-      :picture2, :picture3, :picture4, :industry_id)
+      :picture2, :picture3, :picture4, :warranty, :industry_id)
     end
 end
