@@ -1,8 +1,14 @@
 <div class="features_items"><!--features_items-->
 	<h2 class="title text-center"><%= title %></h2>
+	<div class="row">
+		<div class="col-lg-1"></div>
 	<% categories.each_with_index do |category, index| %>
 
-		<div class="col-lg-3 item-pad category">
+		<% if (index + 1) % 5 ==0 %>
+			<div class="row">
+		<% end %>
+
+		<div class="col-lg-2 item-pad category">
 			<a class="category-image-wrapper" href="/category_products/<%= category.id %>">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -16,5 +22,11 @@
 				</div>
 			</a>
 		</div>
+
+		<% if (index + 1) % 5 == 0 %>
+			</div>
+			<div class="col-lg-1"></div>
+		<% end %>
+
 	<% end %>
 </div><!--features_items-->

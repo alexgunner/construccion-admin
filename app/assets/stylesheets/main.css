@@ -245,7 +245,7 @@ a#scrollUp i{
 
 .header-bottom {
   
-  
+  margin-top: -40px;
 }
 
 .navbar-collapse.collapse{
