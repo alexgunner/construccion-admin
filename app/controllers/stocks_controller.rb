@@ -16,39 +16,34 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
+    @product = Product.find(params[:id_product])
   end
 
   # GET /stocks/1/edit
   def edit
+    @product = Product.find(params[:id_product])
   end
 
   # POST /stocks
   def create
     @stock = Stock.new(stock_params)
-    if !stock_exist(@stock)
-      product_variant = ProductVariant.find(@stock.product_variant_id)
-      product_variant.available = true
-      product_variant.save
-      respond_to do |format|
-        if @stock.save
-          format.html { redirect_to '/almacen' }
-          format.json { render :show, status: :created, location: @stock }
-        else
-          format.html { render :new }
-          format.json { render json: @stock.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @stock.save
+        format.html { redirect_to '/productos/' + @stock.product_id.to_s + '/variantes' }
+        format.json { render :show, status: :created, location: @stock }
+      else
+        format.html { render :new }
+        format.json { render json: @stock.errors, status: :unprocessable_entity }
       end
-    else
-       flash[:notice] = "El producto que intentas crear ya existe en stock."
-       redirect_back fallback_location: root_path
     end
+    
   end
 
   # PATCH/PUT /stocks/1
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to '/almacen' }
+        format.html { redirect_to '/productos/' + @stock.product_id.to_s + '/variantes' }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit }

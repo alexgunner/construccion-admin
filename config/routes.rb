@@ -73,6 +73,8 @@ post '/post_message' => 'dashboard#post_message'
 get '/providers_list' => 'site#providers_list'
 get '/admin_product_search' => 'products#search'
 get '/industrias' => 'industries#list'
+get '/stocks/new/:id_product/:id_variant' => 'stocks#new'
+get '/stocks/:id/edit/:id_product/:id_variant' => 'stocks#edit'
 
 #Method for deserializable not found or not working
 get '/product-variants' => 'product_variants#index'

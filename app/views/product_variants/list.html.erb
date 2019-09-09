@@ -12,6 +12,7 @@
         <th>Precio minorista</th>
         <th>En oferta?</th>
         <th>Precio en oferta</th>
+        <th>Disponible</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -39,8 +40,21 @@
               <%= variant.offerprice %>
             <% end %>
           </td>
+          <td>
+            <% if variant.available == false or variant.available.nil? or variant.available.blank?%>
+            No
+            <%else%>
+            Sí
+            <%end%>
           <td><%= link_to 'Editar', '/productos/' + @product.id.to_s + '/product_variants/' + variant.id.to_s + '/edit' %></td>
           <td><%= link_to 'Eliminar', variant, method: :delete %></td>
+          <td>
+            <% if variant.available == false or variant.available.nil? or variant.available.blank?%>
+              <%= link_to 'Stock', '/stocks/new/' + @product.id.to_s + '/' + variant.id.to_s %>
+            <%else%>
+             <%= link_to 'Stock', '/stocks/' + variant.stocks.ids.first.to_s + '/edit/' + @product.id.to_s + '/' + variant.id.to_s %>
+            <%end%>
+          </td>
         </tr>
       <% end %>
     </tbody>
