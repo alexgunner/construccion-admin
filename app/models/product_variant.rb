@@ -1,7 +1,7 @@
 class ProductVariant < ApplicationRecord
   default_value_for :available, false
   belongs_to :product
-  has_many :stocks
+  has_one :stock
   has_many :carts
   has_many :sold_products
   def in_offer

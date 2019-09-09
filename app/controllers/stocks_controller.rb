@@ -29,6 +29,8 @@ class StocksController < ApplicationController
     @stock = Stock.new(stock_params)
     respond_to do |format|
       if @stock.save
+        variant = ProductVariant.find(@stock.product_variant_id)
+        variant.available = true
         format.html { redirect_to '/productos/' + @stock.product_id.to_s + '/variantes' }
         format.json { render :show, status: :created, location: @stock }
       else

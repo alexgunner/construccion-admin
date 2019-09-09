@@ -41,7 +41,7 @@
             <% end %>
           </td>
           <td>
-            <% if variant.available == false or variant.available.nil? or variant.available.blank?%>
+            <% if variant.stock.nil?%>
             No
             <%else%>
             Sí
@@ -49,10 +49,10 @@
           <td><%= link_to 'Editar', '/productos/' + @product.id.to_s + '/product_variants/' + variant.id.to_s + '/edit' %></td>
           <td><%= link_to 'Eliminar', variant, method: :delete %></td>
           <td>
-            <% if variant.available == false or variant.available.nil? or variant.available.blank?%>
+            <% if variant.stock.nil?%>
               <%= link_to 'Stock', '/stocks/new/' + @product.id.to_s + '/' + variant.id.to_s %>
             <%else%>
-             <%= link_to 'Stock', '/stocks/' + variant.stocks.ids.first.to_s + '/edit/' + @product.id.to_s + '/' + variant.id.to_s %>
+             <%= link_to 'Stock', '/stocks/' + variant.stock.id.to_s + '/edit/' + @product.id.to_s + '/' + variant.id.to_s %>
             <%end%>
           </td>
         </tr>
