@@ -19,7 +19,17 @@
 
     <tbody>
       <% @product_variants.each do |variant| %>
-        <tr>
+      <%if !variant.stock.nil?%>
+        <% if variant.stock.quantity <= variant.stock.limit && variant.stock.quantity != 0%>
+          <tr bgcolor="#FFFF87">
+        <%else%>
+          <% if variant.stock.quantity == 0 %>
+            <tr bgcolor="#FFA28E">
+          <%else%>
+            <tr>
+          <%end%>
+        <%end%>
+      <%end%>
           <td><%= variant.code %></td>
           <td><%= variant.description %></td>
           <td>Bs. <%= variant.price %></td>

@@ -106,7 +106,7 @@
                           <td><%=@product.warranty%></td>
                         <%end%>
             						<td align="left">
-            							<% if variant.available%>
+            							<% if !variant.stock.nil?%>
                             <%if current_user != nil%>
                               <%if cart_exist(variant.id, current_user.id) %>
                                 <a href='/cart/<%=current_user.id%>' class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Ya está en tú carrito</a>
