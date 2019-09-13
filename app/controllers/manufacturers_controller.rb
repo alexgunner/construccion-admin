@@ -1,6 +1,6 @@
 class ManufacturersController < ApplicationController
   before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   layout "dashboard"
   # GET /manufacturers
   # GET /manufacturers.json

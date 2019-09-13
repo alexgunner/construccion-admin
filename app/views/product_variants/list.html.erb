@@ -51,7 +51,7 @@
             <% end %>
           </td>
           <td>
-            <% if variant.stock.nil?%>
+            <% if variant.stock.nil? or variant.stock.quantity == 0%>
             No
             <%else%>
             Sí

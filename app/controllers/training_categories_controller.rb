@@ -1,5 +1,6 @@
 class TrainingCategoriesController < ApplicationController
   before_action :set_training_category, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
   layout "dashboard"
   # GET /training_categories
   def index

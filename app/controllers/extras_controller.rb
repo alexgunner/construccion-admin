@@ -1,6 +1,6 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   layout "dashboard"
   # GET /extras
   def index
