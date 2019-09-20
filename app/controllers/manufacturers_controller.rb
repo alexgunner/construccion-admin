@@ -57,10 +57,16 @@ class ManufacturersController < ApplicationController
   # DELETE /manufacturers/1
   # DELETE /manufacturers/1.json
   def destroy
-    @manufacturer.destroy
-    respond_to do |format|
-      format.html { redirect_to manufacturers_url, notice: 'Fabricante eliminado correctamente' }
-      format.json { head :no_content }
+    if @manufacturer.products.blank? or @manufacturer.products.nil? 
+      @manufacturer.destroy
+      respond_to do |format|
+        format.html { redirect_to '/fabricantes', notice: 'Fabricante eliminado correctamente' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to '/fabricantes'
+      flash[:alert] = "No puedes borrar a un fabricante que tenga asignados productos. 
+                        Por favor primero deja a este fabricante sin relación de productos, antes de eliminarlo."
     end
   end
 

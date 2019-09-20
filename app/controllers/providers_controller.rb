@@ -57,10 +57,16 @@ class ProvidersController < ApplicationController
   # DELETE /providers/1
   # DELETE /providers/1.json
   def destroy
-    @provider.destroy
-    respond_to do |format|
-      format.html { redirect_to providers_url, notice: 'Provedor eliminado correctamente' }
-      format.json { head :no_content }
+    if @provider.products.blank? or @provider.products.nil? 
+      @provider.destroy
+      respond_to do |format|
+        format.html { redirect_to '/proveedores', notice: 'Provedor eliminado correctamente' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to '/proveedores'
+      flash[:alert] = "No puedes borrar a un proveedor que tenga asignados productos. 
+                        Por favor primero deja a este proveedor sin relación de productos, antes de eliminarlo."
     end
   end
 

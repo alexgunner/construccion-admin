@@ -1,3 +1,9 @@
+<% flash.each do |key, value| %>
+<br/>
+  <div class="<%= flash_class(key) %>">
+    <%= value %>
+  </div>  
+<% end %>
 <h1>Fabricantes</h1>
 <%= link_to 'Crear fabricante', new_manufacturer_path, class: "btn btn-primary" %>
 <div class="table-responsive">
@@ -26,6 +32,7 @@
           <td><%= manufacturer.country %></td>
           <td><%= manufacturer.city %></td>
           <td><%= link_to 'Editar', edit_manufacturer_path(manufacturer) %></td>
+          <td><%= link_to 'Eliminar', manufacturer, method: :delete %></td>
         </tr>
       <% end %>
     </tbody>
