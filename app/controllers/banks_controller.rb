@@ -26,7 +26,7 @@ class BanksController < ApplicationController
     @bank = Bank.new(bank_params)
 
     if @bank.save
-      redirect_to '/bancos', notice: 'Bank was successfully created.'
+      redirect_to '/bancos', notice: 'Cuenta bancaria creada correctamente.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class BanksController < ApplicationController
   # PATCH/PUT /banks/1
   def update
     if @bank.update(bank_params)
-      redirect_to '/bancos', notice: 'Bank was successfully updated.'
+      redirect_to '/bancos', notice: 'Cuenta bancaria editada correctamente..'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class BanksController < ApplicationController
   # DELETE /banks/1
   def destroy
     @bank.destroy
-    redirect_to '/bancos', notice: 'Bank was successfully destroyed.'
+    redirect_to '/bancos', notice: 'Cuenta bancaria eliminada correctamente.' 
   end
 
   #Metodos para admin
