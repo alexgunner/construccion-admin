@@ -27,7 +27,7 @@ class DestinationsController < ApplicationController
     @destination = Destination.new(destination_params)
 
     if @destination.save
-      redirect_to '/destinos', notice: 'Destination was successfully created.'
+      redirect_to '/destinos', notice: 'Destino creado correctamente.'
     else
       render :new
     end
@@ -36,7 +36,7 @@ class DestinationsController < ApplicationController
   # PATCH/PUT /destinations/1
   def update
     if @destination.update(destination_params)
-      redirect_to '/destinos', notice: 'Destination was successfully updated.'
+      redirect_to '/destinos', notice: 'Destino editado correctamente.'
     else
       render :edit
     end
@@ -44,8 +44,14 @@ class DestinationsController < ApplicationController
 
   # DELETE /destinations/1
   def destroy
-    @destination.destroy
-    redirect_to '/destinos', notice: 'Destination was successfully destroyed.'
+    if @destination.deliveries.blank? or @destination.deliveries.nil? 
+      @destination.destroy
+      redirect_to '/destinos', notice: 'Destino eliminado correctamente.'
+    else
+      redirect_to '/destinos'
+      flash[:alert] = "No puedes borrar a un destino que tenga asignados deliveries. 
+                        Por favor primero deja a este  destino sin relación de deliveries, antes de eliminarlo."
+    end
   end
 
   def list
