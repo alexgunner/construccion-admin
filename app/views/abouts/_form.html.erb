@@ -1,0 +1,33 @@
+<%= form_with(model: about, local: true, html: { multipart: true }) do |form| %>
+  <% if about.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+
+      <ul>
+      <% about.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :about_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_area :description, id: :about_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :pic, id: :about_pic_id, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", class: "btn btn-success" %>
+    <%= link_to "Cancelar", "/abouts", class: "btn btn-danger" %>
+  </div>
+<% end %>

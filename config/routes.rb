@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abouts
   resources :industries
   resources :training_categories
   resources :carousels

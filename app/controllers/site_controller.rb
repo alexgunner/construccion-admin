@@ -15,6 +15,7 @@ class SiteController < ApplicationController
 	def about_us
 		@categories = Category.all
 		@contact_information = Contact.first
+		@abouts = About.all
 		@about = true
 	end
 
