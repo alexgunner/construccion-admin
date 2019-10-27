@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h4>Servicios</h4>
+	</div>
+</div>
+<div class="row">
+    <% @services.each do |service| %>
+        <div class="col-lg-4">
+            <%= image_tag(service.pic.url, class: "img-responsive") %>
+            <h4><%= service.title %></h4>
+            <%= truncate(service.description, length: 100) %><br>
+            <a href="#" data-toggle="modal" data-target="#service-<%= service.id %>">Entrar</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="service-<%= service.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><%= service.title %></h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <%= image_tag(service.pic.url, class: "img-responsive") %>
+                    </div>
+                    <div class="col-lg-6">
+                        <%= service.description.html_safe %>
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+</div>

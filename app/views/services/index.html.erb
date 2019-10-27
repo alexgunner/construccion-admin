@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Servicios</h1>
+
+<%= link_to 'Registrar', new_service_path, class: "btn btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Imagen</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.title %></td>
+        <td><%= service.description %></td>
+        <td><%= image_tag(service.pic.url, style: "width: 300px;") %></td>
+        <td><%= link_to 'Editar', edit_service_path(service) %></td>
+        <td><%= link_to 'Eliminar', service, method: :delete, data: { confirm: 'Está seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

@@ -47,8 +47,8 @@ class SiteController < ApplicationController
 		@manufacturer = Manufacturer.find(params[:id])
 	end
 
-	def services
-		@services = Extra.first.services
+	def servicios
+		@services = Service.all
 	end
 
 	def offices_list

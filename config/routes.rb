@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :services
   resources :abouts
   resources :industries
   resources :training_categories
@@ -100,7 +101,7 @@ get '/about_us' => 'site#about_us'
 get '/product_categories' => 'site#product_categories'
 get '/product_subcategories' => 'site#product_subcategories'
 get '/product_offers' => 'site#product_offers'
-get '/services' => 'site#services'
+get '/servicios' => 'site#servicios'
 get '/contact' => 'site#contact'
 get '/offices_list' => 'site#offices_list'
 get '/training_list' => 'site#training_list'
