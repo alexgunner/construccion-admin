@@ -1,58 +1,60 @@
 <div class="col-sm-12 padding-right">
-  <h2 class="title text-center">Registro de usuario</h2>
+    <h2 class="title text-center">Registro de usuario</h2>
     <div class="text-right">
         <button class="btn btn-warning" data-toggle="modal" data-target="#help"><i class="fas fa-question"></i> Ayuda de Registro</button>
     </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <p>Los campos con arteristico son opcionales.</p>
     <div class="col-sm-6">
-      <div class="form-group">
-          <label>Nombre Completo Cliente/Representante Legal:</label>
-          <%= f.text_field :name, autofocus: true, class: "form-control", :required => true, :maxlength => 100 %>
-      </div>
-      <div class="form-group">
-          <label>Correo electrónico:</label>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %>
-      </div>
-      <div class="form-group">
-          <label>Contraseña:</label>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
-          <p>Debe ser de 8-16 caracteres y contener al menos una mayúscula, una minúscula y un número.</p>
-      </div>
-      <div class="form-group">
-          <label>Confirmar contraseña:</label>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
-      </div>
-      <center>
+        <div class="form-group">
+            <label>Nombre Completo Cliente/Representante Legal:</label>
+            <%= f.text_field :name, autofocus: true, class: "form-control", :required => true, :maxlength => 100 %>
+        </div>
+        <div class="form-group">
+            <label>Correo electrónico:</label>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %>
+        </div>
+        <div class="form-group">
+            <label>Contraseña:</label>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
+            <p>Debe ser de 8-16 caracteres y contener al menos una mayúscula, una minúscula y un número.</p>
+        </div>
+        <div class="form-group">
+            <label>Confirmar contraseña:</label>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :required => true, :maxlength => 16 %>
+        </div>
+        <center>
             <%= f.submit "Aceptar", class: "btn btn-info" %>
             <a href="/" class="btn btn-default">Cancelar</a>
-            <br/>
-            <br/>
+            <br />
+            <br />
         </center>
-   </div>
+    </div>
 
-   
-        
+
+
     <%end%>
 </div>
 
 <!-- Help Modal -->
 <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="pictureModal">
     <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <center><h2>Instructivo de Registro</h2></center>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2>Instructivo de Registro</h2>
+                </center>
+            </div>
+            <div class="modal-body">
+                <center><i class="fas fa-question" style="font-size: 5.5em;"></i></center>
+                <h3 align='justify'>Estas a punto de crear una cuenta en nuestro portal, por favor toma en cuenta las siguientes indicaciones para que ingreses los datos según el tipo de cliente al cual correspondes.
+                    <br /><br /><b>Minorista (Ventas por unidades docenas a clientes no frecuentes, omitir datos de rubro)</b>
+                    <br /><br /><b>Cliente Especialista (Profesionales del rubro; constructores, arquitectos, plomeros, carpinteros)</b>
+                    <br /><br /><b>Cliente Minorista (Negocios del rubro; Ferreterias, comerciales, supermerados y grandes superficies)</b>
+                    <br /><br /><b>Cliente DOMUS (Cliente especial con beneficios de descuentos)</b></h3>
+            </div>
         </div>
-        <div class="modal-body">
-          <center><i class="fas fa-question" style="font-size: 5.5em;"></i></center>
-          <h3 align='justify'>Estas a punto de crear una cuenta en nuestro portal, por favor toma en cuenta las siguientes indicaciones para que ingreses los datos según el tipo de cliente al cual correspondes.
-            <br/><br/><b>Minorista (Ventas por unidades  docenas a clientes no frecuentes, omitir datos de rubro)</b> 
-            <br/><br/><b>Cliente Especialista (Profesionales del rubro; constructores, arquitectos, plomeros, carpinteros)</b>
-            <br/><br/><b>Cliente Minorista (Negocios del rubro; Ferreterias, comerciales, supermerados y grandes superficies)</b>
-            <br/><br/><b>Cliente DOMUS (Cliente especial con beneficios de descuentos)</b></h3>
-        </div>
-    </div>
     </div>
 </div>
 <!-- Help Modal -->
