@@ -17,6 +17,18 @@ body{
     background-color: #F6F6F6 !important;
 }
 
+a:after {
+    color: white;
+}
+
+a:focus {
+    color: white;   
+}
+
+a:visited {
+    color: white;
+}
+
 .slide-row {
     z-index: 1;
 }
