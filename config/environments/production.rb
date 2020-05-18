@@ -46,18 +46,7 @@ Rails.application.configure do
   config.assets.compile = true
 
   config.assets.quiet = true
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            'compras.domusbolivia@gmail.com',
-    password:             'domusbolivia2019',
-    authentication:       'plain',
-    enable_starttls_auto: true  }
-  config.action_mailer.asset_host = 'http://domusbolivia.com'
-  config.action_mailer.default_url_options = { :host => 'domusbolivia.com' }
+  
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -116,4 +105,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            'compras.domusbolivia@gmail.com',
+    password:             'domusbolivia2019',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+  config.action_mailer.asset_host = 'http://domusbolivia.com'
+  config.action_mailer.default_url_options = { :host => 'domusbolivia.com' }
 end
