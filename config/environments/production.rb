@@ -113,7 +113,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'compras.domusbolivia@gmail.com',
-    password:             'domusbolivia2019',
+    password:             'bkpewvvmhxzxdyxw',
     authentication:       'plain',
     enable_starttls_auto: true  }
   config.action_mailer.asset_host = 'http://domusbolivia.com'
