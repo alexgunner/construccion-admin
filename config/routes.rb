@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :carts
   resources :password_resets
+  resources :users
 
 get 'password_resets/new'
 post '/total' => 'orders#calculateTotal'

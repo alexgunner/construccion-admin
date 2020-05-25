@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, except: [:edit]
+  before_action :authenticate_admin!, except: [:edit, :update]
   layout "dashboard"
   def index
     @users = User.all
@@ -115,7 +115,7 @@ class UsersController < ApplicationController
       user.imagenit = params[:do_edit][:imagenit]
     end
     user.save
-    redirect_to '/'
+    redirect_to '/users/#{user.id}/edit'
   end
 
   private
