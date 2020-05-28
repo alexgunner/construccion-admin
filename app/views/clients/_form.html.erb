@@ -11,16 +11,8 @@
         <%= form.number_field :ci, id: :client_ci, value: current_user.ci, class: "form-control", :required => true, :maxlength => 20 %>
     </div>
     <div class="form-group">
-        <label>Teléfono:</label>
-        <%= form.number_field :phone, id: :client_phone, value: current_user.phone, class: "form-control", :required => true, :maxlength => 20 %>
-    </div>
-    <div class="form-group">
         <label>Celular:</label>
         <%= form.number_field :cellphone, id: :client_cellphone, value: current_user.cellphone, class: "form-control", :required => true, :maxlength => 20 %>
-    </div>
-    <div class="form-group">
-        <label>Celular de WhatsApp:</label>
-        <%= form.number_field :cellwsp, id: :client_cellwsp, value: current_user.cellwsp, class: "form-control", :required => true, :maxlength => 20 %>
     </div>
   </div>
   <div class="col-sm-6 ">
@@ -32,19 +24,12 @@
         <label>NIT Factura Cliente/Representate Legal: (Si se requiere)</label>
         <%= form.number_field :nit, id: :client_cellphone, value: current_user.nit, class: "form-control", :maxlength => 30 %>
     </div>
-    <div class="form-group">
-        <label>Destino:</label>
-        <%= form.collection_select(:destination_id, Destination.all.order('name ASC'), :id, :name_with_city, {}, {class: "form-control"})%>
-    </div>
-    <div class="form-group">
-        <label>Dirección:</label>
-        <%= form.text_area :address, id: :client_address, :rows => 6, :cols => 100, value: current_user.address, class: "form-control", :required => true, :maxlength => 256 %>
-    </div>
+    
   </div>
 
   <div class="actions">
     <center>
-      <%= form.submit "Aceptar", class: "btn btn-info"%>
+      <%= form.submit "Siguiente", class: "btn btn-info"%>
       <a href="/cart/<%=current_user.id%>" class="btn btn-default">Cancelar</a>
     </center>
   </div>

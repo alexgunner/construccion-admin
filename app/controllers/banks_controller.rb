@@ -1,6 +1,6 @@
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!
+#  #before_action :authenticate_admin!
   layout "dashboard"
   # GET /banks
   def index

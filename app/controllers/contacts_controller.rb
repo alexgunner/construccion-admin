@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!
+#  #before_action :authenticate_admin!
   layout "dashboard"
   # GET /contacts
   def index

@@ -1,12 +1,12 @@
 
 <%= form_with(model: user, local: true, html: { multipart: true }) do |form| %>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="form-group">
-          <label>Nombre Completo Cliente/Representante Legal:</label>
+          <label>Nombre Completo</label>
           <%= form.text_field :name, autofocus: true, class: "form-control", :required => true, :maxlength => 100, value: user.name %>
       </div>
       <div class="form-group">
-          <label>Nombre de Usuario/Nombre de la Empresa:</label>
+          <label>Nombre de Usuario</label>
           <%= form.text_field :namecompany, autofocus: true, class: "form-control", :required => true, :maxlength => 30, value: user.namecompany %>
       </div>
       <div class="form-group">
@@ -21,13 +21,13 @@
           <label>*NIT:</label>
           <%= form.number_field :nit, autofocus: true, class: "form-control", :maxlength => 50, value: user.nit %>
       </div>
+    </div>
+    <div class="col-sm-4">
       <div class="form-group">
+        <div class="form-group">
           <label>Dirección:</label>
           <%= form.text_area :address, :rows => 5, :cols => 100, autofocus: true, class: "form-control", :required => true, :maxlength => 256, value: user.address %>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="form-group">
           <label>Departamento: <%= user.city%></label>
             <%= form.select(:city, [['Beni'],['Chuquisaca'], ['Cochabamba'], ['La Paz'], ['Oruro'], ['Pando'], ['Potosí'], ['Santa Cruz'], ['Tarija']], {:prompt => 'Selecciona tu ciudad'}, {:class => "form-control"}) %>
       </div>
@@ -43,7 +43,10 @@
           <label>Celular de WhatsApp:</label>
           <%= form.number_field :cellwsp, autofocus: true, class: "form-control", :required => true, :maxlength => 50, value: user.cellwsp %>
       </div>
-      <%if user.imagenit.url  != "/images/original/missing.png" %>
+    </div>
+
+    <div class="col-sm-4">
+<%if user.imagenit.url  != "/images/original/missing.png" %>
         <div class="form-group">
         <label>*NIT (Incluir la imagen del certificado de su Número de Identificación Tributaria)</label>
             <%= form.file_field :imagenit, class: "form-control"%>

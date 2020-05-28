@@ -33,9 +33,9 @@ class ClientsController < ApplicationController
       @client.address = client_data.address
       @client.phone = client_data.phone
       @client.cellphone = client_data.cellphone
-      @client.cellwsp = client_data.cellwsp
+      
       @client.mail = client_data.mail
-      @client.destination_id = client_data.destination_id
+      
       if client_data.nameinvoice.blank?
         @client.nameinvoice = "Sin Nombre"
       else
@@ -65,7 +65,7 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   def update
     if @client.update(client_params)
-      redirect_to @client, notice: 'Client was successfully updated.'
+      redirect_to '/orders/new/' + @client.id.to_s, notice: 'Client was successfully updated.'
     else
       render :edit
     end
