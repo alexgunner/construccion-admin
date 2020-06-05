@@ -88,11 +88,6 @@
               							OFERTA: Bs. <%=variant.offerprice%>
                           <%end%>
             						</td>
-                        <td align="justify">
-                          <%=variant.code%>
-                        </td>
-                        
-
                         <td align="left">
                           <%if variant.weight.nil? %>
                             No registrado
@@ -100,6 +95,12 @@
                             Kg. <%= variant.description%>
                           <%end%>
                         </td>
+                        <td align="justify">
+                          <%=variant.code%>
+                        </td>
+                        
+
+                        
                        
             						<td align="left">
             							<% if !variant.stock.nil?%>
