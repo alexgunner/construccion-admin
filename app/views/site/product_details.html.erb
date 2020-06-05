@@ -33,6 +33,12 @@
                       <h4 style="display:inline;">Proveedor:</h4> <%= @product.provider.name%><br/><br/>
                       <h4 style="display:inline;">Unidad:</h4> <%=@product.measure.name%><br/><br/>
                       <h4 style="display:inline;">Descripción:</h4> <%=@product.description%><br/><br/>
+                      <h4 style="display:inline;">Garantía:</h4> <%=@product.warranty%> años<br/><br/>
+                      <h4 style="display:inline;">Industria:</h4> <%if !@product.industry.blank?%>
+                          <td><%=@product.industry.origin%></td>
+                        <%end%><br/><br/>
+                      
+                      
                       <% if @product.details.url!="/details/original/missing.png"%>
                           <p class="justified-text">
                             <%= link_to "Descargar ficha técnica", @product.details.url, target: "_blank", class: "btn btn-primary" %>
@@ -48,35 +54,16 @@
             			<div class="table-responsive">
             				<table class="table table-striped table-hover">
             					<thead>
-            						<th>Código</th>
-            						<th>Descripción</th>
-            						<th>Peso</th>
-            						<th>Precio</th>
-                        <%if !@product.industry.blank?%>
-                        <th>Industria</th>
-                        <%end%>
-                        <%if !@product.warranty.blank? %>
-                          <th>Garantía</th>
-                        <%end%>
+            						
+            						<th>Precio</th>                      
+                        <th>Código</th>
+                        <th>Peso</th>
             						<th></th>
             					</thead>
             					<tbody>
             					<% @product.product_variants.each do |variant|%>
             					<tr>
-            						<td align="justify">
-            							<%=variant.code%>
-            						</td>
-            						<td align="left">
-            							<%=variant.description%>
-            						</td>
-
-            						<td align="left">
-            							<%if variant.weight.nil? %>
-            								No registrado
-            							<%else%>
-            								Kg. <%= variant.weight%>
-            							<%end%>
-            						</td>
+            						
             						<td align="left">
                           <%if variant.offerprice.nil?%>
                             <% if current_user != nil %>
@@ -99,12 +86,19 @@
               							OFERTA: Bs. <%=variant.offerprice%>
                           <%end%>
             						</td>
-                        <%if !@product.industry.blank?%>
-                          <td><%=@product.industry.origin%></td>
-                        <%end%>
-                        <%if !@product.warranty.blank?%>
-                          <td><%=@product.warranty%></td>
-                        <%end%>
+                        <td align="justify">
+                          <%=variant.code%>
+                        </td>
+                        
+
+                        <td align="left">
+                          <%if variant.weight.nil? %>
+                            No registrado
+                          <%else%>
+                            Kg. <%= variant.weight%>
+                          <%end%>
+                        </td>
+                       
             						<td align="left">
             							<% if !variant.stock.nil?%>
                             <%if current_user != nil%>

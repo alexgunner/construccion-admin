@@ -115,4 +115,10 @@ get '/history/:id' => 'orders#history'
 get '/users/:id/edit' => 'users#edit'
 post '/users/do_edit' => 'users#do_edit'
 post '/search' => 'site#search'
+
+
+
+get '/new_test/:id' => 'carts#new_test'
+
+
 end

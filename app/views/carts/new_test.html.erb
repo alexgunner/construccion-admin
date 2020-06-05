@@ -1,0 +1,190 @@
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Datos personales</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Dirección de entrega</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Pago</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Confirmación</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <h4>Datos personales</h4>
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" name="name" class="form-control" value="<%= @user.name %>">
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="text" name="name" class="form-control" value="<%= @user.email %>">
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="number" name="name" class="form-control" value="<%= @user.phone %>">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Datos de la empresa</h4>
+          <div class="form-group">
+            <label>Empresa</label>
+            <input type="text" name="name" class="form-control" value="<%= @user.namecompany %>">
+          </div>
+          <div class="form-group">
+            <label>NIT</label>
+            <input type="text" name="name" class="form-control" value="<%= @user.nit %>" >
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="name" class="form-control" value="<%= @user.cellphone %>">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <style>
+            /* Set the size of the div element that contains the map */
+            #map {
+              height: 400px;  /* The height is 400 pixels */
+              width: 100%;  /* The width is the width of the web page */
+             }
+          </style>
+      <div class="col-lg-6">
+          <h4>Datos de entrega</h4>
+          <div class="form-group">
+            <label>Departamento</label>
+            <input type="text" name="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Ciudad</label>
+            <input type="text" name="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Calle</label>
+            <input type="text" name="name" class="form-control">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Datos de entrega</h4>
+          <div id="map"></div>
+              <script>
+          // Initialize and add the map
+          function initMap() {
+            // The location of Uluru
+            var uluru = {lat: -25.344, lng: 131.036};
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 4, center: uluru});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({position: uluru, map: map});
+          }
+              </script>
+              <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkb5roK4xlMGdpy1kvI05F_vQRvveBgYU&callback=initMap">
+              </script>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="messages">
+      <div class="col-lg-12">
+          <%= form_for @order do |form| %>
+          <%= form.hidden_field :client_id, :value => @client.id %>
+          <%= form.hidden_field :userid, :value => current_user.id %>
+          <div class="col-sm-6">
+              <div class="form-group">
+                <label>Entrega:</label>
+                <%if @client.destination.cash?%>
+                  <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista'], ['Recoger en tienda']], {}, {:class => "form-control"}) %>
+                <%else%>
+                  <%= form.select(:typedelivery, [['A domicilio'],['Recoger en transportista']], {}, {:class => "form-control"} ) %>
+                <%end%>
+              </div>
+              <%if Delivery.where('destination_id = ? and shipping = ?', @client.destination_id, "Domicilio").count == 0%>
+                <p id="dom"><b>NOTA: </b>Aún no contamos con envío a domicilio en tu destino, prueba con otra opción.</p>
+              <%else%>
+              <div class="form-group" id="dom">
+                <label>Delivery:</label>
+                <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Domicilio"), :id, :name_with_cost, {}, {class: "form-control"})%>
+              </div>
+              <%end%>
+              <%if Delivery.where('destination_id = ? and shipping = ?', @client.destination_id, "Transportista").count == 0%>
+                <p id="trans" style="display:none;"><b>NOTA: </b>Aún no contamos con envío para recoger en transportista en tu destino, prueba con otra opción.</p>
+              <%else%>
+              <div class="form-group" id="trans" style="display:none;">
+                  <label>Delivery:</label>
+                  <%= form.collection_select(:deliveryid, Delivery.where('destination_id = ? and shipping = ?', @client.destination.id, "Transportista"), :id, :name_with_cost, {}, {class: "form-control"})%>
+              </div>
+              <%end%>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Forma de pago:</label><br/>
+                <%if @client.destination.cash?%>
+                  <%= form.select(:typepay, [['Tarjeta crédito o débito'], ['Depósito Bancario'], ['Al momento de la entrega']], {}, {:class => "form-control"} ) %>
+                <%else%>
+                  <%= form.select(:typepay, [['Tarjeta crédito o débito'], ['Depósito Bancario']], {}, {:class => "form-control"} ) %>
+                <%end%>
+            </div>
+            <%if @client.destination.cash?%>
+              <div class="form-group" id="tien" style="display:none;">
+                <label>Tiendas y Sucursales:</label>
+                  <%= form.collection_select(:office, Office.all.order('name ASC'), :id, :name_with_city,{}, {class: "form-control"}) %>
+              </div>
+            <%else%>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+            <%end%>
+          </div>
+          <br/>
+          <br/>
+          <div class="actions">
+            <center>
+              <%= form.submit "Aceptar", class: "btn btn-info"%>
+              <a href="/cart/<%=current_user.id%>" class="btn btn-default">Cancelar</a>
+            </center>
+          </div>
+          <%end%>
+          <script type="text/javascript">
+            var typedelivery =  $("#order_typedelivery").val(); 
+            $("select").change(function(){ 
+              typedelivery =  $("#order_typedelivery").val(); 
+              console.log(typedelivery); 
+              if(typedelivery == "A domicilio"){
+                console.log("domi");
+                $('#trans').hide();
+                $('#tien').hide();
+                $('#dom').show();
+              }
+              else{
+                if(typedelivery == "Recoger en transportista"){
+                  console.log("trans");
+                  $('#trans').show();
+                  $('#dom').hide();
+                  $('#tien').hide();
+                }else{
+                  console.log("tien");
+                  $('#trans').hide();
+                  $('#dom').hide();
+                  $('#tien').show();
+                }
+              }
+            });
+            
+          </script>
+  
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+      
+    </div>
+  </div>
+
+</div>

@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :new_test]
   # GET /carts
   def index
     @carts = Cart.all
@@ -142,6 +142,22 @@ class CartsController < ApplicationController
   def destroy_them_all
     Cart.destroy_all
     redirect_to articles_path
+  end
+
+  def new_test
+    @user = @cart.user
+    @order = Order.new
+    @client = Client.new
+    @client.name = @user.name
+    @client.address = @user.address
+    @client.phone = @user.phone
+    @client.cellphone = @user.cellphone
+    @client.mail = @user.email
+    @client.nameinvoice = "Sin Nombre"
+    @client.nit = 0
+    @client.destination = Destination.first
+    @client.save
+    
   end
 
   private

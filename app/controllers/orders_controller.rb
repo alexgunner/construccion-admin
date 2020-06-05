@@ -30,6 +30,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
+        puts "=========================================="
+        puts @order.deliveryid
         carts = Cart.where('user_id = ? and state = false', @order.userid)
         carts.each do |cart|
           cart.order_id = @order.id
@@ -144,12 +146,12 @@ class OrdersController < ApplicationController
 
   def calculateTotal(id)
     order = Order.find(id)
-    cost_transport = Delivery.find(order.deliveryid).cost.to_i
-    costmin_transport = Delivery.find(order.deliveryid).costmin.to_i
+    cost_transport = 0 #Delivery.find(order.deliveryid).cost.to_i
+    costmin_transport = 0 #Delivery.find(order.deliveryid).costmin.to_i
     cost_total_transport = 0
     mult = 0
     if (order.typedelivery == "Domicilio" or order.typedelivery == "Transportista")
-      cost_transport = Delivery.find(order.deliveryid).cost.to_i
+      cost_transport = 0 #Delivery.find(order.deliveryid).cost.to_i
     end
     order.carts.each do |cart|
       price = cart.product_variant.price
@@ -172,18 +174,18 @@ class OrdersController < ApplicationController
     if order.typedelivery == "Tienda"
       order.cost = 0
     else
-      if Delivery.find(order.deliveryid).typedelivery !="Local"
-        if cost_total_transport >= costmin_transport
-          order.cost = cost_total_transport
-          mult = mult + cost_total_transport
-        else
-          order.cost = costmin_transport
-          mult = mult + costmin_transport
-        end
-      else
-        order.cost = cost_transport
-        mult = mult + cost_transport
-      end
+      #if Delivery.find(order.deliveryid).typedelivery !="Local"
+      #  if cost_total_transport >= costmin_transport
+      #    order.cost = cost_total_transport
+      #    mult = mult + cost_total_transport
+      #  else
+      #    order.cost = costmin_transport
+      #    mult = mult + costmin_transport
+      #  end
+      #else
+      #  order.cost = cost_transport
+      #  mult = mult + cost_transport
+      #end
     end
 
     order.total = mult
