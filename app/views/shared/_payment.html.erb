@@ -1,0 +1,67 @@
+<div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="card">
+	      <div class="card-body">
+	      	<h5 class="card-title">Información de la orden</h5>
+	        <span id="name_pay"></span><br>
+	        <h6>Teléfono</h6>
+	        <span id="phone_pay"></span><br>
+	        <br>
+	        <h6>NIT</h6>
+	        <span id="nit_pay"></span><br>
+	        <br>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    <div class="card">
+	      <div class="card-body">
+	      	<h5 class="card-title">Información de pago</h5>
+	        <form class="form">
+	        	<div class="form-group">
+	        		<select name="paymethods" id="paymethods" class="form-control" onchange="show_online_payment()">
+	        		  <option value="0">Depósito</option>
+	        		  <option value="1">Pago en línea</option>
+	        		</select>
+	        	</div>
+	        	<div class="form-group" id="deposit_info">
+	        		Realiza el depósito en una de las siguientes cuentas;
+
+	        		<table class="table table-striped">
+	        			<thead>
+	        				<tr>
+	        					<th>Banco</th>
+	        					<th># de cuenta</th>
+	        					<th>Nombre</th>
+	        					<th>Moneda</th>
+	        				</tr>
+	        			</thead>
+	        			<tbody>
+	        				<tr>
+	        					<td>BMSC</td>
+	        					<td>4067482122</td>
+	        					<td>DOMUS SRL	</td>
+	        					<td>BS</td>
+	        				</tr>
+	        				<tr>
+	        					<td>Union</td>
+	        					<td>10000029244253</td>
+	        					<td>DOMUS SRL	</td>
+	        					<td>BS</td>
+	        				</tr>
+	        			</tbody>
+	        		</table>
+	        		Una vez realizado el depósito, ingresa a tu <a href="#">cuenta Domus</a> para subir la foto del comprobante.
+	        		<a href="/" class="btn btn-primary btn-block">Confirmar compra</a>
+	        	</div>
+	        	<div class="form-group" id="online_payment">
+	        		Procederas a realizar el pago mediante una pasarela de pagos en línea externa a Domus SRL.<br>
+	        		<a href="/" class="btn btn-primary btn-block">Continuar</a>
+	        	</div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,99 @@
+<div class="tab-pane fade show active" id="address" role="tabpanel" aria-labelledby="address-tab">
+	<br>
+	<form class="form">
+		<h5>Información personal</h5>
+		<div class="form-group">
+			<label>Nombre Factura</label>
+			<input type="text" id="name" name="name" class="form-control">	
+		</div>
+		<div class="form-group">
+			<label>NIT</label>
+			<input type="text" id="nit"  name="nit" class="form-control">	
+		</div>
+		<div class="form-group">
+			<label>Contacto para la entrega</label>
+			<input type="text" id="lastname" name="name" class="form-control">	
+		</div>
+		<div class="form-group">
+			<label>Telefono/Celular</label>
+			<input type="text" id="phone"  name="phone" class="form-control">	
+		</div>
+		
+
+		<h5>Entrega</h5>
+
+		<ul class="nav nav-tabs" id="deliveryTab" role="tablist">
+		 <li class="nav-item" role="presentation">
+		    <a class="nav-link" id="delivery-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="delivery" aria-selected="false">Entrega</a>
+		  </li>
+		 <li class="nav-item" role="presentation">
+		    <a class="nav-link" id="transport-tab" data-toggle="tab" href="#transport" role="tab" aria-controls="delivery" aria-selected="false">Recoger de transportista</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" id="pickup-tab" data-toggle="tab" href="#pickup" role="tab" aria-controls="pickup" aria-selected="false">Recoger de la tienda</a>
+		  </li>
+		  
+		  
+		</ul>
+
+		<div class="tab-content" id="deliveryTabContent">
+		 	<div class="tab-pane fade show active" id="pickup" role="tabpanel" aria-labelledby="pickup-tab">
+		 		<div class="row">
+		 		  <div class="col-sm-6">
+		 		    <div class="card">
+		 		      <div class="card-body">
+		 		        <h6>Dirección</h6>
+		 		        Calle Antezana Nº 686 esquina Av. Salamanca. <br>
+		 		        Cochabamba - Bolivia<br>
+		 		        <br>
+		 		        <h6>Teléfonos</h6>
+		 		        4662091 - 4520667 - 70778451<br>
+		 		        <br>
+		 		        <h6>Correo electrónico</h6>
+		 		        domus.importadora@gmail.com<br>
+		 		      </div>
+		 		    </div>
+		 		  </div>
+		 		</div>
+		 	</div>
+		 	<div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
+ 				<div class="form-group">
+ 					<label>Departamento</label>
+ 					<input type="text" id="departament" name="departament" class="form-control">	
+ 				</div>
+ 				<div class="form-group">
+ 					<label>Ciudad</label>
+ 					<input type="text" id="city" name="city" class="form-control">	
+ 				</div>
+ 				<div class="form-group">
+ 					<label>Referencias</label>
+ 					<input type="text" id="reference" name="reference" class="form-control">	
+ 				</div>
+ 				<div id="current">Selecciona tu dirección debajo</div>
+ 				<div id="map"></div>
+ 				<script defer
+ 		    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNBsA2g0eCR-Kd-p73ZOOAAd46ufrvit0&callback=initMap">
+ 		    	</script>
+		 	</div>
+		 	<div class="tab-pane fade show active" id="transport" role="tabpanel" aria-labelledby="pickup-tab">
+		 		<div class="row">
+		 		  <div class="col-sm-6">
+		 		    <div class="card">
+		 		      <div class="card-body">
+		 		        <h6>Selecciona la ciudad</h6>
+		 		        <select name="city" id="city">
+		 		          <option value="Cochabamba">Cochabamba</option>
+		 		          <option value="La Paz">La Paz</option>
+		 		          <option value="Santa Cruz">Santa Cruz</option>
+		 		        </select>
+
+		 		        <h6>Selecciona el transportista</h6>
+		 		         <%= select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'id', 'name') %>
+		 		      </div>
+		 		    </div>
+		 		  </div>
+		 		</div>
+		 	</div>
+		</div>
+	</form>
+</div>
